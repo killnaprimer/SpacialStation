@@ -29,4 +29,4 @@ func patrol():
 
 func on_target_sighted(sighted_target : Node3D):
 	target = sighted_target
-	
+	enemy.gun_holder.target = target

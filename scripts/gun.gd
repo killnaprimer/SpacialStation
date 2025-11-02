@@ -7,10 +7,13 @@ class_name Gun
 @export var base_spread : float = 1.0
 @export var bullet_count : int = 1
 @export var firing_cooldown : float = 0.5
+@export var bullet_speed: float = 50
 
 @export_category("Type")
 @export var burst_type: burst_types
 enum burst_types {NO, SHOTGUN, BURST}
+@export var target_type: target_types
+enum target_types {ENEMY, PLAYER, BOTH}
 
 @export_category("Recoil")
 @export var recoil_gain : float
@@ -60,7 +63,7 @@ func fire_multiple():
 		var bullet : Bullet =  spawn_bullet()
 		var base_direction = -global_transform.basis.z
 		var spread_direction = base_direction.rotated(global_transform.basis.y, deg_to_rad(spread + get_base_spread()) )
-		bullet.linear_velocity = spread_direction * 50
+		bullet.linear_velocity = spread_direction * bullet_speed
 		
 		if spread == 0: spread += spread_gain
 		elif spread < 0: spread = -spread
@@ -81,13 +84,19 @@ func fire_single():
 	var bullet : Bullet =  spawn_bullet()
 	var base_direction = -global_transform.basis.z
 	var spread_direction = base_direction.rotated(global_transform.basis.y, deg_to_rad(get_base_spread()) )
-	bullet.linear_velocity = spread_direction * 50
+	bullet.linear_velocity = spread_direction * bullet_speed
 	recoil += recoil_gain
 
 func spawn_bullet() -> Bullet:
 	var bullet : Bullet = bullet_ref.instantiate()
 	GameManager.get_world().add_child(bullet)
 	bullet.global_position = global_position
+	match target_type:
+		target_types.ENEMY: bullet.set_collision_mask_value(4, true)
+		target_types.PLAYER: bullet.set_collision_mask_value(3, true)
+		target_types.BOTH:
+			bullet.set_collision_mask_value(4, true)
+			bullet.set_collision_mask_value(3, true)
 	return bullet
 
 func get_base_spread():
