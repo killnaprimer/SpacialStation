@@ -1,0 +1,78 @@
+[gd_scene load_steps=14 format=3 uid="uid://clydvyhspgccd"]
+
+[ext_resource type="Script" uid="uid://x5ipxbgp58n6" path="res://scripts/player.gd" id="1_4dohe"]
+[ext_resource type="PackedScene" uid="uid://d0g4k7jwfmwcg" path="res://prefabs/character.tscn" id="3_r66lb"]
+[ext_resource type="Script" uid="uid://dql0e8i3omcvc" path="res://scripts/gun_holder.gd" id="4_ht1c8"]
+[ext_resource type="Shader" uid="uid://bo0yc1rosr6v4" path="res://materials/basic.gdshader" id="4_kbsxf"]
+[ext_resource type="Script" uid="uid://b2dpd8c06nmlb" path="res://scripts/gun.gd" id="5_g2jcq"]
+[ext_resource type="Script" uid="uid://box1lvu4pf35d" path="res://scripts/mouse_aim.gd" id="6_g2jcq"]
+[ext_resource type="PackedScene" uid="uid://m266unpl4q2g" path="res://prefabs/bullet.tscn" id="6_u51tk"]
+[ext_resource type="Script" uid="uid://cx0xxqn8au6ks" path="res://scripts/health.gd" id="8_kbsxf"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_fp3wc"]
+radius = 0.6
+height = 1.8
+
+[sub_resource type="QuadMesh" id="QuadMesh_ht1c8"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_r66lb"]
+transparency = 1
+shading_mode = 0
+albedo_color = Color(0, 0, 0, 0.364706)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_rgeog"]
+render_priority = 0
+shader = ExtResource("4_kbsxf")
+shader_parameter/albedo_color = Color(1, 1, 1, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_ht1c8"]
+size = Vector3(0.25, 0.25, 0.25)
+
+[node name="player" type="CharacterBody3D" node_paths=PackedStringArray("sprite", "anim")]
+collision_layer = 4
+collision_mask = 11
+script = ExtResource("1_4dohe")
+sprite = NodePath("character/Sprite3D")
+anim = NodePath("character/AnimationPlayer")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9, 0)
+shape = SubResource("CapsuleShape3D_fp3wc")
+
+[node name="character" parent="." instance=ExtResource("3_r66lb")]
+
+[node name="Sprite3D" parent="character" index="0"]
+cast_shadow = 0
+modulate = Color(1, 0.416667, 0, 1)
+pixel_size = 0.12
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.55, 0, 0, 0, 8.52372e-08, 1, 0, -0.65, 1.31134e-07, 0, 0.013, 0)
+mesh = SubResource("QuadMesh_ht1c8")
+surface_material_override/0 = SubResource("StandardMaterial3D_r66lb")
+
+[node name="gun_holder" type="Node3D" parent="." node_paths=PackedStringArray("gun", "character", "mouse_aim")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.747565, 0)
+script = ExtResource("4_ht1c8")
+gun = NodePath("gun")
+character = NodePath("..")
+mouse_aim = NodePath("../mouse_aim")
+material = SubResource("ShaderMaterial_rgeog")
+
+[node name="Crosshair" type="MeshInstance3D" parent="gun_holder"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2)
+mesh = SubResource("BoxMesh_ht1c8")
+skeleton = NodePath("../..")
+
+[node name="gun" type="Node3D" parent="gun_holder"]
+script = ExtResource("5_g2jcq")
+bullet_ref = ExtResource("6_u51tk")
+
+[node name="mouse_aim" type="Node3D" parent="."]
+script = ExtResource("6_g2jcq")
+max_vertical_angle = 60.0
+
+[node name="health" type="Node3D" parent="."]
+script = ExtResource("8_kbsxf")
+
+[editable path="character"]

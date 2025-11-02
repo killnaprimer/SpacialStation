@@ -1,0 +1,37 @@
+[gd_scene load_steps=5 format=3 uid="uid://bhrgdgf5nja5j"]
+
+[ext_resource type="Script" uid="uid://cx0xxqn8au6ks" path="res://scripts/health.gd" id="1_w3ipt"]
+[ext_resource type="Texture2D" uid="uid://d0016wk0ra8qf" path="res://textures/generic_character-Sheet.png" id="2_cf8o5"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_cf8o5"]
+size = Vector3(1, 1.8, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_av2jj"]
+
+[node name="CharacterBody3D" type="CharacterBody3D"]
+collision_layer = 8
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9, 0)
+shape = SubResource("BoxShape3D_cf8o5")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+visible = false
+mesh = SubResource("BoxMesh_av2jj")
+skeleton = NodePath("../..")
+
+[node name="health" type="Node3D" parent="."]
+script = ExtResource("1_w3ipt")
+health = 1
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+offset = Vector2(0, 8)
+modulate = Color(1, 0, 0, 1)
+pixel_size = 0.12
+billboard = 1
+shaded = true
+texture_filter = 0
+texture = ExtResource("2_cf8o5")
+hframes = 3
+vframes = 3

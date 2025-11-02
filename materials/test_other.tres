@@ -1,0 +1,12 @@
+[gd_resource type="ShaderMaterial" load_steps=4 format=3 uid="uid://bcmlq6p3p6bnn"]
+
+[ext_resource type="Shader" uid="uid://vitfbh2vfqlc" path="res://materials/just_texture.gdshader" id="1_bwssm"]
+[ext_resource type="Texture2D" uid="uid://bn4hqxr27vgnl" path="res://models/test_0.png" id="2_bicay"]
+[ext_resource type="Texture2D" uid="uid://dr157syp247vw" path="res://models/quake_tileset_nm.png" id="3_eclp6"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_bwssm")
+shader_parameter/albedo = ExtResource("2_bicay")
+shader_parameter/normal = ExtResource("3_eclp6")
+shader_parameter/alpha_scissor = 0.5

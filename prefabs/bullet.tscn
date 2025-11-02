@@ -1,0 +1,34 @@
+[gd_scene load_steps=6 format=3 uid="uid://m266unpl4q2g"]
+
+[ext_resource type="Script" uid="uid://c37r7clt3gmfl" path="res://scripts/bullet.gd" id="1_mkf8s"]
+[ext_resource type="Shader" uid="uid://bo0yc1rosr6v4" path="res://materials/basic.gdshader" id="2_lv25w"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_y25gk"]
+radius = 0.25
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_7rc6x"]
+render_priority = 0
+shader = ExtResource("2_lv25w")
+shader_parameter/albedo_color = Color(1, 1, 1, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_44iiu"]
+material = SubResource("ShaderMaterial_7rc6x")
+radius = 0.25
+height = 0.5
+radial_segments = 6
+rings = 12
+
+[node name="bullet" type="RigidBody3D"]
+collision_layer = 0
+collision_mask = 11
+gravity_scale = 0.0
+continuous_cd = true
+contact_monitor = true
+max_contacts_reported = 1
+script = ExtResource("1_mkf8s")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_y25gk")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("SphereMesh_44iiu")
