@@ -1,6 +1,7 @@
 extends Node3D
 class_name GunHolder
 @export var gun : Gun
+@export var melee : Melee
 @export var character : Character
 @export var mouse_aim : MouseAim
 
@@ -35,8 +36,11 @@ func aim():
 	draw_line(Vector3(0,0,-0.75), aim_hit_pos)
 		
 func shoot():
-	if is_aiming:
-		gun.fire()
+	if is_aiming: gun.fire()
+	else: kick()
+
+func kick():
+	melee.hit()
 
 func reload():
 	pass
@@ -75,6 +79,6 @@ func draw_line(start_pos : Vector3, end_pos : Vector3):
 	line_mesh.surface_add_vertex(to_local(end_pos))
 	line_mesh.surface_end()
 
-func show_line(show : bool):
-	line_mesh_instance.visible = show
+func show_line(is_shown : bool):
+	line_mesh_instance.visible = is_shown
 #endregion
