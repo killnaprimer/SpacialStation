@@ -1,21 +1,25 @@
-[gd_scene load_steps=6 format=3 uid="uid://bhrgdgf5nja5j"]
+[gd_scene load_steps=7 format=3 uid="uid://bhrgdgf5nja5j"]
 
 [ext_resource type="Script" uid="uid://gla0cja4mfrw" path="res://scripts/enemy.gd" id="1_pkqqt"]
 [ext_resource type="Script" uid="uid://cx0xxqn8au6ks" path="res://scripts/health.gd" id="1_w3ipt"]
 [ext_resource type="Texture2D" uid="uid://d0016wk0ra8qf" path="res://textures/generic_character-Sheet.png" id="2_cf8o5"]
 [ext_resource type="Script" uid="uid://dd0ocu2dk0341" path="res://scripts/enemy_ai.gd" id="3_av2jj"]
+[ext_resource type="Script" uid="uid://h2ankc57xp0k" path="res://scripts/enemy_movement.gd" id="5_5hfr3"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_cf8o5"]
 radius = 0.7
 height = 1.8
 
-[node name="CharacterBody3D" type="CharacterBody3D"]
+[node name="Enemy" type="CharacterBody3D" node_paths=PackedStringArray("movement", "ai", "navigation")]
 collision_layer = 8
 script = ExtResource("1_pkqqt")
+movement = NodePath("Movement")
+ai = NodePath("AI")
+navigation = NodePath("NavigationAgent3D")
 
 [node name="health" type="Node3D" parent="."]
 script = ExtResource("1_w3ipt")
-health = 1
+health = 5
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9, 0)
@@ -34,3 +38,9 @@ vframes = 3
 
 [node name="AI" type="Node" parent="."]
 script = ExtResource("3_av2jj")
+
+[node name="Movement" type="Node" parent="."]
+script = ExtResource("5_5hfr3")
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
+debug_enabled = true
