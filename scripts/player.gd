@@ -41,7 +41,6 @@ func _physics_process(_delta):
 	
 	if velocity.z < 0: sprite.flip_h = true
 	if velocity.z > 0: sprite.flip_h = false
-	#sprite.flip_h = velocity.z < 0
 	
 	if Vector2(velocity.x, velocity.z).length() >0 :
 		if !is_aiming: anim.play("run")

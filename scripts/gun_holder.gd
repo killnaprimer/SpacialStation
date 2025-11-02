@@ -32,7 +32,7 @@ func aim():
 	is_aiming = Input.is_action_pressed("aim")
 	character.is_aiming = is_aiming
 	show_line(is_aiming)
-	draw_line(Vector3.ZERO, aim_hit_pos)
+	draw_line(Vector3(0,0,-0.75), aim_hit_pos)
 		
 func shoot():
 	if is_aiming:
