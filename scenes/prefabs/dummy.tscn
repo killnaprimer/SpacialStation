@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://bhrgdgf5nja5j"]
+[gd_scene load_steps=12 format=3 uid="uid://bhrgdgf5nja5j"]
 
 [ext_resource type="Script" uid="uid://gla0cja4mfrw" path="res://scripts/enemy/enemy.gd" id="1_pkqqt"]
 [ext_resource type="Script" uid="uid://cx0xxqn8au6ks" path="res://scripts/common/health.gd" id="1_w3ipt"]
@@ -8,13 +8,14 @@
 [ext_resource type="Script" uid="uid://b1iyvhk6s6soj" path="res://scripts/enemy/enemy_sight.gd" id="6_pssps"]
 [ext_resource type="Script" uid="uid://q786hxut4s3f" path="res://scripts/enemy/enemy_gun_holder.gd" id="7_qehvh"]
 [ext_resource type="Script" uid="uid://b2dpd8c06nmlb" path="res://scripts/common/gun.gd" id="8_58ed5"]
+[ext_resource type="Script" uid="uid://c4yuajoxxo5r4" path="res://scripts/enemy/enemy_hearing.gd" id="9_q30q4"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_cf8o5"]
 radius = 0.7
 height = 1.8
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_5hfr3"]
-radius = 12.0
+radius = 20.0
 
 [node name="Enemy" type="CharacterBody3D" node_paths=PackedStringArray("movement", "ai", "gun_holder", "navigation")]
 collision_layer = 8
@@ -53,6 +54,7 @@ script = ExtResource("5_5hfr3")
 debug_enabled = true
 
 [node name="sight" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.32182, 0)
 collision_layer = 0
 collision_mask = 4
 script = ExtResource("6_pssps")
@@ -73,4 +75,8 @@ bullet_speed = 20.0
 target_type = 1
 metadata/_custom_type_script = "uid://b2dpd8c06nmlb"
 
+[node name="hearing" type="Node3D" parent="."]
+script = ExtResource("9_q30q4")
+
 [connection signal="target_sighted" from="sight" to="AI" method="on_target_sighted"]
+[connection signal="on_sound_heared" from="hearing" to="AI" method="on_sound_heared"]

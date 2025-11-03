@@ -27,6 +27,7 @@ folder_colors={
 "res://models/": "yellow",
 "res://scenes/": "red",
 "res://scripts/": "purple",
+"res://sounds/": "green",
 "res://sources/": "gray",
 "res://textures/": "orange"
 }

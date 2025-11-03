@@ -13,3 +13,8 @@ func get_world() -> Node3D:
 func damage(node : Node3D):
 	if node.has_node("health"):
 		node.get_node("health").take_dmg()
+
+signal on_sound(pos : Vector3, dist : float)
+
+func send_sound(pos : Vector3, dist : float):
+	emit_signal("on_sound", pos, dist)

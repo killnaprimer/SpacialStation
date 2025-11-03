@@ -12,7 +12,7 @@ func fill_from_inventory():
 		loot_row.set_loot(loot)
 		list.add_child(loot_row)
 		loot_items.append(loot_row)
-		visible = false
+		#visible = false
 		
 func _ready() -> void:
 	Inventory.connect("on_loot_changed", fill_from_inventory)

@@ -120,6 +120,7 @@ func add_gun(new_gun : Gun):
 	add_child(new_gun)
 	new_gun.position = Vector3(0,0,-0.75)
 	gun = new_gun
+	gun.hearable = true
 	gun.loot.equipped = true
 	gun.connect("on_spread_changed", GameManager.ui.cursor.set_spread)
 	gun.connect("on_fire", GameManager.get_camera().make_tween)
