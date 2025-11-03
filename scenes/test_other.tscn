@@ -1,11 +1,12 @@
-[gd_scene load_steps=12 format=3 uid="uid://bu274eu0mlkeb"]
+[gd_scene load_steps=13 format=3 uid="uid://bu274eu0mlkeb"]
 
 [ext_resource type="PackedScene" uid="uid://kmdqws6ikfcb" path="res://models/test.gltf" id="1_ihlre"]
-[ext_resource type="Script" uid="uid://dbdvi5o2kq1x0" path="res://scripts/camera.gd" id="2_wgg0f"]
-[ext_resource type="PackedScene" uid="uid://clydvyhspgccd" path="res://prefabs/player.tscn" id="3_ymkes"]
-[ext_resource type="PackedScene" uid="uid://c08e8x0wu55hj" path="res://prefabs/car.tscn" id="4_ymkes"]
-[ext_resource type="PackedScene" uid="uid://bhrgdgf5nja5j" path="res://prefabs/dummy.tscn" id="6_ykgj2"]
-[ext_resource type="Script" uid="uid://hbukvo8aojjp" path="res://scripts/patrol_point.gd" id="7_6cwa4"]
+[ext_resource type="Script" uid="uid://dbdvi5o2kq1x0" path="res://scripts/player/camera.gd" id="2_wgg0f"]
+[ext_resource type="PackedScene" uid="uid://clydvyhspgccd" path="res://scenes/prefabs/player.tscn" id="3_ymkes"]
+[ext_resource type="PackedScene" uid="uid://c08e8x0wu55hj" path="res://scenes/prefabs/car.tscn" id="4_ymkes"]
+[ext_resource type="PackedScene" uid="uid://bhrgdgf5nja5j" path="res://scenes/prefabs/dummy.tscn" id="6_ykgj2"]
+[ext_resource type="Script" uid="uid://hbukvo8aojjp" path="res://scripts/enemy/patrol_point.gd" id="7_6cwa4"]
+[ext_resource type="PackedScene" uid="uid://bhi3jtmt4en5g" path="res://scenes/prefabs/ui.tscn" id="7_tg5ch"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_ykgj2"]
 sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
@@ -106,6 +107,10 @@ transform = Transform3D(-0.482963, 0, 0.12941, 0, 0.5, 0, -0.12941, 0, -0.482963
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 25)
 patrol_points = [NodePath("../patrol_points/PatrolPoint"), NodePath("../patrol_points/PatrolPoint2")]
 
+[node name="Enemy2" parent="." node_paths=PackedStringArray("patrol_points") instance=ExtResource("6_ykgj2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, 0, 18)
+patrol_points = [NodePath("../patrol_points/PatrolPoint"), NodePath("../patrol_points/PatrolPoint2")]
+
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
 navigation_mesh = SubResource("NavigationMesh_ykgj2")
 
@@ -121,3 +126,7 @@ metadata/_custom_type_script = "uid://hbukvo8aojjp"
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.4, 0, 0.200001)
 script = ExtResource("7_6cwa4")
 metadata/_custom_type_script = "uid://hbukvo8aojjp"
+
+[node name="SubViewport" type="SubViewport" parent="."]
+
+[node name="Control" parent="." instance=ExtResource("7_tg5ch")]

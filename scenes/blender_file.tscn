@@ -1,7 +1,7 @@
 [gd_scene load_steps=33 format=4 uid="uid://d0u2e81a1058t"]
 
 [ext_resource type="PackedScene" uid="uid://w2r3ol1rkdet" path="res://models/everything.blend" id="1_ytyiu"]
-[ext_resource type="PackedScene" uid="uid://c08e8x0wu55hj" path="res://prefabs/car.tscn" id="2_55hyd"]
+[ext_resource type="PackedScene" uid="uid://c08e8x0wu55hj" path="res://scenes/prefabs/car.tscn" id="2_55hyd"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cmxep"]
 resource_name = "road"

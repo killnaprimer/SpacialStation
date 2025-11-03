@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="LootGun" load_steps=2 format=3 uid="uid://67gtv55bbw3y"]
+
+[ext_resource type="Script" uid="uid://b13hf7g4mkgbi" path="res://scripts/data/loot_gun.gd" id="1_mrloc"]
+
+[resource]
+script = ExtResource("1_mrloc")
+base_spread = 1.0
+bullet_count = 1
+firing_cooldown = 0.5
+bullet_speed = 50.0
+burst_type = 0
+target_type = 0
+recoil_gain = 0.0
+recoil_base = 0.0
+recoil_recovery = 0.0
+spread_gain = 5.0
+loot_name = "pistol"
+metadata/_custom_type_script = "uid://b13hf7g4mkgbi"

@@ -1,20 +1,20 @@
-[gd_scene load_steps=15 format=3 uid="uid://clydvyhspgccd"]
+[gd_scene load_steps=14 format=3 uid="uid://clydvyhspgccd"]
 
-[ext_resource type="Script" uid="uid://x5ipxbgp58n6" path="res://scripts/player.gd" id="1_4dohe"]
-[ext_resource type="PackedScene" uid="uid://d0g4k7jwfmwcg" path="res://prefabs/character.tscn" id="3_r66lb"]
-[ext_resource type="Script" uid="uid://dql0e8i3omcvc" path="res://scripts/gun_holder.gd" id="4_ht1c8"]
+[ext_resource type="Script" uid="uid://x5ipxbgp58n6" path="res://scripts/common/player.gd" id="1_4dohe"]
+[ext_resource type="PackedScene" uid="uid://d0g4k7jwfmwcg" path="res://scenes/prefabs/character.tscn" id="3_r66lb"]
+[ext_resource type="Script" uid="uid://dql0e8i3omcvc" path="res://scripts/player/gun_holder.gd" id="4_ht1c8"]
 [ext_resource type="Shader" uid="uid://bo0yc1rosr6v4" path="res://materials/basic.gdshader" id="4_kbsxf"]
-[ext_resource type="Script" uid="uid://b2dpd8c06nmlb" path="res://scripts/gun.gd" id="5_g2jcq"]
-[ext_resource type="Script" uid="uid://dum25iy3i8s0w" path="res://scripts/melee.gd" id="5_rgeog"]
-[ext_resource type="Script" uid="uid://box1lvu4pf35d" path="res://scripts/mouse_aim.gd" id="6_g2jcq"]
-[ext_resource type="PackedScene" uid="uid://m266unpl4q2g" path="res://prefabs/bullet.tscn" id="6_u51tk"]
-[ext_resource type="Script" uid="uid://cx0xxqn8au6ks" path="res://scripts/health.gd" id="8_kbsxf"]
+[ext_resource type="Script" uid="uid://b2dpd8c06nmlb" path="res://scripts/common/gun.gd" id="5_g2jcq"]
+[ext_resource type="Script" uid="uid://dum25iy3i8s0w" path="res://scripts/common/melee.gd" id="5_rgeog"]
+[ext_resource type="Script" uid="uid://box1lvu4pf35d" path="res://scripts/player/mouse_aim.gd" id="6_g2jcq"]
+[ext_resource type="Script" uid="uid://cx0xxqn8au6ks" path="res://scripts/common/health.gd" id="8_kbsxf"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_fp3wc"]
 radius = 0.6
 height = 1.8
 
 [sub_resource type="QuadMesh" id="QuadMesh_ht1c8"]
+size = Vector2(1.5, 2)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_r66lb"]
 transparency = 1
@@ -75,12 +75,10 @@ shape = SubResource("BoxShape3D_kbsxf")
 [node name="gun" type="Node3D" parent="gun_holder"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.7)
 script = ExtResource("5_g2jcq")
-bullet_ref = ExtResource("6_u51tk")
+base_spread = 5.0
 bullet_count = 5
-burst_type = 2
 recoil_gain = 0.5
 recoil_base = 10.0
-recoil_recovery = 0.2
 spread_gain = 2.5
 
 [node name="mouse_aim" type="Node3D" parent="."]

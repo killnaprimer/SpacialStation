@@ -1,6 +1,7 @@
 extends Node3D
 class_name Gun
-@export var bullet_ref : PackedScene
+#@export var bullet_ref : PackedScene
+const bullet_ref = preload("res://scenes/prefabs/bullet.tscn")
 #Recoil
 
 @export_category("Basics")
@@ -16,9 +17,9 @@ enum burst_types {NO, SHOTGUN, BURST}
 enum target_types {ENEMY, PLAYER, BOTH}
 
 @export_category("Recoil")
-@export var recoil_gain : float
-@export var recoil_base : float
-@export var recoil_recovery : float
+@export var recoil_gain : float = 0.2
+@export var recoil_base : float = 0.5
+@export var recoil_recovery : float = 0.2
 var recoil : float = 0
 
 @export_category("Shotgun Spread")

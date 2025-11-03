@@ -1,14 +1,14 @@
 [gd_scene load_steps=12 format=3 uid="uid://bhrgdgf5nja5j"]
 
-[ext_resource type="Script" uid="uid://gla0cja4mfrw" path="res://scripts/enemy.gd" id="1_pkqqt"]
-[ext_resource type="Script" uid="uid://cx0xxqn8au6ks" path="res://scripts/health.gd" id="1_w3ipt"]
+[ext_resource type="Script" uid="uid://gla0cja4mfrw" path="res://scripts/enemy/enemy.gd" id="1_pkqqt"]
+[ext_resource type="Script" uid="uid://cx0xxqn8au6ks" path="res://scripts/common/health.gd" id="1_w3ipt"]
 [ext_resource type="Texture2D" uid="uid://d0016wk0ra8qf" path="res://textures/generic_character-Sheet.png" id="2_cf8o5"]
-[ext_resource type="Script" uid="uid://dd0ocu2dk0341" path="res://scripts/enemy_ai.gd" id="3_av2jj"]
-[ext_resource type="Script" uid="uid://h2ankc57xp0k" path="res://scripts/enemy_movement.gd" id="5_5hfr3"]
-[ext_resource type="Script" uid="uid://b1iyvhk6s6soj" path="res://scripts/enemy_sight.gd" id="6_pssps"]
-[ext_resource type="Script" uid="uid://q786hxut4s3f" path="res://scripts/enemy_gun_holder.gd" id="7_qehvh"]
-[ext_resource type="Script" uid="uid://b2dpd8c06nmlb" path="res://scripts/gun.gd" id="8_58ed5"]
-[ext_resource type="PackedScene" uid="uid://m266unpl4q2g" path="res://prefabs/bullet.tscn" id="9_ckt0c"]
+[ext_resource type="Script" uid="uid://dd0ocu2dk0341" path="res://scripts/enemy/enemy_ai.gd" id="3_av2jj"]
+[ext_resource type="Script" uid="uid://h2ankc57xp0k" path="res://scripts/enemy/enemy_movement.gd" id="5_5hfr3"]
+[ext_resource type="Script" uid="uid://b1iyvhk6s6soj" path="res://scripts/enemy/enemy_sight.gd" id="6_pssps"]
+[ext_resource type="Script" uid="uid://q786hxut4s3f" path="res://scripts/enemy/enemy_gun_holder.gd" id="7_qehvh"]
+[ext_resource type="Script" uid="uid://b2dpd8c06nmlb" path="res://scripts/common/gun.gd" id="8_58ed5"]
+[ext_resource type="PackedScene" uid="uid://m266unpl4q2g" path="res://scenes/prefabs/bullet.tscn" id="9_ckt0c"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_cf8o5"]
 radius = 0.7

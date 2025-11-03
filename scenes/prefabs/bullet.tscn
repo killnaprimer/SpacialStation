@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://m266unpl4q2g"]
 
-[ext_resource type="Script" uid="uid://c37r7clt3gmfl" path="res://scripts/bullet.gd" id="1_mkf8s"]
+[ext_resource type="Script" uid="uid://c37r7clt3gmfl" path="res://scripts/common/bullet.gd" id="1_mkf8s"]
 [ext_resource type="Shader" uid="uid://bo0yc1rosr6v4" path="res://materials/basic.gdshader" id="2_lv25w"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_y25gk"]
