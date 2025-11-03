@@ -19,6 +19,8 @@ var aim_hit_pos : Vector3
 func _ready():
 	make_ray()
 	make_line()
+	await get_tree().process_frame
+	gun.connect("on_fire", GameManager.get_camera().make_tween)
 
 func _physics_process(delta: float) -> void:
 	aim_pos = mouse_aim.get_aim_point() + position

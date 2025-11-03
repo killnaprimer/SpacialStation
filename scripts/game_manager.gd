@@ -1,6 +1,10 @@
 extends Node
 
 var player : CharacterBody3D
+var camera : PlayerCamera
+
+func get_camera()-> PlayerCamera:
+	return camera
 
 func get_world() -> Node3D:
 	return player.get_parent_node_3d()

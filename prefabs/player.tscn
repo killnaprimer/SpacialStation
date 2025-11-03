@@ -41,16 +41,16 @@ shape = SubResource("CapsuleShape3D_fp3wc")
 
 [node name="character" parent="." instance=ExtResource("3_r66lb")]
 
+[node name="Sprite3D" parent="character" index="0"]
+cast_shadow = 0
+modulate = Color(1, 0.416667, 0, 1)
+pixel_size = 0.12
+
 [node name="shadow" type="MeshInstance3D" parent="character"]
 transform = Transform3D(0.55, 0, 0, 0, 8.52372e-08, 1, 0, -0.65, 1.31134e-07, 0, 0.013, 0)
 mesh = SubResource("QuadMesh_ht1c8")
 skeleton = NodePath("../..")
 surface_material_override/0 = SubResource("StandardMaterial3D_r66lb")
-
-[node name="Sprite3D" parent="character" index="1"]
-cast_shadow = 0
-modulate = Color(1, 0.416667, 0, 1)
-pixel_size = 0.12
 
 [node name="gun_holder" type="Node3D" parent="." node_paths=PackedStringArray("gun", "melee", "character", "mouse_aim")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.747565, 0)

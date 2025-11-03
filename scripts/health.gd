@@ -6,5 +6,4 @@ func take_dmg(dmg : int = 1):
 	if health <= 0: die()
 
 func die():
-	print("I DIE NOW")
 	owner.queue_free() 

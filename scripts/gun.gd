@@ -33,6 +33,7 @@ var can_fire : bool = true :
 var burst_timer : Timer
 var burst_count_left : int
 
+signal on_fire()
 
 func _ready() -> void:
 	timer = Timer.new()
@@ -69,6 +70,7 @@ func fire_multiple():
 		elif spread < 0: spread = -spread
 		else: spread += spread_gain
 	recoil += recoil_gain
+	emit_signal("on_fire")
 
 func fire_burst():
 	can_fire = false
@@ -86,6 +88,7 @@ func fire_single():
 	var spread_direction = base_direction.rotated(global_transform.basis.y, deg_to_rad(get_base_spread()) )
 	bullet.linear_velocity = spread_direction * bullet_speed
 	recoil += recoil_gain
+	emit_signal("on_fire")
 
 func spawn_bullet() -> Bullet:
 	var bullet : Bullet = bullet_ref.instantiate()

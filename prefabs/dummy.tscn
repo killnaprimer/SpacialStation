@@ -49,6 +49,7 @@ script = ExtResource("3_av2jj")
 
 [node name="Movement" type="Node" parent="."]
 script = ExtResource("5_5hfr3")
+movement_speed = 1.5
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
 debug_enabled = true
@@ -71,6 +72,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.7)
 script = ExtResource("8_58ed5")
 bullet_ref = ExtResource("9_ckt0c")
 firing_cooldown = 1.0
+bullet_speed = 10.0
 target_type = 1
 metadata/_custom_type_script = "uid://b2dpd8c06nmlb"
 

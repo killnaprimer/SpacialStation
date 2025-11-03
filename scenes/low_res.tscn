@@ -1,0 +1,21 @@
+[gd_scene load_steps=2 format=3 uid="uid://5t7wwfeqw5xw"]
+
+[ext_resource type="PackedScene" uid="uid://bu274eu0mlkeb" path="res://scenes/test_other.tscn" id="1_olnq5"]
+
+[node name="Node3D" type="Node3D"]
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="."]
+texture_filter = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+stretch = true
+
+[node name="SubViewport" type="SubViewport" parent="SubViewportContainer"]
+handle_input_locally = false
+size = Vector2i(960, 540)
+render_target_update_mode = 4
+
+[node name="world" parent="SubViewportContainer/SubViewport" instance=ExtResource("1_olnq5")]
