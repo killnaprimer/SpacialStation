@@ -12,7 +12,11 @@ const bullet_ref = preload("res://scenes/prefabs/bullet.tscn")
 @export var bullet_count : int = 1
 @export var firing_cooldown : float = 0.5
 @export var bullet_speed: float = 50
+
+@export_category("Ammo")
 enum ammo_types {PISTOL, SHELL, RIFLE, PLASMA}
+@export var ammo_type: ammo_types
+@export var mag_size : int
 
 @export_category("Type")
 @export var burst_type: burst_types
@@ -39,6 +43,8 @@ var burst_timer : Timer
 var burst_count_left : int
 
 signal on_fire()
+signal on_spread_changed(spread : float)
+signal on_bullet_spent(ammo : int, max_ammo : int)
 
 func _ready() -> void:
 	timer = Timer.new()
@@ -50,13 +56,19 @@ func _ready() -> void:
 	burst_timer.one_shot = true
 	add_child(burst_timer)
 	burst_timer.connect("timeout", fire_burst_single)
+	
 
-func _physics_process(delta: float) -> void:
+func _process(delta: float) -> void:
 	recoil -= recoil_recovery * delta
 	recoil = clampf(recoil, 0, 1)
+	var spread = base_spread + (recoil_base * recoil)
+	if burst_type == burst_types.SHOTGUN:
+		spread += spread_gain * bullet_count 
+	emit_signal("on_spread_changed", spread)
 
 func fire():
 	if !can_fire: return
+	if loot and loot.ammo_count <= 0: return
 	match burst_type:
 		burst_types.NO: fire_single()
 		burst_types.SHOTGUN: fire_multiple()
@@ -75,6 +87,7 @@ func fire_multiple():
 		elif spread < 0: spread = -spread
 		else: spread += spread_gain
 	recoil += recoil_gain
+	spend_bullet()
 	emit_signal("on_fire")
 
 func fire_burst():
@@ -85,7 +98,9 @@ func fire_burst():
 func fire_burst_single():
 	fire_single()
 	burst_count_left -= 1
-	if burst_count_left > 0: burst_timer.start(0.05)
+	if burst_count_left > 0:
+		if !loot or loot.ammo_count > 0:
+			burst_timer.start(0.05)
 	
 func fire_single():
 	var bullet : Bullet =  spawn_bullet()
@@ -93,6 +108,7 @@ func fire_single():
 	var spread_direction = base_direction.rotated(global_transform.basis.y, deg_to_rad(get_base_spread()) )
 	bullet.linear_velocity = spread_direction * bullet_speed
 	recoil += recoil_gain
+	spend_bullet()
 	emit_signal("on_fire")
 
 func spawn_bullet() -> Bullet:
@@ -112,3 +128,12 @@ func get_base_spread():
 	return randf_range(-spread, spread)
 
 func reset_fire(): can_fire = true
+
+func spend_bullet():
+	if !loot: return
+	loot.ammo_count -= 1
+	emit_signal("on_bullet_spent", loot.ammo_count, loot.mag_size)
+	
+func reload_bullets():
+	if !loot: return
+	loot.ammo_count = loot.mag_size

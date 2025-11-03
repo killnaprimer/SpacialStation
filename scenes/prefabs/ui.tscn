@@ -1,11 +1,26 @@
-[gd_scene load_steps=5 format=3 uid="uid://bhi3jtmt4en5g"]
+[gd_scene load_steps=12 format=3 uid="uid://bhi3jtmt4en5g"]
 
 [ext_resource type="Script" uid="uid://didsuuegvq1hh" path="res://scripts/ui/inventory_panel.gd" id="1_mwfwn"]
 [ext_resource type="Script" uid="uid://dtcyx4j6t2lgd" path="res://scripts/ui/game_ui.gd" id="1_rpphg"]
+[ext_resource type="Script" uid="uid://8c4rr4dk3vj" path="res://scripts/ui/char_basics.gd" id="3_ttrog"]
+[ext_resource type="Script" uid="uid://b7n3wv0paim7b" path="res://scripts/ui/text_progress_bar.gd" id="4_fl8ej"]
 [ext_resource type="FontFile" uid="uid://dls6yty8qowp6" path="res://fonts/pixelated.ttf" id="4_wejn0"]
+[ext_resource type="Script" uid="uid://b57n4828gqtb2" path="res://scripts/ui/crosshair.gd" id="5_bce8v"]
+[ext_resource type="Texture2D" uid="uid://bw5jxaph3likh" path="res://textures/cursor_part.png" id="5_fl8ej"]
+[ext_resource type="Texture2D" uid="uid://c2yenve83vgeb" path="res://textures/cursor_center.png" id="6_u6llg"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_rpphg"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_wejn0"]
+font = ExtResource("4_wejn0")
+font_size = 32
+shadow_size = 2
+shadow_color = Color(0, 0, 0, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_rpphg"]
 font = ExtResource("4_wejn0")
+shadow_size = 2
+shadow_color = Color(0, 0, 0, 1)
 
 [node name="GameUI" type="Control"]
 texture_filter = 1
@@ -50,6 +65,8 @@ offset_left = -20.0
 offset_right = 20.0
 offset_bottom = 40.0
 grow_horizontal = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_rpphg")
+script = ExtResource("3_ttrog")
 
 [node name="MarginContainer" type="MarginContainer" parent="Character"]
 layout_mode = 1
@@ -67,16 +84,135 @@ theme_override_constants/margin_bottom = 4
 layout_mode = 2
 alignment = 1
 
-[node name="Label" type="Label" parent="Character/MarginContainer/VBoxContainer"]
+[node name="hp_bar" type="Label" parent="Character/MarginContainer/VBoxContainer"]
 texture_filter = 1
 layout_mode = 2
-text = "HEALTH : ++++__"
+text = " ++---"
+label_settings = SubResource("LabelSettings_wejn0")
+horizontal_alignment = 1
+vertical_alignment = 2
+script = ExtResource("4_fl8ej")
+tick_filled = "+"
+tick_empty = "-"
+value = 2.0
+max_value = 5.0
+
+[node name="ammo_text" type="Label" parent="Character/MarginContainer/VBoxContainer"]
+texture_filter = 1
+layout_mode = 2
+text = "AMMO : 24 /30"
 label_settings = SubResource("LabelSettings_rpphg")
+horizontal_alignment = 1
 vertical_alignment = 2
 
-[node name="Label2" type="Label" parent="Character/MarginContainer/VBoxContainer"]
+[node name="reload_bar" type="Label" parent="Character/MarginContainer/VBoxContainer"]
+visible = false
 texture_filter = 1
 layout_mode = 2
-text = "AMMO : ||||||||||||||||||||........"
+text = "RELOADING:  !!!!!!!!"
 label_settings = SubResource("LabelSettings_rpphg")
+horizontal_alignment = 1
 vertical_alignment = 2
+script = ExtResource("4_fl8ej")
+header = "RELOADING: "
+tick_interval = 0.25
+value = 2.0
+max_value = 2.0
+
+[node name="Crosshair" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 631.24
+offset_top = -136.996
+offset_right = 631.24
+offset_bottom = -136.996
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("5_bce8v")
+offset_strength = 4.0
+
+[node name="crosshair_mid" type="TextureRect" parent="Crosshair"]
+custom_minimum_size = Vector2(16, 16)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -8.0
+offset_top = -8.0
+offset_right = 8.0
+offset_bottom = 8.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("6_u6llg")
+stretch_mode = 3
+
+[node name="crosshair_t" type="TextureRect" parent="Crosshair"]
+custom_minimum_size = Vector2(16, 16)
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -8.0
+offset_top = -40.0
+offset_right = 8.0
+offset_bottom = -24.0
+grow_horizontal = 2
+grow_vertical = 0
+texture = ExtResource("5_fl8ej")
+stretch_mode = 3
+
+[node name="crosshair_b" type="TextureRect" parent="Crosshair"]
+custom_minimum_size = Vector2(16, 16)
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -8.0
+offset_top = 24.0
+offset_right = 8.0
+offset_bottom = 40.0
+grow_horizontal = 2
+texture = ExtResource("5_fl8ej")
+stretch_mode = 3
+
+[node name="crosshair_r" type="TextureRect" parent="Crosshair"]
+custom_minimum_size = Vector2(16, 16)
+layout_mode = 1
+anchors_preset = 11
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 40.0
+offset_top = -8.0
+offset_right = 56.0
+offset_bottom = 8.0
+grow_horizontal = 0
+grow_vertical = 2
+rotation = 1.5708
+texture = ExtResource("5_fl8ej")
+stretch_mode = 3
+
+[node name="crosshair_l" type="TextureRect" parent="Crosshair"]
+custom_minimum_size = Vector2(16, 16)
+layout_mode = 1
+anchors_preset = 11
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -24.0
+offset_top = -8.0
+offset_right = -8.0
+offset_bottom = 8.0
+grow_horizontal = 0
+grow_vertical = 2
+rotation = 1.5708
+texture = ExtResource("5_fl8ej")
+stretch_mode = 3

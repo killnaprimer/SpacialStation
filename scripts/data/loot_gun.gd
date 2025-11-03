@@ -19,6 +19,12 @@ class_name LootGun
 @export_category("Shotgun Spread")
 @export var spread_gain : float = 5.0
 
+@export_category("Reloading")
+@export var mag_size : int
+@export var ammo_count : int
+@export var reload_time : float
+
+
 func make_gun():
 	var gun = Gun.new()
 	gun.base_spread = base_spread
@@ -39,4 +45,3 @@ func use():
 		var gun_holder : GunHolder = GameManager.player.get_node("gun_holder")
 		gun_holder.gun.queue_free()
 		gun_holder.add_gun(make_gun())
-		

@@ -2,6 +2,7 @@ extends Node
 
 var player : CharacterBody3D
 var camera : PlayerCamera
+var ui : GameUI
 
 func get_camera()-> PlayerCamera:
 	return camera

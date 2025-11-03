@@ -4,15 +4,18 @@
 
 [resource]
 script = ExtResource("1_mrloc")
-base_spread = 1.0
+base_spread = 0.5
 bullet_count = 1
-firing_cooldown = 0.5
+firing_cooldown = 0.33
 bullet_speed = 50.0
 burst_type = 0
 target_type = 0
-recoil_gain = 0.0
-recoil_base = 0.0
-recoil_recovery = 0.0
+recoil_gain = 0.4
+recoil_base = 40.0
+recoil_recovery = 0.5
 spread_gain = 5.0
+mag_size = 8
+ammo_count = 8
+reload_time = 2.5
 loot_name = "pistol"
 metadata/_custom_type_script = "uid://b13hf7g4mkgbi"

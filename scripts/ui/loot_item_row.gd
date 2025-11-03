@@ -9,18 +9,18 @@ func on_use():
 
 func set_highlighted(is_highlighted : bool):
 	if is_highlighted : label.modulate = Color.WHITE
-	else : label.modulate = Color.DARK_GRAY
+	else : label.modulate = Color.DIM_GRAY
 	
 
 func set_equipped():
 	if loot.equipped:
-		label.text = "["+loot.loot_name +"]"
+		label.text = "["+loot.loot_name.to_upper() +"]"
 	else:
-		label.text = loot.loot_name
+		label.text = loot.loot_name.to_upper()
 
 func set_loot(_loot : LootItem):
 	loot = _loot
 
 func _ready() -> void:
-	label.text = loot.loot_name
-	
+	label.text = loot.loot_name.to_upper()
+	label.modulate = Color.DIM_GRAY
