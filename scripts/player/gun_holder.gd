@@ -41,6 +41,7 @@ func _physics_process(delta: float) -> void:
 
 func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("fire"): shoot()
+	if Input.is_action_just_pressed("reload"): reload()
 	if !reload_timer.is_stopped():
 		emit_signal("on_reload_process", reload_timer.time_left, gun.loot.reload_time)
 	aim()
@@ -111,7 +112,9 @@ func show_line(is_shown : bool):
 
 func add_gun(new_gun : Gun):
 	if gun:
-		if reload_timer and !reload_timer.is_stopped(): reload_timer.stop()
+		if reload_timer and !reload_timer.is_stopped():
+			reload_timer.stop()
+			emit_signal("on_reload", false)
 		gun.loot.equipped = false
 		gun.queue_free()
 	add_child(new_gun)
@@ -121,4 +124,5 @@ func add_gun(new_gun : Gun):
 	gun.connect("on_spread_changed", GameManager.ui.cursor.set_spread)
 	gun.connect("on_fire", GameManager.get_camera().make_tween)
 	gun.connect("on_bullet_spent", GameManager.ui.character_panel.set_ammo)
+	gun.emit_signal("on_bullet_spent", gun.loot.ammo_count, gun.loot.mag_size)
 #endregion
