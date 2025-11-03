@@ -7,6 +7,5 @@ func _ready() -> void:
 	GameManager.connect("on_sound", on_sound)
 
 func on_sound(pos : Vector3, distance : float):
-	print("SENDING")
 	if (global_position - pos).length() < distance * hearing_strength:
 		emit_signal("on_sound_heared", pos)

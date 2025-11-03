@@ -7,7 +7,7 @@ var sound_pos : Vector3
 var current_pp : int
 var tick : int = 0
 const tick_max : int = 5
-
+var last_target_pos : Vector3 = Vector3.ZERO
 
 func _ready() -> void:
 	await get_tree().process_frame
@@ -19,12 +19,15 @@ func _physics_process(delta: float) -> void:
 		return
 	tick = 0
 	
-	if target: enemy.movement.set_target_position(target.global_position)
+	if target: chase_target()
 	elif sound_pos: check_sound()
 	else: patrol
-	
-	#if !target: patrol()
-	#else: enemy.movement.set_target_position(target.global_position)
+
+func chase_target():
+	if !last_target_pos or (target.global_position - last_target_pos).length() > 7:
+		enemy.movement.set_target_position(target.global_position)
+		enemy.movement.flank_target()
+		last_target_pos = target.global_position
 
 func check_sound():
 	if (enemy.global_position - sound_pos).length() < 2:

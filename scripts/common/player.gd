@@ -60,7 +60,6 @@ func _process(delta: float) -> void:
 func roll():
 	if is_rolling: return
 	if Vector2(velocity.x, velocity.z).length() < 0.1 : return
-	print("ROLLING")
 	roll_vector = Vector2(velocity.x, velocity.z).normalized() * roll_speed
 	roll_time_left = roll_time
 	is_rolling = true
