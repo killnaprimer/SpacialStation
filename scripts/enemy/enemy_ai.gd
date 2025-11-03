@@ -8,7 +8,8 @@ var current_pp : int
 var tick : int = 0
 const tick_max : int = 5
 var last_target_pos : Vector3 = Vector3.ZERO
-
+var flank_time : float
+var tick_time_total : float
 func _ready() -> void:
 	await get_tree().process_frame
 	enemy.movement.set_target_position(enemy.patrol_points[current_pp].global_position)
@@ -22,12 +23,16 @@ func _physics_process(delta: float) -> void:
 	if target: chase_target()
 	elif sound_pos: check_sound()
 	else: patrol
-
+	
 func chase_target():
-	if !last_target_pos or (target.global_position - last_target_pos).length() > 7:
+	if (target.global_position - enemy.global_position).length() > 12:
+		enemy.movement.set_target_position(target.global_position)
+		return
+	if !last_target_pos or (target.global_position - last_target_pos).length() > 77:
 		enemy.movement.set_target_position(target.global_position)
 		enemy.movement.flank_target()
 		last_target_pos = target.global_position
+		flank_time = 0
 
 func check_sound():
 	if (enemy.global_position - sound_pos).length() < 2:

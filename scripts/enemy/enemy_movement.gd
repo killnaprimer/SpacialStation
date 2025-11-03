@@ -7,6 +7,7 @@ var is_moving: bool = false
 
 var target_position: Vector3
 var flanking : bool = false
+var flank_size : float = 1.5
 
 func set_target_position(new_target: Vector3):
 	target_position = new_target
@@ -49,16 +50,16 @@ func _find_valid_flank_point() -> Vector3:
 	
 func _try_side_flank(target_pos : Vector3) -> Vector3:
 	var side = 1.0 if randf() > 0.5 else -1.0
-	return target_pos + Vector3(randf_range(3.0, 6.0) * side, 0, randf_range(-2.0, 2.0))
+	return target_pos + Vector3(randf_range(3.0, 6.0) * flank_size * side, 0, randf_range(-2.0, 2.0))
 	
 func _try_circle_flank(target_pos: Vector3) -> Vector3:
 	var angle = randf_range(0, TAU)
-	var distance = randf_range(4.0, 7.0)
+	var distance = randf_range(4.0, 7.0) * flank_size
 	return target_pos + Vector3(sin(angle) * distance, 0, cos(angle) * distance)
 	
 func _try_behind_flank(target_pos: Vector3) -> Vector3:
 	var to_target = (target_pos - enemy.global_position).normalized()
-	return target_pos - to_target * randf_range(3.0, 6.0)
+	return target_pos - to_target * randf_range(3.0, 6.0) * flank_size
 
 func _is_position_reachable(test_point: Vector3) -> bool:
 	var map_rid = nav.get_navigation_map()
