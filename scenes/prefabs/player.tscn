@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://clydvyhspgccd"]
+[gd_scene load_steps=15 format=3 uid="uid://clydvyhspgccd"]
 
 [ext_resource type="Script" uid="uid://x5ipxbgp58n6" path="res://scripts/common/player.gd" id="1_4dohe"]
 [ext_resource type="PackedScene" uid="uid://d0g4k7jwfmwcg" path="res://scenes/prefabs/character.tscn" id="3_r66lb"]
@@ -7,6 +7,7 @@
 [ext_resource type="Script" uid="uid://b2dpd8c06nmlb" path="res://scripts/common/gun.gd" id="5_g2jcq"]
 [ext_resource type="Script" uid="uid://dum25iy3i8s0w" path="res://scripts/common/melee.gd" id="5_rgeog"]
 [ext_resource type="Script" uid="uid://box1lvu4pf35d" path="res://scripts/player/mouse_aim.gd" id="6_g2jcq"]
+[ext_resource type="Resource" uid="uid://67gtv55bbw3y" path="res://data/guns/pistol.tres" id="7_jybep"]
 [ext_resource type="Script" uid="uid://cx0xxqn8au6ks" path="res://scripts/common/health.gd" id="8_kbsxf"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_fp3wc"]
@@ -75,6 +76,7 @@ shape = SubResource("BoxShape3D_kbsxf")
 [node name="gun" type="Node3D" parent="gun_holder"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.7)
 script = ExtResource("5_g2jcq")
+loot = ExtResource("7_jybep")
 base_spread = 5.0
 bullet_count = 5
 recoil_gain = 0.5

@@ -4,11 +4,15 @@ class_name Gun
 const bullet_ref = preload("res://scenes/prefabs/bullet.tscn")
 #Recoil
 
+@export_category("Loot")
+@export var loot : LootGun
+
 @export_category("Basics")
 @export var base_spread : float = 1.0
 @export var bullet_count : int = 1
 @export var firing_cooldown : float = 0.5
 @export var bullet_speed: float = 50
+enum ammo_types {PISTOL, SHELL, RIFLE, PLASMA}
 
 @export_category("Type")
 @export var burst_type: burst_types

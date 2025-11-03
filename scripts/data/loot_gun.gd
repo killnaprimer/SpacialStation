@@ -31,6 +31,7 @@ func make_gun():
 	gun.recoil_base = recoil_base
 	gun.recoil_recovery = recoil_recovery
 	gun.spread_gain = spread_gain
+	gun.loot = self
 	return gun
 
 func use():
@@ -38,3 +39,4 @@ func use():
 		var gun_holder : GunHolder = GameManager.player.get_node("gun_holder")
 		gun_holder.gun.queue_free()
 		gun_holder.add_gun(make_gun())
+		

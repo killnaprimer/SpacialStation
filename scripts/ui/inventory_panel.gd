@@ -12,12 +12,14 @@ func fill_from_inventory():
 		loot_row.set_loot(loot)
 		list.add_child(loot_row)
 		loot_items.append(loot_row)
+		visible = false
 		
 func _ready() -> void:
 	Inventory.connect("on_loot_changed", fill_from_inventory)
 	fill_from_inventory()
 	
 func _process(delta: float) -> void:
+	if !visible: return
 	if Input.is_action_just_pressed("scroll_up"): scroll(true)
 	if Input.is_action_just_pressed("scroll_down"): scroll(false)
 	if Input.is_action_just_pressed("use"): use_item()
@@ -30,3 +32,8 @@ func scroll(up : bool):
 
 func use_item():
 	loot_items[current].on_use()
+	update_loot()
+
+func update_loot():
+	for loot_row in loot_items:
+		loot_row.set_equipped()

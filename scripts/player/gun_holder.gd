@@ -85,8 +85,11 @@ func show_line(is_shown : bool):
 	line_mesh_instance.visible = is_shown
 
 func add_gun(new_gun : Gun):
-	if gun: gun.queue_free()
+	if gun:
+		gun.loot.equipped = false
+		gun.queue_free()
 	add_child(new_gun)
 	new_gun.position = Vector3(0,0,-0.75)
 	gun = new_gun
+	gun.loot.equipped = true
 #endregion
