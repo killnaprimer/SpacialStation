@@ -48,7 +48,6 @@ func patrol():
 		enemy.movement.set_target_position(enemy.patrol_points[current_pp].global_position)
 
 func on_target_sighted(sighted_target : Node3D):
-	print(name + " has found a target!")
 	target = sighted_target
 	enemy.gun_holder.target = target
 

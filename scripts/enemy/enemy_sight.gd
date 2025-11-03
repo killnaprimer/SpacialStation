@@ -3,23 +3,25 @@ class_name EnemySight
 signal target_sighted(target : Node3D)
 @export var height_offset : Vector3 = Vector3(0,0.5,0)
 var ray : RayCast3D
-var tick : int = 10
+var tick : int = 5
 
 func _ready() -> void:
 	#connect("body_entered",on_target_sighted)
 	ray = RayCast3D.new()
 	add_child(ray)
-	ray.position = height_offset
+	ray.position = Vector3.ZERO
+	ray.debug_shape_custom_color = Color.RED
 	tick = randi_range(1,9)
 
 func _physics_process(delta: float) -> void:
 	tick -= 1
-	if tick < 0:
+	if tick <= 0:
+		print("EYE TICK")
 		check_targets()
 		tick = 10
 	
 func on_target_sighted(target : Node3D):
-	ray.target_position = to_global(target.global_position) + height_offset
+	ray.target_position = ray.to_local(target.global_position) + height_offset
 	ray.force_raycast_update()
 	if !ray.is_colliding():
 		emit_signal("target_sighted", target)
