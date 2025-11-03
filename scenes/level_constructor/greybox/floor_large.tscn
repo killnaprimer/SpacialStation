@@ -1,0 +1,50 @@
+[gd_scene load_steps=5 format=4 uid="uid://bhuavcsheb36b"]
+
+[ext_resource type="Material" uid="uid://bumiofmshx6v8" path="res://materials/greybox_grid.tres" id="1_1ku3d"]
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_fpqfp"]
+_surfaces = [{
+"aabb": AABB(-6, 0, -6, 12, 1e-05, 12),
+"format": 34896613377,
+"index_count": 54,
+"index_data": PackedByteArray("AgAMAA0ABQACAA0ABQANAAYAAgAAAAwAAAABAAwAAAADAAEADAABAAQADAAEAA4ADQAMAA4ADgAEAAkADgAJAAgADQAOAA8ADwAOAAgABgANAA8ADwAIAAoABgAPAAcABwAPAAoABwAKAAsA"),
+"lods": [1e-10, PackedByteArray("AAABAAIAAAADAAEAAgABAAQABQACAAYABgACAAcAAgAEAAcABwAEAAgABAAJAAgABwAIAAoABwAKAAsA")],
+"name": "grid",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 16,
+"vertex_data": PackedByteArray("AAAAAFRVAABVVQAAAAAAAAAAAACqqgAAAAAAAAAAAACqqgAAAAAAAAAAAAD//wAAVVUAAP//AACqqgAA//8AAP//AABVVQAA//8AAAAAAAD//wAAqqoAAP//AAD//wAAVVUAAFVVAABVVQAAqqoAAKqqAABVVQAAqqoAAKqqAAA=")
+}]
+blend_shape_mode = 0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_y8nq1"]
+resource_name = "level_assets_Plane_001"
+_surfaces = [{
+"aabb": AABB(-6, 0, -6, 12, 1e-05, 12),
+"attribute_data": PackedByteArray("CERpNghEaTYIRGk2CERpNghEaTYIRGk2CERpNghEaTYIRGk2CERpNghEaTYIRGk2CERpNghEaTYIRGk2CERpNg=="),
+"format": 34896613399,
+"index_count": 54,
+"index_data": PackedByteArray("AgAMAA0ABQACAA0ABQANAAYAAgAAAAwAAAABAAwAAAADAAEADAABAAQADAAEAA4ADQAMAA4ADgAEAAkADgAJAAgADQAOAA8ADwAOAAgABgANAA8ADwAIAAoABgAPAAcABwAPAAoABwAKAAsA"),
+"lods": [1e-10, PackedByteArray("AAABAAIAAAADAAEAAgABAAQABQACAAYABgACAAcAAgAEAAcABwAEAAgABAAJAAgABwAIAAoABwAKAAsA")],
+"material": ExtResource("1_1ku3d"),
+"name": "grid",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 16,
+"vertex_data": PackedByteArray("AAAAAFRV/z9VVQAAAAD/PwAAAACqqv8/AAAAAAAA/z+qqgAAAAD/PwAAAAD///8/VVUAAP///z+qqgAA////P///AABVVf8///8AAAAA/z///wAAqqr/P///AAD///8/VVUAAFVV/z9VVQAAqqr/P6qqAABVVf8/qqoAAKqq/z////9/////f////3////9/////f////3////9/////f////3////9/////f////3////9/////f////3////9/")
+}]
+blend_shape_mode = 0
+shadow_mesh = SubResource("ArrayMesh_fpqfp")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_1ku3d"]
+size = Vector3(12, 1, 12)
+
+[node name="floor_large" type="MeshInstance3D" groups=["navigation"]]
+mesh = SubResource("ArrayMesh_y8nq1")
+skeleton = NodePath("")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+shape = SubResource("BoxShape3D_1ku3d")

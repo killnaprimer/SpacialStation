@@ -1,0 +1,47 @@
+[gd_scene load_steps=5 format=3 uid="uid://cb5s81t1n1gyt"]
+
+[ext_resource type="Material" uid="uid://bumiofmshx6v8" path="res://materials/greybox_grid.tres" id="1_81yy5"]
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_82urp"]
+_surfaces = [{
+"aabb": AABB(-2, 0, -2, 4, 1e-05, 4),
+"format": 34896613377,
+"index_count": 6,
+"index_data": PackedByteArray(0, 0, 1, 0, 2, 0, 0, 0, 3, 0, 1, 0),
+"name": "grid",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 4,
+"vertex_data": PackedByteArray(0, 0, 0, 0, 255, 255, 0, 0, 255, 255, 0, 0, 0, 0, 0, 0, 255, 255, 0, 0, 255, 255, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+}]
+blend_shape_mode = 0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_nc5he"]
+resource_name = "level_assets_Plane"
+_surfaces = [{
+"aabb": AABB(-2, 0, -2, 4, 1e-05, 4),
+"attribute_data": PackedByteArray(178, 56, 59, 63, 178, 56, 59, 63, 178, 56, 59, 63, 178, 56, 59, 63),
+"format": 34896613399,
+"index_count": 6,
+"index_data": PackedByteArray(0, 0, 1, 0, 2, 0, 0, 0, 3, 0, 1, 0),
+"material": ExtResource("1_81yy5"),
+"name": "grid",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 4,
+"vertex_data": PackedByteArray(0, 0, 0, 0, 255, 255, 255, 63, 255, 255, 0, 0, 0, 0, 255, 63, 255, 255, 0, 0, 255, 255, 255, 63, 0, 0, 0, 0, 0, 0, 255, 63, 255, 255, 255, 127, 255, 255, 255, 127, 255, 255, 255, 127, 255, 255, 255, 127)
+}]
+blend_shape_mode = 0
+shadow_mesh = SubResource("ArrayMesh_82urp")
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_81yy5"]
+data = PackedVector3Array(-2, 0, 2, 2, 0, -2, 2, 0, 2, -2, 0, 2, -2, 0, -2, 2, 0, -2)
+
+[node name="floor" type="MeshInstance3D" groups=["navigation"]]
+mesh = SubResource("ArrayMesh_nc5he")
+skeleton = NodePath("")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_81yy5")

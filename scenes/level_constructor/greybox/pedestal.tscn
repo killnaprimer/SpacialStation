@@ -1,0 +1,48 @@
+[gd_scene load_steps=5 format=4 uid="uid://csxolto8vwygl"]
+
+[ext_resource type="Material" uid="uid://bumiofmshx6v8" path="res://materials/greybox_grid.tres" id="1_twa2m"]
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_1fvfj"]
+_surfaces = [{
+"aabb": AABB(0, 0, -8, 4, 2, 8),
+"format": 34359742465,
+"index_count": 36,
+"index_data": PackedByteArray("AAABAAIAAQADAAIAAAAEAAEAAgADAAUAAgAFAAAAAAAGAAQAAAAFAAYABAAHAAEAAQAHAAMABAAGAAcABQADAAcABQAHAAYA"),
+"name": "grid",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 8,
+"vertex_data": PackedByteArray("AAAAAAAAAAAAAACAAACAQAAAAAAAAADBAAAAAAAAAAAAAADBAAAAAAAAAEAAAADBAACAQAAAAAAAAACAAAAAAAAAAEAAAACAAACAQAAAAEAAAACAAACAQAAAAEAAAADB")
+}]
+blend_shape_mode = 0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_8ob8m"]
+resource_name = "level_assets_Plane_003"
+_surfaces = [{
+"aabb": AABB(0, 0, -8, 4, 2, 8),
+"attribute_data": PackedByteArray("pqhZPkDPTD6mqFk+QM9MPqaoWT5Az0w+pqhZPkDPTD6mqFk+QM9MPqaoWT5Az0w+pqhZPkDPTD6mqFk+QM9MPn3egz6eZyw/fd6DPp5nLD993oM+nmcsP33egz6eZyw/fd6DPp5nLD993oM+nmcsP33egz6eZyw/fd6DPp5nLD993oM+nmcsP33egz6eZyw/fd6DPp5nLD993oM+nmcsP33egz6eZyw/fd6DPp5nLD993oM+nmcsP33egz6eZyw/"),
+"format": 34359742487,
+"index_count": 36,
+"index_data": PackedByteArray("AAABAAIAAAADAAEABAAFAAYABAAHAAUACAAJAAoACAALAAkADAANAA4ADAAPAA0AEAARABIAEAATABEAFAAVABYAFAAXABUA"),
+"material": ExtResource("1_twa2m"),
+"name": "grid",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 24,
+"vertex_data": PackedByteArray("AAAAAAAAAAAAAACAAACAQAAAAAAAAADBAAAAAAAAAAAAAADBAACAQAAAAAAAAACAAAAAAAAAAEAAAACAAACAQAAAAEAAAADBAACAQAAAAEAAAACAAAAAAAAAAEAAAADBAACAQAAAAAAAAACAAACAQAAAAEAAAADBAACAQAAAAAAAAADBAACAQAAAAEAAAACAAAAAAAAAAAAAAADBAAAAAAAAAEAAAACAAAAAAAAAAAAAAACAAAAAAAAAAEAAAADBAACAQAAAAAAAAADBAAAAAAAAAEAAAADBAAAAAAAAAAAAAADBAACAQAAAAEAAAADBAAAAAAAAAAAAAACAAACAQAAAAEAAAACAAACAQAAAAAAAAACAAAAAAAAAAEAAAACA/38AAP///z//fwAA////P/9/AAD///8//38AAP///z//f///////P/9///////8//3///////z//f///////P////3////+/////f////7////9/////v////3////+/AAD/f////78AAP9/////vwAA/3////+/AAD/f////7//////////P/////////8//////////z//////////P/9//3////8//3//f////z//f/9/////P/9//3////8/")
+}]
+blend_shape_mode = 0
+shadow_mesh = SubResource("ArrayMesh_1fvfj")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_twa2m"]
+size = Vector3(4, 2, 8)
+
+[node name="pedestal" type="MeshInstance3D" groups=["navigation"]]
+mesh = SubResource("ArrayMesh_8ob8m")
+skeleton = NodePath("")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 1, -4)
+shape = SubResource("BoxShape3D_twa2m")

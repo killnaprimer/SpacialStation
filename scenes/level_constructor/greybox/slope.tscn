@@ -1,0 +1,47 @@
+[gd_scene load_steps=5 format=4 uid="uid://cl642l8s6qvuf"]
+
+[ext_resource type="Material" uid="uid://bumiofmshx6v8" path="res://materials/greybox_grid.tres" id="1_hyg4b"]
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_anens"]
+_surfaces = [{
+"aabb": AABB(0, 0, -4, 4, 2, 4),
+"format": 34359742465,
+"index_count": 24,
+"index_data": PackedByteArray("AAABAAIAAwACAAEABAAAAAIAAwAEAAIAAAAFAAEABQADAAEABQAAAAQABQAEAAMA"),
+"name": "grid",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 6,
+"vertex_data": PackedByteArray("AAAAAAAAAAAAAACAAAAAAAAAAEAAAIDAAAAAAAAAAEAAAACAAACAQAAAAAAAAIDAAACAQAAAAAAAAACAAAAAAAAAAAAAAIDA")
+}]
+blend_shape_mode = 0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_fgiyn"]
+resource_name = "level_assets_Cube_002"
+_surfaces = [{
+"aabb": AABB(0, 0, -4, 4, 2, 4),
+"attribute_data": PackedByteArray("KsqjPtr2Oz8qyqM+2vY7PyrKoz7a9js/KsqjPtr2Oz8qyqM+2vY7PyrKoz7a9js/KsqjPtr2Oz8qyqM+2vY7PyrKoz7a9js/KsqjPtr2Oz8qyqM+2vY7PyrKoz7a9js/KsqjPtr2Oz8qyqM+2vY7P8rxdj74QCc+yvF2PvhAJz7K8XY++EAnPsrxdj74QCc+"),
+"format": 34359742487,
+"index_count": 24,
+"index_data": PackedByteArray("AAABAAIAAAADAAEABAAFAAYABwAIAAkACgALAAwACgANAAsADgAPABAADgARAA8A"),
+"material": ExtResource("1_hyg4b"),
+"name": "grid",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 18,
+"vertex_data": PackedByteArray("AAAAAAAAAAAAAACAAAAAAAAAAEAAAIDAAAAAAAAAAEAAAACAAAAAAAAAAAAAAIDAAAAAAAAAAAAAAIDAAACAQAAAAAAAAIDAAAAAAAAAAEAAAIDAAACAQAAAAAAAAACAAAAAAAAAAAAAAACAAAAAAAAAAEAAAACAAAAAAAAAAAAAAIDAAACAQAAAAAAAAACAAACAQAAAAAAAAIDAAAAAAAAAAAAAAACAAACAQAAAAAAAAIDAAAAAAAAAAEAAAACAAAAAAAAAAEAAAIDAAACAQAAAAAAAAACAAAD/f////78AAP9/////vwAA/3////+/AAD/f////7//////////P/////////8//////////z//f/9/////P/9//3////8//3//f////z//fwAA////P/9/AAD///8//38AAP///z//fwAA////P6qqVNX///8/qqpU1f///z+qqlTV////P6qqVNX///8/")
+}]
+blend_shape_mode = 0
+shadow_mesh = SubResource("ArrayMesh_anens")
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_hyg4b"]
+data = PackedVector3Array(0, 0, 0, 0, 2, -4, 0, 2, 0, 0, 0, 0, 0, 0, -4, 0, 2, -4, 0, 0, -4, 4, 0, -4, 0, 2, -4, 4, 0, 0, 0, 0, 0, 0, 2, 0, 0, 0, -4, 4, 0, 0, 4, 0, -4, 0, 0, -4, 0, 0, 0, 4, 0, 0, 4, 0, -4, 0, 2, 0, 0, 2, -4, 4, 0, -4, 4, 0, 0, 0, 2, 0)
+
+[node name="slope" type="MeshInstance3D" groups=["navigation"]]
+mesh = SubResource("ArrayMesh_fgiyn")
+skeleton = NodePath("")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_hyg4b")

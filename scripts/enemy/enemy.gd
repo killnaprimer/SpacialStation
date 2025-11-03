@@ -6,9 +6,10 @@ class_name Enemy
 @export var gun_holder : EnemyGunHolder
 @export var navigation : NavigationAgent3D
 @export var patrol_points : Array[PatrolPoint]
-
+@export var shuffle_pp: bool = true
 
 func _ready() -> void:
 	movement.enemy = self
 	movement.nav = navigation
 	ai.enemy = self
+	if shuffle_pp: patrol_points.shuffle()

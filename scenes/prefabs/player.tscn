@@ -90,6 +90,7 @@ max_vertical_angle = 60.0
 [node name="health" type="Node3D" parent="."]
 script = ExtResource("8_kbsxf")
 health = 5
+max_health = 5
 connect_to_ui = true
 
 [editable path="character"]

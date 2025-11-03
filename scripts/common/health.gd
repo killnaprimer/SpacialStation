@@ -1,6 +1,6 @@
 extends Node3D
 @export var health : int = 3
-@export var max_health : int = 5
+@export var max_health : int = 3
 @export var connect_to_ui: bool
 
 signal on_health_changed(current : int, max : int)
