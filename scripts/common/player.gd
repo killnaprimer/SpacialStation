@@ -8,8 +8,8 @@ class_name Character
 @export var anim : AnimationPlayer
 
 #ROLLING
-@export var roll_speed : float = 15.0
-@export var roll_time : float = .7
+@export var roll_speed : float = 20.0
+@export var roll_time : float = 0.4
 var roll_time_left : float
 var is_rolling : bool
 var roll_vector : Vector2

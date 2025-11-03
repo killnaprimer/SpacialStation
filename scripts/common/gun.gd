@@ -13,6 +13,7 @@ const gun_sound = preload("res://sounds/gun_shoot.wav")
 @export var bullet_count : int = 1
 @export var firing_cooldown : float = 0.5
 @export var bullet_speed: float = 50
+@export var burst_time : float = 0.05
 
 @export_category("Ammo")
 enum ammo_types {PISTOL, SHELL, RIFLE, PLASMA}
@@ -106,7 +107,7 @@ func fire_burst_single():
 	burst_count_left -= 1
 	if burst_count_left > 0:
 		if !loot or loot.ammo_count > 0:
-			burst_timer.start(0.05)
+			burst_timer.start(burst_time)
 	
 func fire_single():
 	var bullet : Bullet =  spawn_bullet()

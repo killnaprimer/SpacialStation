@@ -4,18 +4,18 @@
 
 [resource]
 script = ExtResource("1_2diqv")
-base_spread = 1.0
+base_spread = 5.0
 bullet_count = 3
 firing_cooldown = 0.5
 bullet_speed = 50.0
 burst_type = 2
 target_type = 0
 recoil_gain = 0.2
-recoil_base = 25.0
+recoil_base = 40.0
 recoil_recovery = 0.4
 spread_gain = 5.0
-mag_size = 30
-ammo_count = 30
+mag_size = 18
+ammo_count = 18
 reload_time = 4.0
 loot_name = "smg"
 metadata/_custom_type_script = "uid://b13hf7g4mkgbi"

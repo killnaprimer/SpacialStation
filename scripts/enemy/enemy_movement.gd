@@ -27,6 +27,8 @@ func _physics_process(delta: float) -> void:
 #region Flanking
 
 func flank_target():
+	flank_size = (target_position - enemy.global_position).length() / 6
+	flank_size = clamp(flank_size, 0.75, 1.5)
 	var flank_point = _find_valid_flank_point()
 	if flank_point:
 		nav.target_position = flank_point

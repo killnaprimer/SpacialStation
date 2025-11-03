@@ -15,6 +15,9 @@ func _ready() -> void:
 	enemy.movement.set_target_position(enemy.patrol_points[current_pp].global_position)
 
 func _physics_process(delta: float) -> void:
+	
+	flank_time += delta
+	
 	if tick < tick_max:
 		tick += 1
 		return
@@ -25,10 +28,10 @@ func _physics_process(delta: float) -> void:
 	else: patrol
 	
 func chase_target():
-	if (target.global_position - enemy.global_position).length() > 12:
+	if (target.global_position - enemy.global_position).length() < 7:
 		enemy.movement.set_target_position(target.global_position)
 		return
-	if !last_target_pos or (target.global_position - last_target_pos).length() > 77:
+	if !last_target_pos or (target.global_position - last_target_pos).length() > 7 or flank_time > 7:
 		enemy.movement.set_target_position(target.global_position)
 		enemy.movement.flank_target()
 		last_target_pos = target.global_position

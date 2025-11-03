@@ -1,9 +1,10 @@
-[gd_scene load_steps=12 format=3 uid="uid://bhrgdgf5nja5j"]
+[gd_scene load_steps=15 format=3 uid="uid://bhrgdgf5nja5j"]
 
 [ext_resource type="Script" uid="uid://gla0cja4mfrw" path="res://scripts/enemy/enemy.gd" id="1_pkqqt"]
 [ext_resource type="Script" uid="uid://cx0xxqn8au6ks" path="res://scripts/common/health.gd" id="1_w3ipt"]
 [ext_resource type="Texture2D" uid="uid://d0016wk0ra8qf" path="res://textures/generic_character-Sheet.png" id="2_cf8o5"]
 [ext_resource type="Script" uid="uid://dd0ocu2dk0341" path="res://scripts/enemy/enemy_ai.gd" id="3_av2jj"]
+[ext_resource type="Script" uid="uid://b3ey84j6drg0v" path="res://scripts/enemy/enemy_sprite.gd" id="4_alf50"]
 [ext_resource type="Script" uid="uid://h2ankc57xp0k" path="res://scripts/enemy/enemy_movement.gd" id="5_5hfr3"]
 [ext_resource type="Script" uid="uid://b1iyvhk6s6soj" path="res://scripts/enemy/enemy_sight.gd" id="6_pssps"]
 [ext_resource type="Script" uid="uid://q786hxut4s3f" path="res://scripts/enemy/enemy_gun_holder.gd" id="7_qehvh"]
@@ -14,9 +15,17 @@
 radius = 0.7
 height = 1.8
 
+[sub_resource type="QuadMesh" id="QuadMesh_alf50"]
+size = Vector2(1.5, 2)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ni2e0"]
+transparency = 1
+shading_mode = 0
+albedo_color = Color(0, 0, 0, 0.364706)
+
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_5hfr3"]
 height = 4.0
-radius = 20.0
+radius = 12.0
 
 [node name="Enemy" type="CharacterBody3D" node_paths=PackedStringArray("movement", "ai", "gun_holder", "navigation")]
 collision_layer = 8
@@ -44,12 +53,20 @@ texture_filter = 0
 texture = ExtResource("2_cf8o5")
 hframes = 3
 vframes = 3
+script = ExtResource("4_alf50")
+
+[node name="shadow" type="MeshInstance3D" parent="Sprite3D"]
+transform = Transform3D(0.55, 0, 0, 0, 8.52372e-08, 1, 0, -0.65, 1.31134e-07, 0, 0.013, 0)
+mesh = SubResource("QuadMesh_alf50")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_ni2e0")
 
 [node name="AI" type="Node" parent="."]
 script = ExtResource("3_av2jj")
 
 [node name="Movement" type="Node" parent="."]
 script = ExtResource("5_5hfr3")
+movement_speed = 3.5
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
 
@@ -71,13 +88,17 @@ gun = NodePath("Gun")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.7)
 script = ExtResource("8_58ed5")
 base_spread = 10.0
+bullet_count = 3
 firing_cooldown = 2.5
-bullet_speed = 25.0
+bullet_speed = 10.0
+burst_time = 0.5
+burst_type = 2
 target_type = 1
 metadata/_custom_type_script = "uid://b2dpd8c06nmlb"
 
 [node name="hearing" type="Node3D" parent="."]
 script = ExtResource("9_q30q4")
 
+[connection signal="on_damaged" from="health" to="Sprite3D" method="on_damage"]
 [connection signal="target_sighted" from="sight" to="AI" method="on_target_sighted"]
 [connection signal="on_sound_heared" from="hearing" to="AI" method="on_sound_heared"]
