@@ -7,7 +7,7 @@ const SHOTGUN = preload("res://data/guns/shotgun.tres")
 const SMG = preload("res://data/guns/smg.tres")
 
 func add_loot(loot : LootItem):
-	loot_items.append(loot)
+	loot_items.append(loot.duplicate())
 	emit_signal("on_loot_changed")
 
 func _ready() -> void:

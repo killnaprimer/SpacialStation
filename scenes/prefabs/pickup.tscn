@@ -1,0 +1,23 @@
+[gd_scene load_steps=5 format=3 uid="uid://bsna0omfl3esi"]
+
+[ext_resource type="Script" uid="uid://doufku0jekpk1" path="res://scripts/interactive/pickup.gd" id="1_j0uto"]
+[ext_resource type="Texture2D" uid="uid://ccp1rvo3xxp6b" path="res://textures/items/enemy_bullet2.png" id="1_vxnv5"]
+[ext_resource type="Resource" uid="uid://dpvrnorspf4i6" path="res://data/guns/smg.tres" id="2_2wimx"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_vxnv5"]
+
+[node name="RigidBody3D" type="RigidBody3D" groups=["interactive"]]
+collision_layer = 2
+script = ExtResource("1_j0uto")
+loot = ExtResource("2_2wimx")
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.7, 0)
+pixel_size = 0.16
+billboard = 1
+texture_filter = 0
+texture = ExtResource("1_vxnv5")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+shape = SubResource("BoxShape3D_vxnv5")

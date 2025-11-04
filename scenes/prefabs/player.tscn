@@ -1,6 +1,7 @@
-[gd_scene load_steps=15 format=3 uid="uid://clydvyhspgccd"]
+[gd_scene load_steps=18 format=3 uid="uid://clydvyhspgccd"]
 
 [ext_resource type="Script" uid="uid://x5ipxbgp58n6" path="res://scripts/common/player.gd" id="1_4dohe"]
+[ext_resource type="Material" uid="uid://ji11nvc5hngp" path="res://materials/character_shadow.tres" id="3_50rl7"]
 [ext_resource type="PackedScene" uid="uid://d0g4k7jwfmwcg" path="res://scenes/prefabs/character.tscn" id="3_r66lb"]
 [ext_resource type="Script" uid="uid://dql0e8i3omcvc" path="res://scripts/player/gun_holder.gd" id="4_ht1c8"]
 [ext_resource type="Shader" uid="uid://bo0yc1rosr6v4" path="res://materials/basic.gdshader" id="4_kbsxf"]
@@ -9,6 +10,7 @@
 [ext_resource type="Script" uid="uid://box1lvu4pf35d" path="res://scripts/player/mouse_aim.gd" id="6_g2jcq"]
 [ext_resource type="Resource" uid="uid://67gtv55bbw3y" path="res://data/guns/pistol.tres" id="7_jybep"]
 [ext_resource type="Script" uid="uid://cx0xxqn8au6ks" path="res://scripts/common/health.gd" id="8_kbsxf"]
+[ext_resource type="Script" uid="uid://c87vi1af70664" path="res://scripts/player/interactor.gd" id="11_oqq3r"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_fp3wc"]
 radius = 0.6
@@ -29,9 +31,12 @@ shader_parameter/albedo_color = Color(1, 1, 1, 1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_kbsxf"]
 
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_oqq3r"]
+radius = 2.0
+
 [node name="player" type="CharacterBody3D" node_paths=PackedStringArray("sprite", "anim")]
 collision_layer = 4
-collision_mask = 11
+collision_mask = 9
 script = ExtResource("1_4dohe")
 sprite = NodePath("character/Sprite3D")
 anim = NodePath("character/AnimationPlayer")
@@ -39,16 +44,20 @@ anim = NodePath("character/AnimationPlayer")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9, 0)
 shape = SubResource("CapsuleShape3D_fp3wc")
+debug_color = Color(1, 1, 1, 0.41960785)
 
 [node name="character" parent="." instance=ExtResource("3_r66lb")]
 
 [node name="Sprite3D" parent="character" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.037587762, 1, 0.06675935)
+material_overlay = ExtResource("3_50rl7")
 cast_shadow = 0
-modulate = Color(1, 0.416667, 0, 1)
+offset = Vector2(0, 0)
+modulate = Color(1, 0.4166667, 0, 1)
 pixel_size = 0.12
 
 [node name="shadow" type="MeshInstance3D" parent="character"]
-transform = Transform3D(0.55, 0, 0, 0, 8.52372e-08, 1, 0, -0.65, 1.31134e-07, 0, 0.013, 0)
+transform = Transform3D(0.55, 0, 0, 0, 8.52372e-08, 1, 0, -0.65, 1.31134e-07, -0.97188866, 0.013, 0)
 mesh = SubResource("QuadMesh_ht1c8")
 skeleton = NodePath("../..")
 surface_material_override/0 = SubResource("StandardMaterial3D_r66lb")
@@ -72,6 +81,7 @@ cooldown = 0.25
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="gun_holder/knife"]
 shape = SubResource("BoxShape3D_kbsxf")
+debug_color = Color(0.9812632, 0.13779119, 1.92523e-07, 0.41960785)
 
 [node name="gun" type="Node3D" parent="gun_holder"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.7)
@@ -93,5 +103,14 @@ health = 5
 max_health = 5
 connect_to_ui = true
 invul_time = 0.5
+
+[node name="interactor" type="Area3D" parent="."]
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("11_oqq3r")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="interactor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("CylinderShape3D_oqq3r")
 
 [editable path="character"]

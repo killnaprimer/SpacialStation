@@ -16,7 +16,6 @@ func _ready() -> void:
 func _physics_process(delta: float) -> void:
 	tick -= 1
 	if tick <= 0:
-		print("EYE TICK")
 		check_targets()
 		tick = 10
 	

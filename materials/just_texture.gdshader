@@ -3,6 +3,7 @@ render_mode blend_mix,
 	cull_disabled,
 	depth_prepass_alpha,
 	specular_disabled;
+stencil_mode write, 1;
 
 uniform sampler2D albedo : source_color, filter_nearest;
 uniform sampler2D normal : source_color, filter_nearest;

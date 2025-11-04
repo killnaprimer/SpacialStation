@@ -1,9 +1,10 @@
-[gd_scene load_steps=15 format=3 uid="uid://bhrgdgf5nja5j"]
+[gd_scene load_steps=16 format=3 uid="uid://bhrgdgf5nja5j"]
 
 [ext_resource type="Script" uid="uid://gla0cja4mfrw" path="res://scripts/enemy/enemy.gd" id="1_pkqqt"]
 [ext_resource type="Script" uid="uid://cx0xxqn8au6ks" path="res://scripts/common/health.gd" id="1_w3ipt"]
 [ext_resource type="Texture2D" uid="uid://d0016wk0ra8qf" path="res://textures/generic_character-Sheet.png" id="2_cf8o5"]
 [ext_resource type="Script" uid="uid://dd0ocu2dk0341" path="res://scripts/enemy/enemy_ai.gd" id="3_av2jj"]
+[ext_resource type="Material" uid="uid://ji11nvc5hngp" path="res://materials/character_shadow.tres" id="3_ni2e0"]
 [ext_resource type="Script" uid="uid://b3ey84j6drg0v" path="res://scripts/enemy/enemy_sprite.gd" id="4_alf50"]
 [ext_resource type="Script" uid="uid://h2ankc57xp0k" path="res://scripts/enemy/enemy_movement.gd" id="5_5hfr3"]
 [ext_resource type="Script" uid="uid://b1iyvhk6s6soj" path="res://scripts/enemy/enemy_sight.gd" id="6_pssps"]
@@ -20,11 +21,14 @@ size = Vector2(1.5, 2)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ni2e0"]
 transparency = 1
+depth_draw_mode = 2
 shading_mode = 0
 albedo_color = Color(0, 0, 0, 0.364706)
+stencil_mode = 3
+stencil_flags = 2
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_5hfr3"]
-height = 4.0
+height = 6.0
 radius = 12.0
 
 [node name="Enemy" type="CharacterBody3D" node_paths=PackedStringArray("movement", "ai", "gun_holder", "navigation")]
@@ -44,6 +48,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9, 0)
 shape = SubResource("CapsuleShape3D_cf8o5")
 
 [node name="Sprite3D" type="Sprite3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.64741564, 0, 0)
+material_overlay = ExtResource("3_ni2e0")
 offset = Vector2(0, 8)
 modulate = Color(1, 0, 0, 1)
 pixel_size = 0.12
@@ -98,6 +104,8 @@ metadata/_custom_type_script = "uid://b2dpd8c06nmlb"
 
 [node name="hearing" type="Node3D" parent="."]
 script = ExtResource("9_q30q4")
+
+[node name="dodge" type="Node3D" parent="."]
 
 [connection signal="on_damaged" from="health" to="Sprite3D" method="on_damage"]
 [connection signal="target_sighted" from="sight" to="AI" method="on_target_sighted"]

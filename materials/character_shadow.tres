@@ -1,0 +1,16 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://ji11nvc5hngp"]
+
+[ext_resource type="Texture2D" uid="uid://d0016wk0ra8qf" path="res://textures/generic_character-Sheet.png" id="1_s1od3"]
+
+[resource]
+transparency = 1
+depth_draw_mode = 2
+no_depth_test = true
+vertex_color_use_as_albedo = true
+albedo_color = Color(1, 1, 1, 0.5019608)
+albedo_texture = ExtResource("1_s1od3")
+texture_filter = 0
+billboard_mode = 1
+stencil_mode = 3
+stencil_flags = 1
+stencil_compare = 2

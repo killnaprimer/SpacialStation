@@ -23,8 +23,8 @@ func _ready() -> void:
 func _physics_process(_delta):
 	if is_rolling:
 		roll_time_left -= _delta
-		var t = roll_time_left / roll_time
-		var speed_mod = t * (2-t)
+		var t : float = roll_time_left / roll_time
+		var speed_mod : float = t * (2.0-t)
 		velocity.x = roll_vector.x * speed_mod
 		velocity.z = roll_vector.y * speed_mod
 		if roll_time_left <= 0: is_rolling = false

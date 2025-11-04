@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://c6i1wbsex7cf7" path="res://textures/simple_tile.png" id="2_qy4s5"]
 
 [resource]
-render_priority = 0
+render_priority = 1
 shader = ExtResource("1_skuca")
 shader_parameter/albedo = ExtResource("2_qy4s5")
 shader_parameter/alpha_scissor = 0.5
