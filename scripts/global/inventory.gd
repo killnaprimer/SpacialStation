@@ -31,6 +31,14 @@ func spend_ammo(ammo_type : Gun.ammo_types, ammo_count : int) -> int:
 		if loot is LootAmmo:
 			if loot.ammo_type == ammo_type:
 				var ammo_given = loot.take_ammo(ammo_count)
+				if loot.count <= 0: loot_items.remove_at(loot_items.find(loot))
 				emit_signal("on_loot_changed")
 				return ammo_given
 	return 0
+
+func has_ammo(ammo_type : Gun.ammo_types) -> bool:
+	for loot in loot_items:
+		if loot is LootAmmo:
+			if loot.ammo_type == ammo_type:
+				if loot.count > 0: return true
+	return false

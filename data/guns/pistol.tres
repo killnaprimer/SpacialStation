@@ -13,6 +13,6 @@ recoil_recovery = 0.5
 mag_size = 8
 ammo_count = 8
 reload_time = 2.5
-loot_name = "9 mm pistol"
+loot_name = "Pistol"
 icon = ExtResource("1_grhgt")
 metadata/_custom_type_script = "uid://b13hf7g4mkgbi"

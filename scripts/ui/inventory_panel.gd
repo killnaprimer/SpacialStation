@@ -14,12 +14,14 @@ func fill_from_inventory():
 		loot_row.set_loot(loot)
 		list.add_child(loot_row)
 		loot_items.append(loot_row)
+	set_highlighted_item()
 		#visible = false
 		
 func _ready() -> void:
 	Inventory.connect("on_loot_changed", fill_from_inventory)
 	fill_from_inventory()
-	
+	set_highlighted_item()
+
 func _process(_delta: float) -> void:
 	if !visible: return
 	if !is_interactive: return
@@ -30,13 +32,18 @@ func _process(_delta: float) -> void:
 func scroll(up : bool):
 	if up: current = max(0, current-1)
 	else: current = min(loot_items.size()-1, current + 1)
+	update_loot()
+
+func set_highlighted_item():
 	for i in loot_items.size():
 		loot_items[i].set_highlighted(i == current)
 
 func use_item():
 	loot_items[current].on_use()
 	update_loot()
-
+	
 func update_loot():
 	for loot_row in loot_items:
+		loot_row.update_labels()
 		loot_row.set_equipped()
+		set_highlighted_item()

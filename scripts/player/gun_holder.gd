@@ -66,6 +66,7 @@ func kick():
 
 func reload():
 	if gun.loot.ammo_count == gun.loot.mag_size: return
+	if !Inventory.has_ammo(gun.ammo_type): return
 	if reload_timer.is_stopped():
 		reload_timer.start(gun.loot.reload_time)
 		emit_signal("on_reload", true)

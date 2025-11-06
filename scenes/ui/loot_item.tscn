@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://xvidfch2kgoc"]
+[gd_scene load_steps=6 format=3 uid="uid://xvidfch2kgoc"]
 
 [ext_resource type="StyleBox" uid="uid://cgd2ydk31s0w6" path="res://fonts/base_panel.tres" id="1_16jlq"]
 [ext_resource type="Script" uid="uid://d3m1ysolxsurq" path="res://scripts/ui/loot_item_row.gd" id="1_kqydp"]
@@ -8,9 +8,18 @@
 line_spacing = 2.0
 font = ExtResource("2_kqydp")
 font_size = 10
+outline_size = 1
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_16jlq"]
+line_spacing = 2.0
+font = ExtResource("2_kqydp")
+font_size = 5
+outline_size = 1
+outline_color = Color(0, 0, 0, 1)
 
 [node name="loot_item" type="Panel"]
-custom_minimum_size = Vector2(140, 20)
+custom_minimum_size = Vector2(140, 25)
 theme_override_styles/panel = ExtResource("1_16jlq")
 script = ExtResource("1_kqydp")
 
@@ -25,3 +34,16 @@ grow_vertical = 2
 text = "- [Testing]$"
 label_settings = SubResource("LabelSettings_8bix8")
 vertical_alignment = 1
+
+[node name="SubLabel" type="Label" parent="."]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "empty, accurate"
+label_settings = SubResource("LabelSettings_16jlq")
+horizontal_alignment = 2
+vertical_alignment = 2
