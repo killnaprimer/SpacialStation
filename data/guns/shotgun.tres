@@ -1,21 +1,18 @@
-[gd_resource type="Resource" script_class="LootGun" load_steps=2 format=3 uid="uid://b2dp8mb43biv5"]
+[gd_resource type="Resource" script_class="LootGun" load_steps=3 format=3 uid="uid://b2dp8mb43biv5"]
 
+[ext_resource type="Texture2D" uid="uid://crgvika0wtehv" path="res://textures/items/weapons2.png" id="1_gi5ow"]
 [ext_resource type="Script" uid="uid://b13hf7g4mkgbi" path="res://scripts/data/loot/loot_gun.gd" id="1_v1fn2"]
 
 [resource]
 script = ExtResource("1_v1fn2")
-base_spread = 1.0
 bullet_count = 3
-firing_cooldown = 0.5
-bullet_speed = 50.0
 burst_type = 1
-target_type = 0
 recoil_gain = 1.0
 recoil_base = 20.0
 recoil_recovery = 10.0
-spread_gain = 5.0
 mag_size = 2
 ammo_count = 2
 reload_time = 2.5
 loot_name = "shotgun"
+icon = ExtResource("1_gi5ow")
 metadata/_custom_type_script = "uid://b13hf7g4mkgbi"

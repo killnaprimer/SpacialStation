@@ -1,9 +1,11 @@
-[gd_resource type="Resource" script_class="LootAmmo" load_steps=2 format=3 uid="uid://bsp51sy2akck6"]
+[gd_resource type="Resource" script_class="LootAmmo" load_steps=3 format=3 uid="uid://bsp51sy2akck6"]
 
+[ext_resource type="Texture2D" uid="uid://ccp1rvo3xxp6b" path="res://textures/items/enemy_bullet2.png" id="1_bvfm6"]
 [ext_resource type="Script" uid="uid://b5u2wvwy8jwu1" path="res://scripts/data/loot/loot_ammo.gd" id="1_oke81"]
 
 [resource]
 script = ExtResource("1_oke81")
 count = 8
 loot_name = "9mm ammo"
+icon = ExtResource("1_bvfm6")
 metadata/_custom_type_script = "uid://b5u2wvwy8jwu1"

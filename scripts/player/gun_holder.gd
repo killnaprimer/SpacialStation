@@ -64,13 +64,14 @@ func shoot():
 func kick():
 	melee.hit()
 
-func reload():		
+func reload():
+	if gun.loot.ammo_count == gun.loot.mag_size: return
 	if reload_timer.is_stopped():
 		reload_timer.start(gun.loot.reload_time)
 		emit_signal("on_reload", true)
 
 func reload_end():
-	gun.loot.ammo_count = gun.loot.mag_size
+	gun.loot.ammo_count += Inventory.spend_ammo(gun.ammo_type, gun.loot.mag_size - gun.loot.ammo_count)
 	emit_signal("on_reload", false)
 	gun.emit_signal("on_bullet_spent", gun.loot.ammo_count, gun.loot.mag_size)
 

@@ -14,13 +14,13 @@ func set_highlighted(is_highlighted : bool):
 
 func set_equipped():
 	if loot.equipped:
-		label.text = "["+loot.loot_name +"]"
+		label.text = "["+loot.get_loot_name() +"]"
 	else:
-		label.text = loot.loot_name
+		label.text = loot.get_loot_name()
 
 func set_loot(_loot : LootItem):
 	loot = _loot
 
 func _ready() -> void:
-	label.text = loot.loot_name
+	label.text = loot.get_loot_name()
 	label.modulate = Color.DIM_GRAY

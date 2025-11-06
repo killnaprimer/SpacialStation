@@ -30,5 +30,7 @@ func spend_ammo(ammo_type : Gun.ammo_types, ammo_count : int) -> int:
 	for loot in loot_items:
 		if loot is LootAmmo:
 			if loot.ammo_type == ammo_type:
-				return loot.take_ammo(ammo_count)
+				var ammo_given = loot.take_ammo(ammo_count)
+				emit_signal("on_loot_changed")
+				return ammo_given
 	return 0

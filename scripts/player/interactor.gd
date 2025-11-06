@@ -38,3 +38,5 @@ func interact():
 	if selected_interactive is Pickup:
 		Inventory.add_loot(selected_interactive.loot)
 		selected_interactive.queue_free()
+	elif selected_interactive is LootContainer:
+		selected_interactive.open()
