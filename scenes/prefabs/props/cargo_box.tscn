@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=4 uid="uid://dl273reh3i6qp"]
+[gd_scene load_steps=19 format=4 uid="uid://dl273reh3i6qp"]
 
 [ext_resource type="Material" uid="uid://7pkep24j8m0q" path="res://materials/props/props.tres" id="1_8bsp8"]
 [ext_resource type="Script" uid="uid://jmvglrqef5ni" path="res://scripts/interactive/container.gd" id="1_ew3rp"]
@@ -8,6 +8,7 @@
 [ext_resource type="Resource" uid="uid://b2dp8mb43biv5" path="res://data/guns/shotgun.tres" id="5_7eum4"]
 [ext_resource type="Resource" uid="uid://dpvrnorspf4i6" path="res://data/guns/smg.tres" id="6_kuvl3"]
 [ext_resource type="Script" uid="uid://cuea8ufrbgpss" path="res://scripts/data/loot/loot_table.gd" id="7_8aoky"]
+[ext_resource type="Resource" uid="uid://cqjdwqb7vmjjd" path="res://data/medkit.tres" id="7_uwa5c"]
 
 [sub_resource type="Resource" id="Resource_iec0b"]
 script = ExtResource("7_8aoky")
@@ -15,7 +16,8 @@ loot = Dictionary[ExtResource("2_3le6j"), int]({
 ExtResource("3_uwa5c"): 5,
 ExtResource("4_6osea"): 5,
 ExtResource("5_7eum4"): 2,
-ExtResource("6_kuvl3"): 2
+ExtResource("6_kuvl3"): 2,
+ExtResource("7_uwa5c"): 100
 })
 metadata/_custom_type_script = "uid://cuea8ufrbgpss"
 

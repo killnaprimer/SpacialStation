@@ -1,4 +1,6 @@
 extends Node3D
+class_name Vitals
+
 @export var health : int = 3
 @export var max_health : int = 3
 @export var connect_to_ui: bool
@@ -29,6 +31,11 @@ func take_dmg(dmg : int = 1):
 		is_invulnerable = true
 	if health <= 0: die()
 	emit_signal("on_damaged")
+	if connect_to_ui: emit_signal("on_health_changed",health, max_health)
+
+func restore_health(heal : int):
+	health += heal
+	health = clamp(health, 0, max_health)
 	if connect_to_ui: emit_signal("on_health_changed",health, max_health)
 
 func die():

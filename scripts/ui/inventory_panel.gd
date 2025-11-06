@@ -2,6 +2,9 @@ extends Panel
 class_name InventoryPanel
 const LOOT_ITEM = preload("res://scenes/ui/loot_item.tscn")
 @onready var list: VBoxContainer = $MarginContainer/list
+
+enum mods {NORMAL, CRAFTING}
+
 var loot_items : Array[LootItemRow]
 var current : int = 0
 var is_interactive : bool = true
