@@ -1,5 +1,6 @@
 extends Area3D
 var selected_interactive : Node3D
+@onready var cursor: Label3D = $cursor
 
 func _ready() -> void:
 	connect("body_entered", on_body_entered)
@@ -26,8 +27,11 @@ func pick_closest_body():
 func _process(_delta: float) -> void:
 	if selected_interactive:
 		GameManager.ui.inventory.is_interactive = false
+		cursor.modulate.a = 1
+		cursor.global_position = selected_interactive.global_position
 		if Input.is_action_just_pressed("use"): interact()
 	else:
+		cursor.modulate.a = 0
 		GameManager.ui.inventory.is_interactive = true
 func interact():
 	if selected_interactive is Pickup:

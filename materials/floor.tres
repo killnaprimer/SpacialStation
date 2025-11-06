@@ -1,8 +1,11 @@
-[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://q5140h4sfnxp"]
+[gd_resource type="ShaderMaterial" load_steps=3 format=3 uid="uid://q5140h4sfnxp"]
 
-[ext_resource type="Shader" uid="uid://bo0yc1rosr6v4" path="res://materials/basic.gdshader" id="1_vedg2"]
+[ext_resource type="Shader" uid="uid://vitfbh2vfqlc" path="res://materials/just_texture.gdshader" id="1_hhbp7"]
+[ext_resource type="Texture2D" uid="uid://dkuyay26snxtf" path="res://models/floors.png" id="2_l5i37"]
 
 [resource]
 render_priority = 0
-shader = ExtResource("1_vedg2")
-shader_parameter/albedo_color = Color(0.238744, 0.238744, 0.238744, 1)
+shader = ExtResource("1_hhbp7")
+shader_parameter/albedo = ExtResource("2_l5i37")
+shader_parameter/alpha_scissor = 0.5
+shader_parameter/use_normal = false

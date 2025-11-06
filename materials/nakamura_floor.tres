@@ -1,0 +1,14 @@
+[gd_resource type="ShaderMaterial" load_steps=4 format=3 uid="uid://cfjiali5e672c"]
+
+[ext_resource type="Shader" uid="uid://vitfbh2vfqlc" path="res://materials/just_texture.gdshader" id="1_do8gl"]
+[ext_resource type="Texture2D" uid="uid://bx738xc32o0x2" path="res://sources/nakamura_tileset_floors.png" id="2_3f1up"]
+[ext_resource type="Texture2D" uid="uid://bv6pww4y5dv20" path="res://sources/nakamura_floor_normals.png" id="3_do8gl"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_do8gl")
+shader_parameter/albedo = ExtResource("2_3f1up")
+shader_parameter/normal = ExtResource("3_do8gl")
+shader_parameter/alpha_scissor = 0.5
+shader_parameter/use_normal = true
+shader_parameter/emissive_str = 0.0

@@ -17,6 +17,7 @@ var aim_pos : Vector3
 var aim_hit_pos : Vector3
 var reload_timer : Timer
 
+
 #Signals
 signal on_reload(is_reloading : bool)
 signal on_reload_process(time_left : float, time_total : float)

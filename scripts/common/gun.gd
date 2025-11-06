@@ -2,11 +2,14 @@ extends Node3D
 class_name Gun
 #@export var bullet_ref : PackedScene
 const bullet_ref = preload("res://scenes/prefabs/bullet.tscn")
-const gun_sound = preload("res://sounds/gun_shoot.wav")
+const gun_sound = preload("res://sounds/gun_shoot.ogg")
 #Recoil
 
 @export_category("Loot")
 @export var loot : LootGun
+
+@export_category("Data")
+@export var data : GunData
 
 @export_category("Basics")
 @export var base_spread : float = 1.0
@@ -63,7 +66,6 @@ func _ready() -> void:
 	add_child(burst_timer)
 	burst_timer.connect("timeout", fire_burst_single)
 	
-
 func _process(delta: float) -> void:
 	recoil -= recoil_recovery * delta
 	recoil = clampf(recoil, 0, 1)
@@ -124,11 +126,15 @@ func spawn_bullet() -> Bullet:
 	GameManager.get_world().add_child(bullet)
 	bullet.global_position = global_position
 	match target_type:
-		target_types.ENEMY: bullet.set_collision_mask_value(4, true)
-		target_types.PLAYER: bullet.set_collision_mask_value(3, true)
+		target_types.ENEMY:
+			bullet.set_collision_mask_value(4, true)
+			bullet.set_collision_layer_value(3, true)
+		target_types.PLAYER:
+			bullet.set_collision_mask_value(3, true)
+			bullet.set_collision_layer_value(4, true)
 		target_types.BOTH:
 			bullet.set_collision_mask_value(4, true)
-			bullet.set_collision_mask_value(3, true)
+			bullet.set_collision_layer_value(3, true)
 	return bullet
 
 func get_base_spread():

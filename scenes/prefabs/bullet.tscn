@@ -1,22 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://m266unpl4q2g"]
+[gd_scene load_steps=4 format=3 uid="uid://m266unpl4q2g"]
 
 [ext_resource type="Script" uid="uid://c37r7clt3gmfl" path="res://scripts/common/bullet.gd" id="1_mkf8s"]
-[ext_resource type="Shader" uid="uid://bo0yc1rosr6v4" path="res://materials/basic.gdshader" id="2_lv25w"]
+[ext_resource type="Texture2D" uid="uid://ibrj7rbs2ijy" path="res://textures/items/enemy_bullet5.png" id="2_xvskw"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_y25gk"]
 radius = 0.15
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_7rc6x"]
-render_priority = 0
-shader = ExtResource("2_lv25w")
-shader_parameter/albedo_color = Color(1, 1, 1, 1)
-
-[sub_resource type="SphereMesh" id="SphereMesh_44iiu"]
-material = SubResource("ShaderMaterial_7rc6x")
-radius = 0.15
-height = 0.3
-radial_segments = 6
-rings = 12
 
 [node name="bullet" type="RigidBody3D"]
 collision_layer = 0
@@ -29,5 +17,8 @@ script = ExtResource("1_mkf8s")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("SphereShape3D_y25gk")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-mesh = SubResource("SphereMesh_44iiu")
+[node name="Sprite3D" type="Sprite3D" parent="."]
+pixel_size = 0.12
+billboard = 1
+texture_filter = 0
+texture = ExtResource("2_xvskw")

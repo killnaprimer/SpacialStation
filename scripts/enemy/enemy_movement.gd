@@ -1,6 +1,10 @@
 extends Node
 class_name EnemyMovement
 @export var movement_speed : float = 2.5
+@export var roll_speed : float = 15
+@export var roll_time : float = 0.5
+@export var roll_cooldown : float = 1.0
+
 var enemy : Enemy
 var nav : NavigationAgent3D
 var is_moving: bool = false
@@ -9,12 +13,25 @@ var target_position: Vector3
 var flanking : bool = false
 var flank_size : float = 1.5
 
+var rolling : bool = false
+var roll_time_left : float = 0
+var roll_vector : Vector3
+var roll_timer : Timer
+
 func set_target_position(new_target: Vector3):
 	target_position = new_target
 	nav.target_position = target_position
 	is_moving = true
 
-func _physics_process(delta: float) -> void:
+func _ready() -> void:
+	roll_timer = Timer.new()
+	add_child(roll_timer)
+	roll_timer.one_shot = true
+
+func _physics_process(_delta: float) -> void:
+	if rolling:
+		do_roll(_delta)
+		return
 	if !is_moving: return
 	if nav.is_navigation_finished():
 		is_moving = false
@@ -26,9 +43,9 @@ func _physics_process(delta: float) -> void:
 
 #region Flanking
 
-func flank_target():
+func flank_target( mult : float = 1.0):
 	flank_size = (target_position - enemy.global_position).length() / 6
-	flank_size = clamp(flank_size, 0.75, 1.5)
+	flank_size = clamp(flank_size, 0.75, 1.5) * mult
 	var flank_point = _find_valid_flank_point()
 	if flank_point:
 		nav.target_position = flank_point
@@ -71,3 +88,30 @@ func _is_position_reachable(test_point: Vector3) -> bool:
 
 	
 #endregion
+
+func start_roll(avois_pos : Vector3):
+	if rolling: return
+	if !roll_timer.is_stopped(): return
+	roll_vector = get_roll_direction(avois_pos) * roll_speed
+	rolling = true
+	roll_time_left = roll_time
+
+func get_roll_direction(avoid_pos : Vector3):
+	var direction : Vector3 = (enemy.global_position - avoid_pos).normalized()
+	var random_vector: Vector3
+	if randf() > 0.5: random_vector = Vector3.UP
+	else: random_vector = Vector3(0, 1, 0.001)
+	var perpendicular: Vector3 = direction.cross(random_vector).normalized()
+	if randf() > 0.5: perpendicular = -perpendicular
+	return perpendicular
+
+func do_roll(delta : float):
+	roll_time_left -= delta
+	var t : float = roll_time_left / roll_time
+	var speed_mod : float = t * (2.0-t)
+	enemy.velocity.x = roll_vector.x * speed_mod
+	enemy.velocity.z = roll_vector.y * speed_mod
+	enemy.move_and_slide()
+	if roll_time_left <= 0:
+		rolling = false
+		roll_timer.start(roll_cooldown)
