@@ -1,6 +1,6 @@
 [gd_resource type="ShaderMaterial" load_steps=3 format=3 uid="uid://bumiofmshx6v8"]
 
-[ext_resource type="Shader" uid="uid://vitfbh2vfqlc" path="res://materials/just_texture.gdshader" id="1_skuca"]
+[ext_resource type="Shader" uid="uid://vitfbh2vfqlc" path="res://materials/shaders/just_texture.gdshader" id="1_skuca"]
 [ext_resource type="Texture2D" uid="uid://c6i1wbsex7cf7" path="res://textures/simple_tile.png" id="2_qy4s5"]
 
 [resource]

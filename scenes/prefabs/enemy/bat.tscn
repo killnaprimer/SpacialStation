@@ -1,12 +1,14 @@
-[gd_scene load_steps=19 format=3 uid="uid://eajmuj2d4n0"]
+[gd_scene load_steps=24 format=3 uid="uid://eajmuj2d4n0"]
 
 [ext_resource type="Script" uid="uid://gla0cja4mfrw" path="res://scripts/enemy/enemy.gd" id="1_lhhhu"]
 [ext_resource type="Script" uid="uid://cx0xxqn8au6ks" path="res://scripts/common/health.gd" id="2_qbp5v"]
 [ext_resource type="Script" uid="uid://c4yuajoxxo5r4" path="res://scripts/enemy/enemy_hearing.gd" id="3_gwhv1"]
 [ext_resource type="Script" uid="uid://b1iyvhk6s6soj" path="res://scripts/enemy/enemy_sight.gd" id="4_4efyp"]
-[ext_resource type="Shader" uid="uid://541fc1k45g4m" path="res://scenes/prefabs/character.gdshader" id="5_o335u"]
+[ext_resource type="Script" uid="uid://brat11jlspshs" path="res://scripts/enemy/enemy_visuals.gd" id="5_lhhhu"]
+[ext_resource type="Shader" uid="uid://541fc1k45g4m" path="res://materials/shaders/character.gdshader" id="5_o335u"]
 [ext_resource type="Texture2D" uid="uid://bv3tpfcb1s034" path="res://sources/bat-Sheet.png" id="6_lhhhu"]
 [ext_resource type="Texture2D" uid="uid://04yrain5fnii" path="res://sources/bat_normalmap.png" id="7_qbp5v"]
+[ext_resource type="Shader" uid="uid://djpop43t0kc30" path="res://materials/shaders/character_xray.gdshader" id="8_pql7b"]
 [ext_resource type="Script" uid="uid://b3ey84j6drg0v" path="res://scripts/enemy/enemy_sprite.gd" id="9_13ngv"]
 [ext_resource type="Script" uid="uid://dd0ocu2dk0341" path="res://scripts/enemy/enemy_ai.gd" id="10_so1ny"]
 [ext_resource type="Script" uid="uid://h2ankc57xp0k" path="res://scripts/enemy/enemy_movement.gd" id="11_ivcsi"]
@@ -21,29 +23,73 @@ radius = 12.0
 radius = 0.7
 height = 1.8
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_alqqg"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_pql7b"]
 render_priority = 0
 shader = ExtResource("5_o335u")
 shader_parameter/albedo_texture = ExtResource("6_lhhhu")
 shader_parameter/normal_map = ExtResource("7_qbp5v")
 shader_parameter/flashing = false
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pql7b"]
-transparency = 1
-depth_draw_mode = 2
-no_depth_test = true
-vertex_color_use_as_albedo = true
-albedo_color = Color(1, 1, 1, 0.5019608)
-albedo_texture = ExtResource("6_lhhhu")
-texture_filter = 0
-billboard_mode = 1
-stencil_mode = 3
-stencil_flags = 1
-stencil_compare = 2
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_lhhhu"]
+render_priority = 0
+shader = ExtResource("8_pql7b")
+shader_parameter/albedo_texture = ExtResource("6_lhhhu")
+shader_parameter/flashing = false
 
-[sub_resource type="SphereMesh" id="SphereMesh_alqqg"]
-radial_segments = 6
-rings = 3
+[sub_resource type="Animation" id="Animation_pql7b"]
+resource_name = "flapping"
+length = 0.4
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite3D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 0]
+}
+
+[sub_resource type="Animation" id="Animation_lhhhu"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite3D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_qbp5v"]
+resource_name = "bite"
+length = 0.461
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite3D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.089654885, 0.18949783, 0.28526554, 0.40140936),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 4, 5, 6, 0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_qbp5v"]
+_data = {
+&"RESET": SubResource("Animation_lhhhu"),
+&"bite": SubResource("Animation_qbp5v"),
+&"flapping": SubResource("Animation_pql7b")
+}
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_7j55l"]
 
@@ -57,7 +103,8 @@ navigation = NodePath("NavigationAgent3D")
 
 [node name="health" type="Node3D" parent="."]
 script = ExtResource("2_qbp5v")
-health = 5
+health = 2
+max_health = 2
 
 [node name="hearing" type="Node3D" parent="."]
 script = ExtResource("3_gwhv1")
@@ -76,23 +123,34 @@ shape = SubResource("CylinderShape3D_5hfr3")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9, 0)
 shape = SubResource("CapsuleShape3D_cf8o5")
 
-[node name="Sprite3D" type="Sprite3D" parent="."]
+[node name="visuals" type="Node3D" parent="." node_paths=PackedStringArray("enemy")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.031883, 1.3703692, 0)
-material_override = SubResource("ShaderMaterial_alqqg")
-material_overlay = SubResource("StandardMaterial3D_pql7b")
+script = ExtResource("5_lhhhu")
+enemy = NodePath("..")
+a_idle = "flapping"
+a_moving = "flapping"
+a_shoot = "bite"
+a_melee = "bite"
+a_reload = "bite"
+a_dodge = "flapping"
+
+[node name="Sprite3D" type="Sprite3D" parent="visuals"]
+material_override = SubResource("ShaderMaterial_pql7b")
+material_overlay = SubResource("ShaderMaterial_lhhhu")
 pixel_size = 0.12
 billboard = 1
 shaded = true
 texture_filter = 0
 texture = ExtResource("6_lhhhu")
-hframes = 4
+hframes = 7
 script = ExtResource("9_13ngv")
 normal_map = ExtResource("7_qbp5v")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Sprite3D"]
-cast_shadow = 3
-gi_mode = 2
-mesh = SubResource("SphereMesh_alqqg")
+[node name="AnimationPlayer" type="AnimationPlayer" parent="visuals"]
+libraries = {
+&"": SubResource("AnimationLibrary_qbp5v")
+}
+autoplay = "flapping"
 
 [node name="AI" type="Node" parent="." node_paths=PackedStringArray("gun_holder")]
 script = ExtResource("10_so1ny")
@@ -122,7 +180,8 @@ cooldown = 1.5
 shape = SubResource("BoxShape3D_7j55l")
 debug_color = Color(0.9812632, 0.13779119, 1.92523e-07, 0.41960785)
 
-[connection signal="on_damaged" from="health" to="Sprite3D" method="on_damage"]
+[connection signal="on_damaged" from="health" to="visuals/Sprite3D" method="on_damage"]
 [connection signal="on_sound_heared" from="hearing" to="AI" method="on_sound_heared"]
 [connection signal="fire_sighted" from="sight" to="AI" method="on_fire_sighted"]
 [connection signal="target_sighted" from="sight" to="AI" method="on_target_sighted"]
+[connection signal="on_melee" from="gun_holder" to="visuals" method="play_melee"]

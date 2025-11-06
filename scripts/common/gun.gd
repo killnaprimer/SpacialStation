@@ -82,14 +82,15 @@ func _process(delta: float) -> void:
 		spread += spread_gain * bullet_count 
 	emit_signal("on_spread_changed", spread)
 
-func fire():
-	if !can_fire: return
-	if loot and loot.ammo_count <= 0: return
+func fire() -> bool:
+	if !can_fire: return false
+	if loot and loot.ammo_count <= 0: return false
 	match burst_type:
 		burst_types.NO: fire_single()
 		burst_types.SHOTGUN: fire_multiple()
 		burst_types.BURST: fire_burst()
 	can_fire = false
+	return true
 	
 func fire_multiple():
 	var spread : float = 0

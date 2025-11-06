@@ -4,14 +4,13 @@
 [ext_resource type="Script" uid="uid://cx0xxqn8au6ks" path="res://scripts/common/health.gd" id="1_w3ipt"]
 [ext_resource type="Texture2D" uid="uid://d0016wk0ra8qf" path="res://textures/generic_character-Sheet.png" id="2_cf8o5"]
 [ext_resource type="Script" uid="uid://dd0ocu2dk0341" path="res://scripts/enemy/enemy_ai.gd" id="3_av2jj"]
-[ext_resource type="Material" uid="uid://ji11nvc5hngp" path="res://materials/character_shadow.tres" id="3_ni2e0"]
-[ext_resource type="Shader" uid="uid://541fc1k45g4m" path="res://scenes/prefabs/character.gdshader" id="3_repv0"]
+[ext_resource type="Shader" uid="uid://541fc1k45g4m" path="res://materials/shaders/character.gdshader" id="3_repv0"]
 [ext_resource type="Script" uid="uid://b3ey84j6drg0v" path="res://scripts/enemy/enemy_sprite.gd" id="4_alf50"]
 [ext_resource type="Script" uid="uid://h2ankc57xp0k" path="res://scripts/enemy/enemy_movement.gd" id="5_5hfr3"]
-[ext_resource type="Texture2D" uid="uid://ci8fkdgcxe8tw" path="res://textures/generic_char_nm.png" id="5_yn545"]
 [ext_resource type="Script" uid="uid://b1iyvhk6s6soj" path="res://scripts/enemy/enemy_sight.gd" id="6_pssps"]
 [ext_resource type="Script" uid="uid://q786hxut4s3f" path="res://scripts/enemy/enemy_gun_holder.gd" id="7_qehvh"]
 [ext_resource type="Script" uid="uid://b2dpd8c06nmlb" path="res://scripts/common/gun.gd" id="8_58ed5"]
+[ext_resource type="Shader" uid="uid://djpop43t0kc30" path="res://materials/shaders/character_xray.gdshader" id="8_wy0un"]
 [ext_resource type="Script" uid="uid://c4yuajoxxo5r4" path="res://scripts/enemy/enemy_hearing.gd" id="9_q30q4"]
 [ext_resource type="Script" uid="uid://dum25iy3i8s0w" path="res://scripts/common/melee.gd" id="13_yn545"]
 
@@ -23,11 +22,16 @@ radius = 12.0
 radius = 0.7
 height = 1.8
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_n1yh0"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_mftmj"]
 render_priority = 0
 shader = ExtResource("3_repv0")
 shader_parameter/albedo_texture = ExtResource("2_cf8o5")
-shader_parameter/normal_map = ExtResource("5_yn545")
+shader_parameter/flashing = false
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_wy0un"]
+render_priority = 0
+shader = ExtResource("8_wy0un")
+shader_parameter/albedo_texture = ExtResource("2_cf8o5")
 shader_parameter/flashing = false
 
 [sub_resource type="QuadMesh" id="QuadMesh_alf50"]
@@ -74,8 +78,8 @@ shape = SubResource("CapsuleShape3D_cf8o5")
 
 [node name="Sprite3D" type="Sprite3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.031883, 0.9703692, 0)
-material_override = SubResource("ShaderMaterial_n1yh0")
-material_overlay = ExtResource("3_ni2e0")
+material_override = SubResource("ShaderMaterial_mftmj")
+material_overlay = SubResource("ShaderMaterial_wy0un")
 modulate = Color(1, 0, 0, 1)
 pixel_size = 0.12
 billboard = 1

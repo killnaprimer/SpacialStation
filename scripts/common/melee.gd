@@ -14,8 +14,8 @@ func _ready() -> void:
 	cd_timer.one_shot = true
 	cd_timer.connect("timeout", reset_melee)
 
-func hit():
-	if !can_attack: return
+func hit() -> bool:
+	if !can_attack: return false
 	var bodies = get_overlapping_bodies()
 	if bodies.is_empty():
 		make_sound(miss_sound)
@@ -25,6 +25,7 @@ func hit():
 			GameManager.damage(body)
 	can_attack = false
 	cd_timer.start(cooldown)
+	return true
 
 func reset_melee():
 	can_attack = true

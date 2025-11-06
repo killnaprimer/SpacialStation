@@ -16,6 +16,10 @@ var is_reloading : bool
 var has_gun : bool
 var has_melee : bool
 
+signal on_melee()
+signal on_shoot()
+signal on_reload(reloading : bool)
+
 func _ready() -> void:
 	raycast = RayCast3D.new()
 	add_child(raycast)
@@ -36,8 +40,10 @@ func _physics_process(_delta: float) -> void:
 	if tick <= 0:
 		if target:
 			look_at(target.global_position + aiming_offset)
-			if has_melee and (target.global_position - global_position).length() < 2.5: melee.hit()
-			elif has_los() and has_gun : gun.fire()
+			if has_melee and (target.global_position - global_position).length() < 2.5:
+				if melee.hit(): emit_signal("on_melee")
+			elif has_los() and has_gun :
+				if gun.fire(): emit_signal("on_shoot")
 			
 			tick = tick_max
 	else:

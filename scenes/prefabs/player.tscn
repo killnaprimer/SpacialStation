@@ -1,12 +1,15 @@
-[gd_scene load_steps=20 format=3 uid="uid://clydvyhspgccd"]
+[gd_scene load_steps=24 format=3 uid="uid://clydvyhspgccd"]
 
 [ext_resource type="Script" uid="uid://x5ipxbgp58n6" path="res://scripts/common/player.gd" id="1_4dohe"]
 [ext_resource type="Texture2D" uid="uid://d0016wk0ra8qf" path="res://textures/generic_character-Sheet.png" id="3_lagtt"]
 [ext_resource type="PackedScene" uid="uid://d0g4k7jwfmwcg" path="res://scenes/prefabs/character.tscn" id="3_r66lb"]
+[ext_resource type="Shader" uid="uid://541fc1k45g4m" path="res://materials/shaders/character.gdshader" id="3_xtlg4"]
 [ext_resource type="Script" uid="uid://dql0e8i3omcvc" path="res://scripts/player/gun_holder.gd" id="4_ht1c8"]
-[ext_resource type="Shader" uid="uid://bo0yc1rosr6v4" path="res://materials/basic.gdshader" id="4_kbsxf"]
+[ext_resource type="Shader" uid="uid://bo0yc1rosr6v4" path="res://materials/shaders/basic.gdshader" id="4_kbsxf"]
 [ext_resource type="Script" uid="uid://b2dpd8c06nmlb" path="res://scripts/common/gun.gd" id="5_g2jcq"]
 [ext_resource type="Script" uid="uid://dum25iy3i8s0w" path="res://scripts/common/melee.gd" id="5_rgeog"]
+[ext_resource type="Texture2D" uid="uid://ci8fkdgcxe8tw" path="res://textures/generic_char_nm.png" id="5_va4sl"]
+[ext_resource type="Shader" uid="uid://djpop43t0kc30" path="res://materials/shaders/character_xray.gdshader" id="6_20t1h"]
 [ext_resource type="Script" uid="uid://box1lvu4pf35d" path="res://scripts/player/mouse_aim.gd" id="6_g2jcq"]
 [ext_resource type="Resource" uid="uid://67gtv55bbw3y" path="res://data/guns/pistol.tres" id="7_jybep"]
 [ext_resource type="Script" uid="uid://cx0xxqn8au6ks" path="res://scripts/common/health.gd" id="8_kbsxf"]
@@ -17,18 +20,18 @@
 radius = 0.6
 height = 1.8
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gkb8g"]
-transparency = 1
-depth_draw_mode = 2
-no_depth_test = true
-vertex_color_use_as_albedo = true
-albedo_color = Color(1, 1, 1, 0.5019608)
-albedo_texture = ExtResource("3_lagtt")
-texture_filter = 0
-billboard_mode = 1
-stencil_mode = 3
-stencil_flags = 1
-stencil_compare = 2
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_aal4f"]
+render_priority = 0
+shader = ExtResource("3_xtlg4")
+shader_parameter/albedo_texture = ExtResource("3_lagtt")
+shader_parameter/normal_map = ExtResource("5_va4sl")
+shader_parameter/flashing = false
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_1a8bf"]
+render_priority = 0
+shader = ExtResource("6_20t1h")
+shader_parameter/albedo_texture = ExtResource("3_lagtt")
+shader_parameter/flashing = false
 
 [sub_resource type="QuadMesh" id="QuadMesh_ht1c8"]
 size = Vector2(1.5, 2)
@@ -64,7 +67,8 @@ debug_color = Color(1, 1, 1, 0.41960785)
 
 [node name="Sprite3D" parent="character" index="0"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.037587762, 1, 0.06675935)
-material_overlay = SubResource("StandardMaterial3D_gkb8g")
+material_override = SubResource("ShaderMaterial_aal4f")
+material_overlay = SubResource("ShaderMaterial_1a8bf")
 cast_shadow = 0
 offset = Vector2(0, 0)
 modulate = Color(1, 0.4166667, 0, 1)

@@ -1,6 +1,6 @@
 [gd_resource type="ShaderMaterial" load_steps=4 format=3 uid="uid://cfjiali5e672c"]
 
-[ext_resource type="Shader" uid="uid://vitfbh2vfqlc" path="res://materials/just_texture.gdshader" id="1_do8gl"]
+[ext_resource type="Shader" uid="uid://vitfbh2vfqlc" path="res://materials/shaders/just_texture.gdshader" id="1_do8gl"]
 [ext_resource type="Texture2D" uid="uid://bx738xc32o0x2" path="res://sources/nakamura_tileset_floors.png" id="2_3f1up"]
 [ext_resource type="Texture2D" uid="uid://bv6pww4y5dv20" path="res://sources/nakamura_floor_normals.png" id="3_do8gl"]
 
