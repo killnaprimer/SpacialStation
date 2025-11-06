@@ -33,6 +33,7 @@ func _process(_delta: float) -> void:
 	else:
 		cursor.modulate.a = 0
 		GameManager.ui.inventory.is_interactive = true
+
 func interact():
 	if selected_interactive is Pickup:
 		Inventory.add_loot(selected_interactive.loot)

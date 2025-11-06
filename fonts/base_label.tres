@@ -1,0 +1,7 @@
+[gd_resource type="LabelSettings" load_steps=2 format=3 uid="uid://d3r8h3v07121g"]
+
+[ext_resource type="FontFile" uid="uid://bi75d0irnrxuf" path="res://fonts/mythic-pixels.ttf" id="1_d6qtw"]
+
+[resource]
+font = ExtResource("1_d6qtw")
+font_size = 10

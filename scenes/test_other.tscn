@@ -1,4 +1,4 @@
-[gd_scene load_steps=58 format=3 uid="uid://bu274eu0mlkeb"]
+[gd_scene load_steps=59 format=3 uid="uid://bu274eu0mlkeb"]
 
 [ext_resource type="Script" uid="uid://dbdvi5o2kq1x0" path="res://scripts/player/camera.gd" id="2_wgg0f"]
 [ext_resource type="PackedScene" uid="uid://clydvyhspgccd" path="res://scenes/prefabs/player.tscn" id="3_ymkes"]
@@ -7,7 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://duijyuu65xfij" path="res://scenes/level_constructor/greybox/wall_triple.tscn" id="6_tg5ch"]
 [ext_resource type="PackedScene" uid="uid://bhrgdgf5nja5j" path="res://scenes/prefabs/enemy/dummy.tscn" id="6_ykgj2"]
 [ext_resource type="Script" uid="uid://hbukvo8aojjp" path="res://scripts/enemy/patrol_point.gd" id="7_6cwa4"]
-[ext_resource type="PackedScene" uid="uid://bhi3jtmt4en5g" path="res://scenes/prefabs/ui.tscn" id="7_tg5ch"]
+[ext_resource type="PackedScene" uid="uid://bhi3jtmt4en5g" path="res://scenes/ui/ui.tscn" id="7_tg5ch"]
 [ext_resource type="PackedScene" uid="uid://csxolto8vwygl" path="res://scenes/level_constructor/greybox/pedestal.tscn" id="7_ykn62"]
 [ext_resource type="PackedScene" uid="uid://cl642l8s6qvuf" path="res://scenes/level_constructor/greybox/slope.tscn" id="8_kkdeg"]
 [ext_resource type="PackedScene" uid="uid://dfls4abgohlub" path="res://scenes/level_constructor/greybox/wall.tscn" id="10_ykn62"]
@@ -16,6 +16,7 @@
 [ext_resource type="PackedScene" uid="uid://dduhkp2kvhxg8" path="res://models/level_test.glb" id="14_sfpon"]
 [ext_resource type="PackedScene" uid="uid://7wnwdcfqlt2s" path="res://models/nakamura_test.glb" id="15_3stl1"]
 [ext_resource type="PackedScene" uid="uid://eajmuj2d4n0" path="res://scenes/prefabs/enemy/bat.tscn" id="17_wlib2"]
+[ext_resource type="PackedScene" uid="uid://dl273reh3i6qp" path="res://scenes/prefabs/props/cargo_box.tscn" id="18_q06b2"]
 [ext_resource type="PackedScene" uid="uid://dfpatff4d5okj" path="res://addons/godot_3d_cursor/3d_cursor.tscn" id="20_ckkne"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_ykgj2"]
@@ -667,6 +668,9 @@ patrol_points = [NodePath("../patrol_points/PatrolPoint"), NodePath("../patrol_p
 [node name="Enemy2" parent="." node_paths=PackedStringArray("patrol_points") instance=ExtResource("17_wlib2")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -54, 2, 51)
 patrol_points = [NodePath("../patrol_points/PatrolPoint"), NodePath("../patrol_points/PatrolPoint3"), NodePath("../patrol_points/PatrolPoint8"), NodePath("../patrol_points/PatrolPoint4"), NodePath("../patrol_points/PatrolPoint2"), NodePath("../patrol_points/PatrolPoint7"), NodePath("../patrol_points/PatrolPoint6")]
+
+[node name="supply_box" parent="." instance=ExtResource("18_q06b2")]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, -60, 1, 22)
 
 [editable path="level_test"]
 [editable path="nakamura_test"]

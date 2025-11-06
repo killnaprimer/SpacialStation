@@ -1,0 +1,15 @@
+[gd_resource type="ShaderMaterial" load_steps=4 format=3 uid="uid://7pkep24j8m0q"]
+
+[ext_resource type="Shader" uid="uid://vitfbh2vfqlc" path="res://materials/shaders/just_texture.gdshader" id="1_c4h2f"]
+[ext_resource type="Texture2D" uid="uid://jf3e7ugbq71r" path="res://sources/props.png" id="2_yuu0y"]
+[ext_resource type="Texture2D" uid="uid://2i1wqx2umgj7" path="res://sources/props_nm.png" id="3_yuu0y"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_c4h2f")
+shader_parameter/albedo = ExtResource("2_yuu0y")
+shader_parameter/normal = ExtResource("3_yuu0y")
+shader_parameter/emissive = ExtResource("2_yuu0y")
+shader_parameter/alpha_scissor = 0.5
+shader_parameter/use_normal = true
+shader_parameter/emissive_str = 0.10000000475

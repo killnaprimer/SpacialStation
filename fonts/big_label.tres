@@ -1,0 +1,9 @@
+[gd_resource type="LabelSettings" load_steps=2 format=3 uid="uid://37ab75reuybm"]
+
+[ext_resource type="FontFile" uid="uid://bi75d0irnrxuf" path="res://fonts/mythic-pixels.ttf" id="1_8mjwx"]
+
+[resource]
+font = ExtResource("1_8mjwx")
+font_size = 20
+shadow_size = 2
+shadow_color = Color(0, 0, 0, 1)

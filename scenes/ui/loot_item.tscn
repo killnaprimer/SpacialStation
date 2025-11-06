@@ -1,15 +1,17 @@
-[gd_scene load_steps=4 format=3 uid="uid://xvidfch2kgoc"]
+[gd_scene load_steps=5 format=3 uid="uid://xvidfch2kgoc"]
 
+[ext_resource type="StyleBox" uid="uid://cgd2ydk31s0w6" path="res://fonts/base_panel.tres" id="1_16jlq"]
 [ext_resource type="Script" uid="uid://d3m1ysolxsurq" path="res://scripts/ui/loot_item_row.gd" id="1_kqydp"]
-[ext_resource type="FontFile" uid="uid://bi66fjm2gmv5k" path="res://fonts/monogram.ttf" id="2_kqydp"]
+[ext_resource type="FontFile" uid="uid://bi75d0irnrxuf" path="res://fonts/mythic-pixels.ttf" id="2_kqydp"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_8bix8"]
 line_spacing = 2.0
 font = ExtResource("2_kqydp")
-font_size = 24
+font_size = 10
 
 [node name="loot_item" type="Panel"]
 custom_minimum_size = Vector2(140, 20)
+theme_override_styles/panel = ExtResource("1_16jlq")
 script = ExtResource("1_kqydp")
 
 [node name="Label" type="Label" parent="."]

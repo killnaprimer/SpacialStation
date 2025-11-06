@@ -14,20 +14,20 @@
 [ext_resource type="Resource" uid="uid://67gtv55bbw3y" path="res://data/guns/pistol.tres" id="7_jybep"]
 [ext_resource type="Script" uid="uid://cx0xxqn8au6ks" path="res://scripts/common/health.gd" id="8_kbsxf"]
 [ext_resource type="Script" uid="uid://c87vi1af70664" path="res://scripts/player/interactor.gd" id="11_oqq3r"]
-[ext_resource type="FontFile" uid="uid://dot7s2su8u16y" path="res://fonts/dogicapixel.ttf" id="12_lagtt"]
+[ext_resource type="FontFile" uid="uid://bi66fjm2gmv5k" path="res://fonts/monogram.ttf" id="15_xtlg4"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_fp3wc"]
 radius = 0.6
 height = 1.8
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_aal4f"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_va4sl"]
 render_priority = 0
 shader = ExtResource("3_xtlg4")
 shader_parameter/albedo_texture = ExtResource("3_lagtt")
 shader_parameter/normal_map = ExtResource("5_va4sl")
 shader_parameter/flashing = false
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_1a8bf"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_20t1h"]
 render_priority = 0
 shader = ExtResource("6_20t1h")
 shader_parameter/albedo_texture = ExtResource("3_lagtt")
@@ -67,8 +67,8 @@ debug_color = Color(1, 1, 1, 0.41960785)
 
 [node name="Sprite3D" parent="character" index="0"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.037587762, 1, 0.06675935)
-material_override = SubResource("ShaderMaterial_aal4f")
-material_overlay = SubResource("ShaderMaterial_1a8bf")
+material_override = SubResource("ShaderMaterial_va4sl")
+material_overlay = SubResource("ShaderMaterial_20t1h")
 cast_shadow = 0
 offset = Vector2(0, 0)
 modulate = Color(1, 0.4166667, 0, 1)
@@ -145,6 +145,6 @@ no_depth_test = true
 texture_filter = 0
 outline_modulate = Color(0, 0, 0, 0)
 text = "[ ]"
-font = ExtResource("12_lagtt")
+font = ExtResource("15_xtlg4")
 
 [editable path="character"]

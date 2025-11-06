@@ -2,13 +2,13 @@
 
 importer="font_data_dynamic"
 type="FontFile"
-uid="uid://dls6yty8qowp6"
-path="res://.godot/imported/pixelated.ttf-f7facf6a64430e4295a42a418f439ef0.fontdata"
+uid="uid://bi75d0irnrxuf"
+path="res://.godot/imported/mythic-pixels.ttf-9812a5dfbcf2b22cf9f44d9a3878c3b6.fontdata"
 
 [deps]
 
-source_file="res://fonts/pixelated.ttf"
-dest_files=["res://.godot/imported/pixelated.ttf-f7facf6a64430e4295a42a418f439ef0.fontdata"]
+source_file="res://fonts/mythic-pixels.ttf"
+dest_files=["res://.godot/imported/mythic-pixels.ttf-9812a5dfbcf2b22cf9f44d9a3878c3b6.fontdata"]
 
 [params]
 
@@ -21,6 +21,7 @@ msdf_pixel_range=8
 msdf_size=48
 allow_system_fallback=true
 force_autohinter=false
+modulate_color_glyphs=false
 hinting=1
 subpixel_positioning=4
 keep_rounding_remainders=true

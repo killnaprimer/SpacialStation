@@ -1,24 +1,25 @@
-[gd_scene load_steps=12 format=3 uid="uid://bhi3jtmt4en5g"]
+[gd_scene load_steps=16 format=3 uid="uid://bhi3jtmt4en5g"]
 
 [ext_resource type="Script" uid="uid://didsuuegvq1hh" path="res://scripts/ui/inventory_panel.gd" id="1_mwfwn"]
 [ext_resource type="Script" uid="uid://dtcyx4j6t2lgd" path="res://scripts/ui/game_ui.gd" id="1_rpphg"]
 [ext_resource type="Script" uid="uid://8c4rr4dk3vj" path="res://scripts/ui/char_basics.gd" id="3_ttrog"]
+[ext_resource type="LabelSettings" uid="uid://37ab75reuybm" path="res://fonts/big_label.tres" id="4_4kltc"]
 [ext_resource type="Script" uid="uid://b7n3wv0paim7b" path="res://scripts/ui/text_progress_bar.gd" id="4_fl8ej"]
-[ext_resource type="FontFile" uid="uid://dls6yty8qowp6" path="res://fonts/pixelated.ttf" id="4_wejn0"]
 [ext_resource type="Script" uid="uid://b57n4828gqtb2" path="res://scripts/ui/crosshair.gd" id="5_bce8v"]
 [ext_resource type="Texture2D" uid="uid://bw5jxaph3likh" path="res://textures/cursor_part.png" id="5_fl8ej"]
 [ext_resource type="Texture2D" uid="uid://c2yenve83vgeb" path="res://textures/cursor_center.png" id="6_u6llg"]
+[ext_resource type="Script" uid="uid://cso7cgujj6j28" path="res://scripts/container.gd" id="9_4kltc"]
+[ext_resource type="StyleBox" uid="uid://cgd2ydk31s0w6" path="res://fonts/base_panel.tres" id="10_hl07w"]
+[ext_resource type="LabelSettings" uid="uid://d3r8h3v07121g" path="res://fonts/base_label.tres" id="10_y220t"]
+[ext_resource type="FontFile" uid="uid://bi75d0irnrxuf" path="res://fonts/mythic-pixels.ttf" id="11_4kltc"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_hl07w"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_rpphg"]
 
-[sub_resource type="LabelSettings" id="LabelSettings_wejn0"]
-font = ExtResource("4_wejn0")
-font_size = 32
-shadow_size = 2
-shadow_color = Color(0, 0, 0, 1)
-
 [sub_resource type="LabelSettings" id="LabelSettings_rpphg"]
-font = ExtResource("4_wejn0")
+font = ExtResource("11_4kltc")
+font_size = 10
 shadow_size = 2
 shadow_color = Color(0, 0, 0, 1)
 
@@ -38,6 +39,7 @@ layout_mode = 1
 anchors_preset = 9
 anchor_bottom = 1.0
 grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_hl07w")
 script = ExtResource("1_mwfwn")
 
 [node name="MarginContainer" type="MarginContainer" parent="Inventory"]
@@ -88,7 +90,7 @@ alignment = 1
 texture_filter = 1
 layout_mode = 2
 text = " ++---"
-label_settings = SubResource("LabelSettings_wejn0")
+label_settings = ExtResource("4_4kltc")
 horizontal_alignment = 1
 vertical_alignment = 2
 script = ExtResource("4_fl8ej")
@@ -216,3 +218,55 @@ grow_vertical = 2
 rotation = 1.5708
 texture = ExtResource("5_fl8ej")
 stretch_mode = 3
+
+[node name="Container" type="Panel" parent="."]
+visible = false
+custom_minimum_size = Vector2(300, 300)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = ExtResource("10_hl07w")
+script = ExtResource("9_4kltc")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Container"]
+custom_minimum_size = Vector2(0, 120)
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.042000003
+anchor_right = 1.0
+anchor_bottom = 0.95800006
+offset_top = 81.4
+offset_bottom = -81.400024
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="header" type="Label" parent="Container/VBoxContainer"]
+layout_mode = 2
+text = "Container Name
+-------------"
+label_settings = ExtResource("10_y220t")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Container/VBoxContainer"]
+custom_minimum_size = Vector2(0, 80)
+layout_mode = 2
+size_flags_stretch_ratio = 2.95
+
+[node name="hint" type="Label" parent="Container/VBoxContainer"]
+custom_minimum_size = Vector2(0, 10)
+layout_mode = 2
+text = "E - pick | Scroll | Move Away"
+label_settings = ExtResource("10_y220t")
+horizontal_alignment = 1
+autowrap_mode = 2
