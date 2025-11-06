@@ -8,9 +8,6 @@ const gun_sound = preload("res://sounds/gun_shoot.ogg")
 @export_category("Loot")
 @export var loot : LootGun
 
-@export_category("Data")
-@export var data : GunData
-
 @export_category("Basics")
 @export var base_spread : float = 1.0
 @export var bullet_count : int = 1

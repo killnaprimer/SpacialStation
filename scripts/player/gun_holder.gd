@@ -2,7 +2,7 @@ extends Node3D
 class_name GunHolder
 @export var gun : Gun
 @export var melee : Melee
-@export var character : Character
+@export var character : Player
 @export var mouse_aim : MouseAim
 
 #Aiming
@@ -35,21 +35,21 @@ func _ready():
 	reload_timer.one_shot = true
 	reload_timer.connect("timeout", reload_end)
 
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	aim_pos = mouse_aim.get_aim_point() + position
 	look_at(aim_pos, Vector3.UP)
 	aim_hit_pos = direct_ray()
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed("fire"): shoot()
 	if Input.is_action_just_pressed("reload"): reload()
 	if !reload_timer.is_stopped():
-		emit_signal("on_reload_process", reload_timer.time_left, gun.loot.reload_time)
+		emit_signal("on_reload_process", reload_timer.time_left, gun.loot.reload_time * character.stats.get_reload_mod())
 	aim()
 
 func aim():
 	is_aiming = Input.is_action_pressed("aim")
-	character.is_aiming = is_aiming
+	character.is_aiming = is_aiming 
 	show_line(is_aiming)
 	draw_line(Vector3(0,0,-0.75), aim_hit_pos)
 		
@@ -68,7 +68,7 @@ func reload():
 	if gun.loot.ammo_count == gun.loot.mag_size: return
 	if !Inventory.has_ammo(gun.ammo_type): return
 	if reload_timer.is_stopped():
-		reload_timer.start(gun.loot.reload_time)
+		reload_timer.start(gun.loot.reload_time * character.stats.get_reload_mod())
 		emit_signal("on_reload", true)
 
 func reload_end():
@@ -125,8 +125,14 @@ func add_gun(new_gun : Gun):
 	gun = new_gun
 	gun.hearable = true
 	gun.loot.equipped = true
+	adjust_gun_for_stats()
 	gun.connect("on_spread_changed", GameManager.ui.cursor.set_spread)
 	gun.connect("on_fire", GameManager.get_camera().make_tween)
 	gun.connect("on_bullet_spent", GameManager.ui.character_panel.set_ammo)
 	gun.emit_signal("on_bullet_spent", gun.loot.ammo_count, gun.loot.mag_size)
+
+func adjust_gun_for_stats():
+	gun.base_spread *= character.stats.get_spread_mod()
+	gun.recoil_base *= character.stats.get_recoil_mod()
+
 #endregion

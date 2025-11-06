@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="LootGunMod" load_steps=3 format=3 uid="uid://rra6ot5y5vrk"]
+
+[ext_resource type="Texture2D" uid="uid://kpvyrxl1h5q7" path="res://textures/items/gun_mod2.png" id="1_vcu3f"]
+[ext_resource type="Script" uid="uid://bupcsa2d4fd2f" path="res://scripts/data/loot/loot_gun_mod.gd" id="2_a2l78"]
+
+[resource]
+script = ExtResource("2_a2l78")
+mod_type = 1
+mod = 0.1
+loot_name = "Recoil Mod"
+icon = ExtResource("1_vcu3f")
+metadata/_custom_type_script = "uid://bupcsa2d4fd2f"

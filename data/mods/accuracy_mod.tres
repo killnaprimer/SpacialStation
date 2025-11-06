@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="LootGunMod" load_steps=3 format=3 uid="uid://cu1c5pdm68c4k"]
+
+[ext_resource type="Texture2D" uid="uid://c53c6r7ww8jhk" path="res://textures/items/gun_mod1.png" id="1_cob16"]
+[ext_resource type="Script" uid="uid://bupcsa2d4fd2f" path="res://scripts/data/loot/loot_gun_mod.gd" id="2_hg7yd"]
+
+[resource]
+script = ExtResource("2_hg7yd")
+mod = 0.75
+loot_name = "Accuracy Mod"
+icon = ExtResource("1_cob16")
+metadata/_custom_type_script = "uid://bupcsa2d4fd2f"

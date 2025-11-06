@@ -38,5 +38,10 @@ func restore_health(heal : int):
 	health = clamp(health, 0, max_health)
 	if connect_to_ui: emit_signal("on_health_changed",health, max_health)
 
+func set_max_health(new_health : int):
+	var health_percent : float = float(health) / float(max_health)
+	max_health = new_health
+	health = int ( float(max_health) * health_percent )
+
 func die():
 	owner.queue_free() 

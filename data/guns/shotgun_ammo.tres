@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="LootAmmo" load_steps=3 format=3 uid="uid://bbslt3gcv2udh"]
+
+[ext_resource type="Script" uid="uid://b5u2wvwy8jwu1" path="res://scripts/data/loot/loot_ammo.gd" id="1_3tbfa"]
+[ext_resource type="Texture2D" uid="uid://2gmyx0fobx8v" path="res://textures/items/enemy_bullet3.png" id="1_njebn"]
+
+[resource]
+script = ExtResource("1_3tbfa")
+ammo_type = 1
+count = 4
+loot_name = "Shells"
+icon = ExtResource("1_njebn")
+metadata/_custom_type_script = "uid://b5u2wvwy8jwu1"

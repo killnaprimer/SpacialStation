@@ -20,10 +20,12 @@ class_name LootGun
 @export var spread_gain : float = 5.0
 
 @export_category("Reloading")
+@export var ammo_type : Gun.ammo_types
 @export var mag_size : int
 @export var ammo_count : int
 @export var reload_time : float
 
+@export var mod : LootGunMod
 
 func make_gun():
 	var gun = Gun.new()
@@ -37,11 +39,13 @@ func make_gun():
 	gun.recoil_base = recoil_base
 	gun.recoil_recovery = recoil_recovery
 	gun.spread_gain = spread_gain
+	gun.ammo_type = ammo_type
 	gun.loot = self
+	if mod : mod.modify_players_gun(gun)
 	return gun
 
 func use():
 	if GameManager.player.has_node("gun_holder"):
 		var gun_holder : GunHolder = GameManager.player.get_node("gun_holder")
-		gun_holder.gun.queue_free()
 		gun_holder.add_gun(make_gun())
+		Inventory.current_gun = self

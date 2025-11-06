@@ -30,5 +30,7 @@ func update_labels():
 	sub_label.text = ""
 	label.modulate = Color.DIM_GRAY
 	if loot is LootGun:
+		if loot.mod:
+			sub_label.text += loot.mod.get_loot_name() + " | "
 		if loot.ammo_count <= 0:
-			sub_label.text = "empty"
+			sub_label.text += "empty"

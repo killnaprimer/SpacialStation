@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="LootGunMod" load_steps=3 format=3 uid="uid://dkj6n1ysmjstu"]
+
+[ext_resource type="Texture2D" uid="uid://bvqeed3a2irsq" path="res://textures/items/gun_mod4.png" id="1_i5neu"]
+[ext_resource type="Script" uid="uid://bupcsa2d4fd2f" path="res://scripts/data/loot/loot_gun_mod.gd" id="2_vyybu"]
+
+[resource]
+script = ExtResource("2_vyybu")
+mod_type = 2
+mod = 2.0
+loot_name = "Magazine Mod"
+icon = ExtResource("1_i5neu")
+metadata/_custom_type_script = "uid://bupcsa2d4fd2f"

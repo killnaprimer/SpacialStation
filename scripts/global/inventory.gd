@@ -48,3 +48,11 @@ func has_ammo(ammo_type : Gun.ammo_types) -> bool:
 func remove_loot(loot : LootItem):
 	loot_items.remove_at(loot_items.find(loot))
 	emit_signal("on_loot_changed")
+
+func apply_gun_mod(mod : LootGunMod):
+	if current_gun:
+		current_gun.mod = mod
+		#current_gun.mod.modify_gun(current_gun)
+		remove_loot(mod)
+		current_gun.use()
+		emit_signal("on_loot_changed")

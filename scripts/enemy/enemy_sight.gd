@@ -33,7 +33,7 @@ func on_fire_sighted(pos : Vector3):
 func check_targets():
 	var possible_targets = get_overlapping_bodies()
 	for tg in possible_targets:
-		if tg is Character:
+		if tg is Player:
 			on_target_sighted(tg)
 		if tg is RigidBody3D:
 			on_fire_sighted(tg.global_position)
