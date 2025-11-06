@@ -1,7 +1,7 @@
-[gd_scene load_steps=19 format=3 uid="uid://clydvyhspgccd"]
+[gd_scene load_steps=20 format=3 uid="uid://clydvyhspgccd"]
 
 [ext_resource type="Script" uid="uid://x5ipxbgp58n6" path="res://scripts/common/player.gd" id="1_4dohe"]
-[ext_resource type="Material" uid="uid://ji11nvc5hngp" path="res://materials/character_shadow.tres" id="3_50rl7"]
+[ext_resource type="Texture2D" uid="uid://d0016wk0ra8qf" path="res://textures/generic_character-Sheet.png" id="3_lagtt"]
 [ext_resource type="PackedScene" uid="uid://d0g4k7jwfmwcg" path="res://scenes/prefabs/character.tscn" id="3_r66lb"]
 [ext_resource type="Script" uid="uid://dql0e8i3omcvc" path="res://scripts/player/gun_holder.gd" id="4_ht1c8"]
 [ext_resource type="Shader" uid="uid://bo0yc1rosr6v4" path="res://materials/basic.gdshader" id="4_kbsxf"]
@@ -16,6 +16,19 @@
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_fp3wc"]
 radius = 0.6
 height = 1.8
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gkb8g"]
+transparency = 1
+depth_draw_mode = 2
+no_depth_test = true
+vertex_color_use_as_albedo = true
+albedo_color = Color(1, 1, 1, 0.5019608)
+albedo_texture = ExtResource("3_lagtt")
+texture_filter = 0
+billboard_mode = 1
+stencil_mode = 3
+stencil_flags = 1
+stencil_compare = 2
 
 [sub_resource type="QuadMesh" id="QuadMesh_ht1c8"]
 size = Vector2(1.5, 2)
@@ -51,7 +64,7 @@ debug_color = Color(1, 1, 1, 0.41960785)
 
 [node name="Sprite3D" parent="character" index="0"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.037587762, 1, 0.06675935)
-material_overlay = ExtResource("3_50rl7")
+material_overlay = SubResource("StandardMaterial3D_gkb8g")
 cast_shadow = 0
 offset = Vector2(0, 0)
 modulate = Color(1, 0.4166667, 0, 1)
@@ -78,7 +91,7 @@ collision_layer = 0
 collision_mask = 10
 script = ExtResource("5_rgeog")
 damage = 1
-cooldown = 0.25
+cooldown = 0.5
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="gun_holder/knife"]
 shape = SubResource("BoxShape3D_kbsxf")

@@ -15,6 +15,10 @@
 [ext_resource type="Script" uid="uid://c4yuajoxxo5r4" path="res://scripts/enemy/enemy_hearing.gd" id="9_q30q4"]
 [ext_resource type="Script" uid="uid://dum25iy3i8s0w" path="res://scripts/common/melee.gd" id="13_yn545"]
 
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_5hfr3"]
+height = 6.0
+radius = 12.0
+
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_cf8o5"]
 radius = 0.7
 height = 1.8
@@ -24,6 +28,7 @@ render_priority = 0
 shader = ExtResource("3_repv0")
 shader_parameter/albedo_texture = ExtResource("2_cf8o5")
 shader_parameter/normal_map = ExtResource("5_yn545")
+shader_parameter/flashing = false
 
 [sub_resource type="QuadMesh" id="QuadMesh_alf50"]
 size = Vector2(1.5, 2)
@@ -35,10 +40,6 @@ shading_mode = 0
 albedo_color = Color(0, 0, 0, 0.364706)
 stencil_mode = 3
 stencil_flags = 2
-
-[sub_resource type="CylinderShape3D" id="CylinderShape3D_5hfr3"]
-height = 6.0
-radius = 12.0
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_7j55l"]
 
@@ -53,6 +54,19 @@ navigation = NodePath("NavigationAgent3D")
 [node name="health" type="Node3D" parent="."]
 script = ExtResource("1_w3ipt")
 health = 5
+
+[node name="hearing" type="Node3D" parent="."]
+script = ExtResource("9_q30q4")
+
+[node name="sight" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.32182, 0)
+collision_layer = 0
+collision_mask = 4
+script = ExtResource("6_pssps")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="sight"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("CylinderShape3D_5hfr3")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9, 0)
@@ -87,17 +101,6 @@ script = ExtResource("5_5hfr3")
 movement_speed = 3.5
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
-debug_enabled = true
-
-[node name="sight" type="Area3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.32182, 0)
-collision_layer = 0
-collision_mask = 4
-script = ExtResource("6_pssps")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="sight"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
-shape = SubResource("CylinderShape3D_5hfr3")
 
 [node name="gun_holder" type="Node3D" parent="." node_paths=PackedStringArray("gun", "melee")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.7, 0)
@@ -119,6 +122,8 @@ burst_type = 2
 target_type = 1
 metadata/_custom_type_script = "uid://b2dpd8c06nmlb"
 
+[node name="OmniLight3D" type="OmniLight3D" parent="gun_holder/Gun"]
+
 [node name="knife" type="Area3D" parent="gun_holder"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1)
 collision_layer = 0
@@ -131,12 +136,7 @@ cooldown = 0.5
 shape = SubResource("BoxShape3D_7j55l")
 debug_color = Color(0.9812632, 0.13779119, 1.92523e-07, 0.41960785)
 
-[node name="hearing" type="Node3D" parent="."]
-script = ExtResource("9_q30q4")
-
-[node name="dodge" type="Node3D" parent="."]
-
 [connection signal="on_damaged" from="health" to="Sprite3D" method="on_damage"]
+[connection signal="on_sound_heared" from="hearing" to="AI" method="on_sound_heared"]
 [connection signal="fire_sighted" from="sight" to="AI" method="on_fire_sighted"]
 [connection signal="target_sighted" from="sight" to="AI" method="on_target_sighted"]
-[connection signal="on_sound_heared" from="hearing" to="AI" method="on_sound_heared"]

@@ -50,7 +50,8 @@ var can_fire : bool = true :
 			timer.start(firing_cooldown)
 var burst_timer : Timer
 var burst_count_left : int
-
+var light : OmniLight3D
+var light_tween : Tween
 signal on_fire()
 signal on_spread_changed(spread : float)
 signal on_bullet_spent(ammo : int, max_ammo : int)
@@ -65,6 +66,13 @@ func _ready() -> void:
 	burst_timer.one_shot = true
 	add_child(burst_timer)
 	burst_timer.connect("timeout", fire_burst_single)
+	
+	light = OmniLight3D.new()
+	add_child(light)
+	light.light_color = Color.DARK_ORANGE
+	light.light_energy = 0
+	light.omni_range = 15
+	light.position = Vector3(0,0, -1.5)
 	
 func _process(delta: float) -> void:
 	recoil -= recoil_recovery * delta
@@ -155,7 +163,13 @@ func make_gun_sound():
 	GameManager.get_world().add_child(sound)
 	sound.global_position = global_position
 	sound.start_sound()
+	flash()
 	
 func reload_bullets():
 	if !loot: return
 	loot.ammo_count = loot.mag_size
+
+func flash():
+	light_tween = create_tween()
+	light_tween.tween_property(light, "light_energy", 5, 0.1)
+	light_tween.tween_property(light, "light_energy", 0, 0.1)
