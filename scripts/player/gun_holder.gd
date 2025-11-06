@@ -34,6 +34,8 @@ func _ready():
 	add_child(reload_timer)
 	reload_timer.one_shot = true
 	reload_timer.connect("timeout", reload_end)
+	
+	melee.damage = character.stats.get_melee_mod()
 
 func _physics_process(_delta: float) -> void:
 	aim_pos = mouse_aim.get_aim_point() + position

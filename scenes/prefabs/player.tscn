@@ -153,8 +153,10 @@ font = ExtResource("15_xtlg4")
 
 [node name="stats" type="Node3D" parent="."]
 script = ExtResource("16_va4sl")
-strength = 5
-toughness = 5
+strength = 8
+dexterity = 8
+toughness = 8
+intellect = 8
 
 [node name="movement" type="Node3D" parent="." node_paths=PackedStringArray("sprite", "anim")]
 script = ExtResource("17_20t1h")

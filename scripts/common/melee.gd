@@ -22,7 +22,7 @@ func hit() -> bool:
 	else:
 		make_sound(hit_sound)
 		for body in bodies:
-			GameManager.damage(body)
+			GameManager.damage(body, damage)
 	can_attack = false
 	cd_timer.start(cooldown)
 	return true
