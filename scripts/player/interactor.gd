@@ -40,3 +40,5 @@ func interact():
 		selected_interactive.queue_free()
 	elif selected_interactive is LootContainer:
 		selected_interactive.open()
+	elif selected_interactive is Turret:
+		selected_interactive.repair()

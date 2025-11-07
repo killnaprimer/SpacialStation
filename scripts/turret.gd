@@ -3,6 +3,7 @@ class_name Turret
 
 @export var sight : EnemySight
 @export var gun_holder : EnemyGunHolder
+@export var health : Vitals
 enum TARGETS {NONE, PLAYER, ENEMY}
 @export var target_type : TARGETS
 
@@ -25,11 +26,20 @@ func update_for_target_type():
 			sight.set_collision_mask_value(3, false)
 
 func on_target_sighted(target: Node3D) -> void:
+	if gun_holder.target:
+		if (target.global_position - global_position).length() > (gun_holder.target.global_position - global_position).length():
+			return
 	gun_holder.target = target
 
 func die():
 	target_type = TARGETS.NONE
+	add_to_group("interactive")
 	update_for_target_type()
 
 func repair():
-	pass
+	remove_from_group("interactive")
+	target_type = TARGETS.ENEMY
+	health.health = 2 #TODO: Increase base health by INT
+	update_for_target_type()
+	
+	

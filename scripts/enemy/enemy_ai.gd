@@ -62,8 +62,10 @@ func chase_target():
 
 func get_combat_pos(dist_min : float = 5, dist_max : float = 10) -> Vector3:
 	var distance : float = (enemy.global_position - target.global_position).length()
-	if distance < dist_min or distance > dist_max:
+	if distance < dist_min:
 		return enemy.global_position
+	if distance > dist_max:
+		return target.global_position
 	return (enemy.global_position - target.global_position).normalized() * 3 + enemy.global_position
 
 func check_sound():

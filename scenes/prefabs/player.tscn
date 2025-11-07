@@ -22,14 +22,14 @@
 radius = 0.6
 height = 1.8
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_xtlg4"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_20t1h"]
 render_priority = 0
 shader = ExtResource("3_xtlg4")
 shader_parameter/albedo_texture = ExtResource("3_lagtt")
 shader_parameter/normal_map = ExtResource("5_va4sl")
 shader_parameter/flashing = false
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_va4sl"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_aal4f"]
 render_priority = 0
 shader = ExtResource("6_20t1h")
 shader_parameter/albedo_texture = ExtResource("3_lagtt")
@@ -71,8 +71,8 @@ debug_color = Color(1, 1, 1, 0.41960785)
 
 [node name="Sprite3D" parent="character" index="0"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.037587762, 1, 0.06675935)
-material_override = SubResource("ShaderMaterial_xtlg4")
-material_overlay = SubResource("ShaderMaterial_va4sl")
+material_override = SubResource("ShaderMaterial_20t1h")
+material_overlay = SubResource("ShaderMaterial_aal4f")
 cast_shadow = 0
 offset = Vector2(0, 0)
 modulate = Color(1, 0.4166667, 0, 1)
@@ -153,6 +153,10 @@ font = ExtResource("15_xtlg4")
 
 [node name="stats" type="Node3D" parent="."]
 script = ExtResource("16_va4sl")
+strength = 10
+dexterity = 10
+toughness = 10
+intellect = 10
 
 [node name="movement" type="Node3D" parent="." node_paths=PackedStringArray("sprite", "anim")]
 script = ExtResource("17_20t1h")

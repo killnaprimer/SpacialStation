@@ -20,13 +20,14 @@ top_radius = 0.25
 bottom_radius = 0.25
 height = 1.0
 
-[node name="Turret" type="RigidBody3D" node_paths=PackedStringArray("sight", "gun_holder")]
+[node name="Turret" type="RigidBody3D" node_paths=PackedStringArray("sight", "gun_holder", "health")]
 collision_layer = 2
 collision_mask = 0
 freeze = true
 script = ExtResource("1_jpldo")
 sight = NodePath("sight")
 gun_holder = NodePath("gun_holder")
+health = NodePath("health")
 target_type = 1
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
@@ -66,12 +67,15 @@ skeleton = NodePath("../..")
 [node name="Gun" type="Node3D" parent="gun_holder"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.030210137, 0, -1.1007149)
 script = ExtResource("4_ka8fn")
-base_spread = 50.0
-firing_cooldown = 2.5
+base_spread = 0.0
+bullet_count = 5
+firing_cooldown = 2.0
 bullet_speed = 10.0
 burst_time = 0.5
-mag_size = 1
+mag_size = 999
+burst_type = 2
 target_type = 1
+spread_gain = 10.0
 metadata/_custom_type_script = "uid://b2dpd8c06nmlb"
 
 [node name="OmniLight3D" type="OmniLight3D" parent="gun_holder/Gun"]
