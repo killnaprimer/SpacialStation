@@ -35,5 +35,5 @@ func check_targets():
 	for tg in possible_targets:
 		if tg is Player or tg is Enemy or tg is Turret:
 			on_target_sighted(tg)
-		if tg is RigidBody3D:
+		if tg is Bullet:
 			on_fire_sighted(tg.global_position)

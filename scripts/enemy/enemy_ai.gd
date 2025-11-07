@@ -76,7 +76,8 @@ func on_target_sighted(sighted_target : Node3D):
 	if target:
 		if sighted_target is Turret and !target is Turret:
 			target = sighted_target
-	target = sighted_target
+	else:
+		target = sighted_target
 	enemy.gun_holder.target = target
 	
 func on_sound_heared(pos : Vector3):

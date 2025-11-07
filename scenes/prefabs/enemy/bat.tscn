@@ -23,35 +23,18 @@ radius = 12.0
 radius = 0.7
 height = 1.8
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_pql7b"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_lhhhu"]
 render_priority = 0
 shader = ExtResource("5_o335u")
 shader_parameter/albedo_texture = ExtResource("6_lhhhu")
 shader_parameter/normal_map = ExtResource("7_qbp5v")
 shader_parameter/flashing = false
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_lhhhu"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_qbp5v"]
 render_priority = 0
 shader = ExtResource("8_pql7b")
 shader_parameter/albedo_texture = ExtResource("6_lhhhu")
 shader_parameter/flashing = false
-
-[sub_resource type="Animation" id="Animation_pql7b"]
-resource_name = "flapping"
-length = 0.4
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite3D:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
-"update": 1,
-"values": [0, 1, 2, 3, 0]
-}
 
 [sub_resource type="Animation" id="Animation_lhhhu"]
 length = 0.001
@@ -84,6 +67,23 @@ tracks/0/keys = {
 "values": [0, 4, 5, 6, 0]
 }
 
+[sub_resource type="Animation" id="Animation_pql7b"]
+resource_name = "flapping"
+length = 0.4
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite3D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 0]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_qbp5v"]
 _data = {
 &"RESET": SubResource("Animation_lhhhu"),
@@ -112,7 +112,7 @@ script = ExtResource("3_gwhv1")
 [node name="sight" type="Area3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.32182, 0)
 collision_layer = 0
-collision_mask = 4
+collision_mask = 6
 script = ExtResource("4_4efyp")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="sight"]
@@ -135,8 +135,8 @@ a_reload = "bite"
 a_dodge = "flapping"
 
 [node name="Sprite3D" type="Sprite3D" parent="visuals"]
-material_override = SubResource("ShaderMaterial_pql7b")
-material_overlay = SubResource("ShaderMaterial_lhhhu")
+material_override = SubResource("ShaderMaterial_lhhhu")
+material_overlay = SubResource("ShaderMaterial_qbp5v")
 pixel_size = 0.12
 billboard = 1
 shaded = true
