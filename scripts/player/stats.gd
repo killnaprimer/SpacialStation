@@ -33,6 +33,9 @@ func get_inventory_size():
 	return 3 + toughness
 
 #INT
-func get_repair_chance():
+func get_repair_chance() -> float:
 	var factor : float = float(intellect) / stat_cap
 	return lerpf(0, 1, factor)
+
+func get_repair_health() -> int:
+	return intellect
