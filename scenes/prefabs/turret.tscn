@@ -28,7 +28,6 @@ script = ExtResource("1_jpldo")
 sight = NodePath("sight")
 gun_holder = NodePath("gun_holder")
 health = NodePath("health")
-target_type = 1
 indicator = NodePath("gun_holder/Gun/OmniLight3D")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]

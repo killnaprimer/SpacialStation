@@ -18,6 +18,7 @@ var has_melee : bool
 
 signal on_melee()
 signal on_shoot()
+signal on_target_dir(dir : float)
 #signal on_reload(reloading : bool)
 
 func _ready() -> void:
@@ -36,7 +37,13 @@ func _ready() -> void:
 	if melee:
 		has_melee = true
 
+func get_target_dir() -> float:
+	if !target : return 0
+	var dir = (global_position - target.global_position).normalized()
+	return dir.z
+
 func _physics_process(_delta: float) -> void:
+	emit_signal("on_target_dir", get_target_dir())
 	if tick <= 0:
 		if target:
 			look_at(target.global_position + aiming_offset)

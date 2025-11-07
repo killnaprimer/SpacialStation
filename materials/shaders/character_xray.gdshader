@@ -11,6 +11,7 @@ void fragment() {
     vec4 tex_color = texture(albedo_texture, UV);
 	ALBEDO = tex_color.rgb * COLOR.rgb;
 	ALPHA *= tex_color.a * tex_color.a * 0.5;
+	
 }
 
 void vertex() {

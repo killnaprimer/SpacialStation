@@ -18,6 +18,8 @@ var roll_time_left : float = 0
 var roll_vector : Vector3
 var roll_timer : Timer
 
+signal on_roll(state : bool)
+
 func set_target_position(new_target: Vector3):
 	target_position = new_target
 	nav.target_position = target_position
@@ -95,6 +97,7 @@ func start_roll(avois_pos : Vector3):
 	roll_vector = get_roll_direction(avois_pos) * roll_speed
 	rolling = true
 	roll_time_left = roll_time
+	emit_signal("on_roll", true)
 
 func get_roll_direction(avoid_pos : Vector3):
 	var direction : Vector3 = (enemy.global_position - avoid_pos).normalized()
@@ -114,4 +117,5 @@ func do_roll(delta : float):
 	enemy.move_and_slide()
 	if roll_time_left <= 0:
 		rolling = false
+		emit_signal("on_roll", false)
 		roll_timer.start(roll_cooldown)
