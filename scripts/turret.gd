@@ -7,6 +7,9 @@ enum TARGETS {NONE, PLAYER, ENEMY}
 @export var target_type : TARGETS
 
 func _ready() -> void:
+	update_for_target_type()
+
+func update_for_target_type():
 	match target_type:
 		TARGETS.PLAYER:
 			gun_holder.gun.target_type = Gun.target_types.PLAYER
@@ -16,7 +19,17 @@ func _ready() -> void:
 			gun_holder.gun.target_type = Gun.target_types.ENEMY
 			sight.set_collision_mask_value(4, true)
 			sight.set_collision_mask_value(3, false)
-
+		TARGETS.NONE:
+			gun_holder.target = null
+			sight.set_collision_mask_value(4, false)
+			sight.set_collision_mask_value(3, false)
 
 func on_target_sighted(target: Node3D) -> void:
 	gun_holder.target = target
+
+func die():
+	target_type = TARGETS.NONE
+	update_for_target_type()
+
+func repair():
+	pass

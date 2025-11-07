@@ -45,6 +45,7 @@ shape = SubResource("CylinderShape3D_1ehqo")
 
 [node name="health" type="Node3D" parent="."]
 script = ExtResource("2_jpldo")
+just_remove = false
 
 [node name="gun_holder" type="Node3D" parent="." node_paths=PackedStringArray("gun")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.7, 0)
@@ -76,3 +77,4 @@ metadata/_custom_type_script = "uid://b2dpd8c06nmlb"
 [node name="OmniLight3D" type="OmniLight3D" parent="gun_holder/Gun"]
 
 [connection signal="target_sighted" from="sight" to="." method="on_target_sighted"]
+[connection signal="on_death" from="health" to="." method="die"]

@@ -33,7 +33,15 @@ func on_fire_sighted(pos : Vector3):
 func check_targets():
 	var possible_targets = get_overlapping_bodies()
 	for tg in possible_targets:
-		if tg is Player or tg is Enemy or tg is Turret:
+		if is_viable_target(tg):
 			on_target_sighted(tg)
 		if tg is Bullet:
 			on_fire_sighted(tg.global_position)
+
+func is_viable_target(tg : Node3D) -> bool:
+	if tg is Player: return true
+	if tg is Enemy : return true
+	if tg is Turret:
+		if tg.target_type == Turret.TARGETS.ENEMY:
+			return true
+	return false

@@ -22,9 +22,16 @@ func _physics_process(delta: float) -> void:
 		tick += 1
 		return
 	tick = 0
-	if target: chase_target()
+	if target:
+		if target is Turret:
+			if target.target_type != Turret.TARGETS.ENEMY:
+				target = null
+				return
+		chase_target()
+		#THIS NOT GOOD:
 	elif sound_pos: check_sound()
 	else: patrol()
+	
 	
 func chase_target():
 	var distance : float = (target.global_position - last_target_pos).length()
