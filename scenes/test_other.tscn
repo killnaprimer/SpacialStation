@@ -1,4 +1,4 @@
-[gd_scene load_steps=58 format=3 uid="uid://bu274eu0mlkeb"]
+[gd_scene load_steps=59 format=3 uid="uid://bu274eu0mlkeb"]
 
 [ext_resource type="Script" uid="uid://dbdvi5o2kq1x0" path="res://scripts/player/camera.gd" id="2_wgg0f"]
 [ext_resource type="PackedScene" uid="uid://clydvyhspgccd" path="res://scenes/prefabs/player.tscn" id="3_ymkes"]
@@ -16,6 +16,7 @@
 [ext_resource type="PackedScene" uid="uid://dduhkp2kvhxg8" path="res://models/level_test.glb" id="14_sfpon"]
 [ext_resource type="PackedScene" uid="uid://7wnwdcfqlt2s" path="res://models/nakamura_test.glb" id="15_3stl1"]
 [ext_resource type="PackedScene" uid="uid://eajmuj2d4n0" path="res://scenes/prefabs/enemy/bat.tscn" id="17_wlib2"]
+[ext_resource type="PackedScene" uid="uid://dy0ekgsyucwct" path="res://scenes/prefabs/turret.tscn" id="18_k02e6"]
 [ext_resource type="PackedScene" uid="uid://dl273reh3i6qp" path="res://scenes/prefabs/props/cargo_box.tscn" id="18_q06b2"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_ykgj2"]
@@ -673,6 +674,9 @@ transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, -59.
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -63, 1, 14)
 collision_layer = 2
 collision_mask = 14
+
+[node name="Turret" parent="." instance=ExtResource("18_k02e6")]
+transform = Transform3D(0.42261824, 0, -0.9063078, 0, 1, 0, 0.9063078, 0, 0.42261824, -63, 0.97818, 24)
 
 [editable path="level_test"]
 [editable path="nakamura_test"]

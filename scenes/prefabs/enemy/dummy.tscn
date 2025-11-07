@@ -134,7 +134,7 @@ collision_layer = 0
 collision_mask = 6
 script = ExtResource("13_yn545")
 damage = 1
-cooldown = 0.5
+cooldown = 1.25
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="gun_holder/knife"]
 shape = SubResource("BoxShape3D_7j55l")

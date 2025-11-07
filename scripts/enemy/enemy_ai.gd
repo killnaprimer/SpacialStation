@@ -73,6 +73,9 @@ func patrol():
 		enemy.movement.set_target_position(enemy.patrol_points[current_pp].global_position)
 
 func on_target_sighted(sighted_target : Node3D):
+	if target:
+		if sighted_target is Turret and !target is Turret:
+			target = sighted_target
 	target = sighted_target
 	enemy.gun_holder.target = target
 	

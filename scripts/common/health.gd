@@ -5,11 +5,13 @@ class_name Vitals
 @export var max_health : int = 3
 @export var connect_to_ui: bool
 @export var invul_time: float = 0
+@export var just_remove : bool = true
 var invul_timer : float = 0
 var is_invulnerable : bool
 
 signal on_health_changed(current : int, max : int)
 signal on_damaged()
+signal on_death()
 
 func _ready() -> void:
 	health = max_health
@@ -44,4 +46,5 @@ func set_max_health(new_health : int):
 	health = int ( float(max_health) * health_percent )
 
 func die():
-	owner.queue_free() 
+	if just_remove: owner.queue_free()
+	else: emit_signal("on_death")

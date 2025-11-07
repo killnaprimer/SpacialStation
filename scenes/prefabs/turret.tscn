@@ -1,0 +1,78 @@
+[gd_scene load_steps=10 format=3 uid="uid://dy0ekgsyucwct"]
+
+[ext_resource type="Script" uid="uid://c3jtgbmpf03km" path="res://scripts/turret.gd" id="1_jpldo"]
+[ext_resource type="Script" uid="uid://b1iyvhk6s6soj" path="res://scripts/enemy/enemy_sight.gd" id="1_yh51h"]
+[ext_resource type="Script" uid="uid://cx0xxqn8au6ks" path="res://scripts/common/health.gd" id="2_jpldo"]
+[ext_resource type="Script" uid="uid://q786hxut4s3f" path="res://scripts/enemy/enemy_gun_holder.gd" id="3_rtj87"]
+[ext_resource type="Script" uid="uid://b2dpd8c06nmlb" path="res://scripts/common/gun.gd" id="4_ka8fn"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_75ryx"]
+size = Vector3(1, 1.5, 1)
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_1ehqo"]
+height = 6.0
+radius = 12.0
+
+[sub_resource type="BoxMesh" id="BoxMesh_s8wmi"]
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_jpldo"]
+top_radius = 0.25
+bottom_radius = 0.25
+height = 1.0
+
+[node name="Turret" type="RigidBody3D" node_paths=PackedStringArray("sight", "gun_holder")]
+freeze = true
+script = ExtResource("1_jpldo")
+sight = NodePath("sight")
+gun_holder = NodePath("gun_holder")
+target_type = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.75, 0)
+shape = SubResource("BoxShape3D_75ryx")
+
+[node name="sight" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.32182, 0)
+collision_layer = 0
+collision_mask = 4
+script = ExtResource("1_yh51h")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="sight"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("CylinderShape3D_1ehqo")
+
+[node name="health" type="Node3D" parent="."]
+script = ExtResource("2_jpldo")
+
+[node name="gun_holder" type="Node3D" parent="." node_paths=PackedStringArray("gun")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.7, 0)
+script = ExtResource("3_rtj87")
+gun = NodePath("Gun")
+reload_time = 3.0
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="gun_holder"]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 0.3, 0)
+mesh = SubResource("BoxMesh_s8wmi")
+skeleton = NodePath("../..")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="gun_holder/MeshInstance3D2"]
+transform = Transform3D(-4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0, 1, 0.6926292, 0.066263676, 0)
+mesh = SubResource("CylinderMesh_jpldo")
+skeleton = NodePath("../..")
+
+[node name="Gun" type="Node3D" parent="gun_holder"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.030210137, 0, -1.1007149)
+script = ExtResource("4_ka8fn")
+base_spread = 10.0
+bullet_count = 3
+firing_cooldown = 2.5
+bullet_speed = 10.0
+burst_time = 0.5
+mag_size = 9
+burst_type = 2
+target_type = 1
+metadata/_custom_type_script = "uid://b2dpd8c06nmlb"
+
+[node name="OmniLight3D" type="OmniLight3D" parent="gun_holder/Gun"]
+
+[connection signal="target_sighted" from="sight" to="." method="on_target_sighted"]

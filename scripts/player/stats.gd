@@ -13,7 +13,7 @@ func get_recoil_mod():
 	return lerpf(3.0, 0.25, factor)
 
 func get_melee_mod() -> int:
-	var dmg = ceil(float(strength) / 3)
+	var dmg = ceil(float(strength) / 2)
 	return dmg
 
 #DEX
@@ -27,8 +27,12 @@ func get_reload_mod():
 
 #TOUGH
 func get_health() -> int:
-	return toughness
+	return 1 + toughness
 
-func get_inventory_size(): pass
+func get_inventory_size():
+	return 3 + toughness
 
 #INT
+func get_repair_chance():
+	var factor : float = float(intellect) / stat_cap
+	return lerpf(0, 1, factor)

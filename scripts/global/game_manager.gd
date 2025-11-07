@@ -1,6 +1,6 @@
 extends Node
 
-var player : CharacterBody3D
+var player : Player
 var camera : PlayerCamera
 var ui : GameUI
 var world : Node3D
@@ -20,3 +20,6 @@ signal on_sound(pos : Vector3, dist : float)
 
 func send_sound(pos : Vector3, dist : float):
 	emit_signal("on_sound", pos, dist)
+
+func get_player():
+	pass

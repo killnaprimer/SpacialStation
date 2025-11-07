@@ -5,6 +5,7 @@ class_name LootAmmo
 @export var count : int
 
 func use():
+	GameManager.player.gun_holder.reload()
 	#start reloading player's gun? if its the right type
 	pass
 

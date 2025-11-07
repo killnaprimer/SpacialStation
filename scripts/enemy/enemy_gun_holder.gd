@@ -18,7 +18,7 @@ var has_melee : bool
 
 signal on_melee()
 signal on_shoot()
-signal on_reload(reloading : bool)
+#signal on_reload(reloading : bool)
 
 func _ready() -> void:
 	raycast = RayCast3D.new()
