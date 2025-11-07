@@ -1,18 +1,29 @@
-[gd_scene load_steps=13 format=3 uid="uid://chmw7yt70nw0i"]
+[gd_scene load_steps=16 format=3 uid="uid://chmw7yt70nw0i"]
 
 [ext_resource type="PackedScene" uid="uid://bue85iy21wto0" path="res://scenes/prefabs/player_ship.tscn" id="1_1gvwg"]
 [ext_resource type="Shader" uid="uid://bc7iwh6tge6s4" path="res://materials/shaders/skybox.gdshader" id="1_n0118"]
 [ext_resource type="Script" uid="uid://dbdvi5o2kq1x0" path="res://scripts/player/camera.gd" id="1_rysn1"]
-[ext_resource type="Texture2D" uid="uid://clbcojktdikwx" path="res://textures/sky/Small 512x512/Blue Nebula/Blue_Nebula_07-512x512.png" id="2_ocmas"]
+[ext_resource type="Texture2D" uid="uid://dme35v8fnyxn4" path="res://textures/sky/Small 512x512/Starfields/Starfield_02-512x512.png" id="2_dv837"]
 [ext_resource type="Material" uid="uid://q5140h4sfnxp" path="res://materials/union/union_floor.tres" id="3_1gvwg"]
+[ext_resource type="Texture2D" uid="uid://cyxamyidks80l" path="res://textures/sky/Small 512x512/Green Nebula/Green_Nebula_08-512x512.png" id="3_a65qk"]
 [ext_resource type="Material" uid="uid://bcmlq6p3p6bnn" path="res://materials/union/union_tileset.tres" id="3_dtwn4"]
+[ext_resource type="Texture2D" uid="uid://bs7gkpxbk650c" path="res://textures/sky/Small 512x512/Blue Nebula/Blue_Nebula_04-512x512.png" id="4_a65qk"]
 [ext_resource type="Material" uid="uid://b4c6f321gxhio" path="res://materials/nakamura/nakamura_tileset.tres" id="4_x2olr"]
+[ext_resource type="Script" uid="uid://fnlrt7ro56k6" path="res://scripts/misc/space_environment.gd" id="5_a65qk"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_n0118"]
 shader = ExtResource("1_n0118")
-shader_parameter/sky_texture = ExtResource("2_ocmas")
-shader_parameter/tiling = 2.00000009174012
-shader_parameter/zoom = 1.57800007169512
+shader_parameter/texture1 = ExtResource("2_dv837")
+shader_parameter/texture2 = ExtResource("3_a65qk")
+shader_parameter/texture3 = ExtResource("4_a65qk")
+shader_parameter/tiling1 = 0.30000001099011997
+shader_parameter/tiling2 = 3.30000015349012
+shader_parameter/tiling3 = 0.50000002049012
+shader_parameter/current_offset = Vector2(0, 0)
+shader_parameter/speed1 = 0.0050000002375
+shader_parameter/speed2 = 0.010000000475
+shader_parameter/speed3 = 0.0150000007125
+shader_parameter/base_color = Color(0, 0, 0, 1)
 
 [sub_resource type="Sky" id="Sky_dtwn4"]
 sky_material = SubResource("ShaderMaterial_n0118")
@@ -21,18 +32,19 @@ sky_material = SubResource("ShaderMaterial_n0118")
 background_mode = 2
 sky = SubResource("Sky_dtwn4")
 ambient_light_source = 2
-ambient_light_color = Color(0.51723707, 0.65905553, 0.9374826, 1)
-ambient_light_energy = 4.0
+ambient_light_color = Color(0.1902475, 0.293448, 0.7673018, 1)
 tonemap_mode = 2
 glow_enabled = true
 fog_enabled = true
 fog_mode = 1
-fog_light_color = Color(0, 0, 0, 1)
-fog_density = 0.97
+fog_light_color = Color(1.375637e-05, 0.01140342, 0.110487156, 1)
+fog_light_energy = 5.0
+fog_density = 0.0
 fog_sky_affect = 0.0
-fog_depth_curve = 3.3635848
-fog_depth_begin = 50.0
-fog_depth_end = 150.0
+fog_height_density = 0.005
+fog_depth_curve = 3.2490087
+fog_depth_begin = 100.0
+fog_depth_end = 200.0
 
 [sub_resource type="SphereMesh" id="SphereMesh_c6rj5"]
 material = ExtResource("3_1gvwg")
@@ -47,8 +59,10 @@ size = Vector3(40, 40, 40)
 
 [node name="Node3D" type="Node3D"]
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." node_paths=PackedStringArray("spaceship")]
 environment = SubResource("Environment_x2olr")
+script = ExtResource("5_a65qk")
+spaceship = NodePath("../PlayerShip")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 shadow_enabled = true
@@ -65,7 +79,7 @@ offset = Vector3(0, 24, 0)
 distance_range = Vector2(75, 300)
 
 [node name="Background" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -156, 0)
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, -200, 0)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Background"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -125, 0)
@@ -88,7 +102,7 @@ mesh = SubResource("SphereMesh_c6rj5")
 skeleton = NodePath("../..")
 
 [node name="MeshInstance3D3" type="MeshInstance3D" parent="Background"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -95, -53, -277)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -95, 323, -277)
 mesh = SubResource("SphereMesh_c6rj5")
 skeleton = NodePath("../..")
 

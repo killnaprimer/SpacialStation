@@ -1,24 +1,40 @@
 shader_type sky;
 
-uniform sampler2D sky_texture;
-uniform float tiling : hint_range(0.1, 20.0) = 8.0;
-uniform float zoom : hint_range(0.1, 5.0) = 1.0;
+uniform sampler2D texture1 : filter_nearest;
+uniform sampler2D texture2 : filter_nearest;
+uniform sampler2D texture3 : filter_nearest;
+
+uniform float tiling1 : hint_range(0.1, 20.0) = 4.0;
+uniform float tiling2 : hint_range(0.1, 20.0) = 6.0;
+uniform float tiling3 : hint_range(0.1, 20.0) = 8.0;
+
+// Current accumulated offsets
+uniform vec2 current_offset = vec2(0.0);
+
+// Speed multipliers for parallax
+uniform float speed1 : hint_range(0.0, 3.0) = 2.0;  // Fast (close)
+uniform float speed2 : hint_range(0.0, 3.0) = 1.0;  // Medium
+uniform float speed3 : hint_range(0.0, 3.0) = 0.5;  // Slow (far)
+
+uniform vec3 base_color : source_color = vec3(0.1, 0.1, 0.2);
 
 void sky() {
     vec3 dir = normalize(EYEDIR);
+    vec2 base_uv = dir.xz * 2.0;
     
-    // For top-down view, we primarily care about the XZ plane (ground plane)
-    // This creates a "flat" sky that works perfectly for top-down games
-    vec2 uv = dir.xz;
+    // Apply parallax by multiplying the same offset with different speeds
+    vec2 offset1 = current_offset * speed1;
+    vec2 offset2 = current_offset * speed2;
+    vec2 offset3 = current_offset * speed3;
     
-    // Normalize from [-1,1] to [0,1] range
-    uv = uv * 0.5 + 0.5;
+    vec2 uv1 = (base_uv * tiling1) + offset1;
+    vec2 uv2 = (base_uv * tiling2) + offset2;
+    vec2 uv3 = (base_uv * tiling3) + offset3;
     
-    // Apply zoom (inverse of tiling for more intuitive control)
-    uv = (uv - 0.5) / zoom + 0.5;
+    vec4 layer1 = texture(texture1, fract(uv1));
+    vec4 layer2 = texture(texture2, fract(uv2));
+    vec4 layer3 = texture(texture3, fract(uv3));
     
-    // Apply tiling with fract to make it repeat
-    uv = fract(uv * tiling);
-    
-    COLOR = texture(sky_texture, uv).rgb;
+    vec4 combined = layer1 * layer2 + layer3;
+    COLOR = vec4(base_color + combined.rgb, 1.0).rgb;
 }

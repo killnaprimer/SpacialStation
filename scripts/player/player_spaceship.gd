@@ -24,7 +24,7 @@ func handle_input(delta):
 	var mouse_pos = get_viewport().get_mouse_position()
 	var camera = get_viewport().get_camera_3d()
 	
-	if camera:
+	if camera and Input.is_action_pressed("fire"):
 		# Project mouse to a fixed distance from camera
 		var ray_length = 50.0
 		var mouse_world = camera.project_position(mouse_pos, ray_length)

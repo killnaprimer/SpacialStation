@@ -116,3 +116,10 @@ reload={
 textures/canvas_textures/default_texture_filter=0
 textures/webp_compression/compression_method=0
 textures/webp_compression/lossless_compression_factor=0.0
+
+[shader_globals]
+
+space_direction={
+"type": "vec2",
+"value": Vector2(0.925, 0)
+}
