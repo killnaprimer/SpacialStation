@@ -19,7 +19,6 @@ func _process(delta: float) -> void:
 		if player is RigidBody3D:
 			var new_position = player.global_position + offset.normalized() * calculate_distance_factor(player)
 			global_position = lerp(global_position, new_position, delta * 25)
-			print(player.linear_velocity.length())
 		else:
 			global_position = player.global_position + offset
 	

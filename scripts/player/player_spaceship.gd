@@ -1,9 +1,15 @@
 extends RigidBody3D
 
+@export_category("Ship Stats")
 @export var rotation_speed: float = 3.0
 @export var acceleration_force: float = 10.0
 @export var max_speed: float = 20.0
 @export var drag_factor: float = 0.98
+
+@export_category("Other")
+@export var particles : GPUParticles3D
+
+var gas : float = 0
 
 func _ready():
 	axis_lock_angular_y = true
@@ -12,6 +18,7 @@ func _physics_process(delta):
 	handle_input(delta)
 	apply_drag()
 	clamp_velocity()
+	animate_particles()
 
 func handle_input(delta):
 	var mouse_pos = get_viewport().get_mouse_position()
@@ -47,3 +54,6 @@ func clamp_velocity():
 		horizontal_velocity = horizontal_velocity.normalized() * max_speed
 		linear_velocity.x = horizontal_velocity.x
 		linear_velocity.z = horizontal_velocity.z
+
+func animate_particles():
+	particles.amount_ratio = clamp(linear_velocity.length() / 100, 0,1)

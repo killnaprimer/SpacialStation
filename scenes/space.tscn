@@ -1,17 +1,21 @@
-[gd_scene load_steps=11 format=3 uid="uid://chmw7yt70nw0i"]
+[gd_scene load_steps=13 format=3 uid="uid://chmw7yt70nw0i"]
 
 [ext_resource type="PackedScene" uid="uid://bue85iy21wto0" path="res://scenes/prefabs/player_ship.tscn" id="1_1gvwg"]
+[ext_resource type="Shader" uid="uid://bc7iwh6tge6s4" path="res://materials/shaders/skybox.gdshader" id="1_n0118"]
 [ext_resource type="Script" uid="uid://dbdvi5o2kq1x0" path="res://scripts/player/camera.gd" id="1_rysn1"]
+[ext_resource type="Texture2D" uid="uid://clbcojktdikwx" path="res://textures/sky/Small 512x512/Blue Nebula/Blue_Nebula_07-512x512.png" id="2_ocmas"]
 [ext_resource type="Material" uid="uid://q5140h4sfnxp" path="res://materials/union/union_floor.tres" id="3_1gvwg"]
 [ext_resource type="Material" uid="uid://bcmlq6p3p6bnn" path="res://materials/union/union_tileset.tres" id="3_dtwn4"]
 [ext_resource type="Material" uid="uid://b4c6f321gxhio" path="res://materials/nakamura/nakamura_tileset.tres" id="4_x2olr"]
 
-[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_c6rj5"]
-sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
-ground_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_n0118"]
+shader = ExtResource("1_n0118")
+shader_parameter/sky_texture = ExtResource("2_ocmas")
+shader_parameter/tiling = 2.00000009174012
+shader_parameter/zoom = 1.57800007169512
 
 [sub_resource type="Sky" id="Sky_dtwn4"]
-sky_material = SubResource("ProceduralSkyMaterial_c6rj5")
+sky_material = SubResource("ShaderMaterial_n0118")
 
 [sub_resource type="Environment" id="Environment_x2olr"]
 background_mode = 2
@@ -25,6 +29,7 @@ fog_enabled = true
 fog_mode = 1
 fog_light_color = Color(0, 0, 0, 1)
 fog_density = 0.97
+fog_sky_affect = 0.0
 fog_depth_curve = 3.3635848
 fog_depth_begin = 50.0
 fog_depth_end = 150.0
@@ -57,7 +62,6 @@ size = 40.0
 script = ExtResource("1_rysn1")
 player = NodePath("../PlayerShip")
 offset = Vector3(0, 24, 0)
-scroll_zoom = null
 distance_range = Vector2(75, 300)
 
 [node name="Background" type="Node3D" parent="."]

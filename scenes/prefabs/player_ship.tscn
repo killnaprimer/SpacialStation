@@ -15,12 +15,13 @@ gravity = Vector3(0, 0, 0)
 
 [sub_resource type="BoxMesh" id="BoxMesh_n0118"]
 
-[node name="PlayerShip" type="RigidBody3D"]
+[node name="PlayerShip" type="RigidBody3D" node_paths=PackedStringArray("particles")]
 gravity_scale = 0.0
 script = ExtResource("1_g7r8v")
 acceleration_force = 50.0
 max_speed = 1000.0
 drag_factor = 1.0
+particles = NodePath("MeshInstance3D/GPUParticles3D")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.5)
@@ -32,5 +33,7 @@ mesh = SubResource("PrismMesh_dtwn4")
 
 [node name="GPUParticles3D" type="GPUParticles3D" parent="MeshInstance3D"]
 transform = Transform3D(-4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0, 1, 0, 0, 0)
+amount = 50
+amount_ratio = 0.0
 process_material = SubResource("ParticleProcessMaterial_1gvwg")
 draw_pass_1 = SubResource("BoxMesh_n0118")
