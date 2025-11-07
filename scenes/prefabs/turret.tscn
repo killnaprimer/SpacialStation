@@ -27,7 +27,7 @@ freeze = true
 script = ExtResource("1_jpldo")
 sight = NodePath("sight")
 gun_holder = NodePath("gun_holder")
-target_type = 2
+target_type = 1
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.75, 0)

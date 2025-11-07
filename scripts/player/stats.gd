@@ -23,7 +23,7 @@ func get_spread_mod() -> float:
 
 func get_reload_mod():
 	var factor : float = float(dexterity) / stat_cap
-	return lerpf( 3.0, 0.25, factor)
+	return lerpf( 2.0, 0.25, factor)
 
 #TOUGH
 func get_health() -> int:
