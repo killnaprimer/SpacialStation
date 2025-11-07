@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cb660afmmkkr0"
-path="res://.godot/imported/cowboy.png-c186d6268841b5b5bc9c348565baba55.ctex"
+uid="uid://btlpomhylh4mk"
+path="res://.godot/imported/mantis.png-9b0a2f288a950219e2f16acc1a0ebd75.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://textures/cowboy.png"
-dest_files=["res://.godot/imported/cowboy.png-c186d6268841b5b5bc9c348565baba55.ctex"]
+source_file="res://textures/mantis.png"
+dest_files=["res://.godot/imported/mantis.png-9b0a2f288a950219e2f16acc1a0ebd75.ctex"]
 
 [params]
 

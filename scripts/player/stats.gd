@@ -13,7 +13,7 @@ func get_recoil_mod():
 	return lerpf(3.0, 0.25, factor)
 
 func get_melee_mod() -> int:
-	var dmg = ceil(float(strength) / 2)
+	var dmg = ceil(float(strength) / 3)
 	return dmg
 
 #DEX

@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="isometric_shooter"
-run/main_scene="uid://bu274eu0mlkeb"
+run/main_scene="uid://chmw7yt70nw0i"
 config/features=PackedStringArray("4.5", "Forward Plus")
 
 [autoload]
@@ -110,3 +110,9 @@ reload={
 3d_physics/layer_2="interactive"
 3d_physics/layer_3="player"
 3d_physics/layer_4="enemy"
+
+[rendering]
+
+textures/canvas_textures/default_texture_filter=0
+textures/webp_compression/compression_method=0
+textures/webp_compression/lossless_compression_factor=0.0

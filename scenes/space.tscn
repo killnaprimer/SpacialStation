@@ -1,0 +1,166 @@
+[gd_scene load_steps=11 format=3 uid="uid://chmw7yt70nw0i"]
+
+[ext_resource type="PackedScene" uid="uid://bue85iy21wto0" path="res://scenes/prefabs/player_ship.tscn" id="1_1gvwg"]
+[ext_resource type="Script" uid="uid://dbdvi5o2kq1x0" path="res://scripts/player/camera.gd" id="1_rysn1"]
+[ext_resource type="Material" uid="uid://q5140h4sfnxp" path="res://materials/union/union_floor.tres" id="3_1gvwg"]
+[ext_resource type="Material" uid="uid://bcmlq6p3p6bnn" path="res://materials/union/union_tileset.tres" id="3_dtwn4"]
+[ext_resource type="Material" uid="uid://b4c6f321gxhio" path="res://materials/nakamura/nakamura_tileset.tres" id="4_x2olr"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_c6rj5"]
+sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+ground_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+
+[sub_resource type="Sky" id="Sky_dtwn4"]
+sky_material = SubResource("ProceduralSkyMaterial_c6rj5")
+
+[sub_resource type="Environment" id="Environment_x2olr"]
+background_mode = 2
+sky = SubResource("Sky_dtwn4")
+ambient_light_source = 2
+ambient_light_color = Color(0.51723707, 0.65905553, 0.9374826, 1)
+ambient_light_energy = 4.0
+tonemap_mode = 2
+glow_enabled = true
+fog_enabled = true
+fog_mode = 1
+fog_light_color = Color(0, 0, 0, 1)
+fog_density = 0.97
+fog_depth_curve = 3.3635848
+fog_depth_begin = 50.0
+fog_depth_end = 150.0
+
+[sub_resource type="SphereMesh" id="SphereMesh_c6rj5"]
+material = ExtResource("3_1gvwg")
+radius = 60.0
+height = 120.0
+radial_segments = 8
+rings = 4
+
+[sub_resource type="BoxMesh" id="BoxMesh_c6rj5"]
+material = ExtResource("3_dtwn4")
+size = Vector3(40, 40, 40)
+
+[node name="Node3D" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_x2olr")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+shadow_enabled = true
+directional_shadow_max_distance = 1.0
+
+[node name="PlayerShip" parent="." instance=ExtResource("1_1gvwg")]
+
+[node name="Camera3D" type="Camera3D" parent="." node_paths=PackedStringArray("player")]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 75, 0)
+size = 40.0
+script = ExtResource("1_rysn1")
+player = NodePath("../PlayerShip")
+offset = Vector3(0, 24, 0)
+scroll_zoom = null
+distance_range = Vector2(75, 300)
+
+[node name="Background" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -156, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Background"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -125, 0)
+mesh = SubResource("SphereMesh_c6rj5")
+skeleton = NodePath("../..")
+
+[node name="MeshInstance3D10" type="MeshInstance3D" parent="Background"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -528, -393, -19)
+mesh = SubResource("SphereMesh_c6rj5")
+skeleton = NodePath("../..")
+
+[node name="MeshInstance3D11" type="MeshInstance3D" parent="Background"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -393, -350)
+mesh = SubResource("SphereMesh_c6rj5")
+skeleton = NodePath("../..")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="Background"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -95, -197, 58)
+mesh = SubResource("SphereMesh_c6rj5")
+skeleton = NodePath("../..")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="Background"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -95, -53, -277)
+mesh = SubResource("SphereMesh_c6rj5")
+skeleton = NodePath("../..")
+
+[node name="MeshInstance3D4" type="MeshInstance3D" parent="Background"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 79, -53, -158)
+mesh = SubResource("SphereMesh_c6rj5")
+skeleton = NodePath("../..")
+
+[node name="MeshInstance3D5" type="MeshInstance3D" parent="Background"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 79, -53, -490)
+mesh = SubResource("SphereMesh_c6rj5")
+skeleton = NodePath("../..")
+
+[node name="MeshInstance3D6" type="MeshInstance3D" parent="Background"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 339, -53, -48)
+mesh = SubResource("SphereMesh_c6rj5")
+skeleton = NodePath("../..")
+
+[node name="MeshInstance3D7" type="MeshInstance3D" parent="Background"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16, -53, 325)
+mesh = SubResource("SphereMesh_c6rj5")
+skeleton = NodePath("../..")
+
+[node name="MeshInstance3D8" type="MeshInstance3D" parent="Background"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -488, -154, -242)
+mesh = SubResource("SphereMesh_c6rj5")
+skeleton = NodePath("../..")
+
+[node name="MeshInstance3D9" type="MeshInstance3D" parent="Background"]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 254, -196, 221)
+mesh = SubResource("SphereMesh_c6rj5")
+skeleton = NodePath("../..")
+
+[node name="MeshInstance3D12" type="MeshInstance3D" parent="Background"]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -1097, -462, 221)
+mesh = SubResource("SphereMesh_c6rj5")
+skeleton = NodePath("../..")
+
+[node name="Foreground" type="Node3D" parent="."]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Foreground"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21, -24, -140)
+mesh = SubResource("BoxMesh_c6rj5")
+surface_material_override/0 = ExtResource("4_x2olr")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="Foreground"]
+transform = Transform3D(0.70710677, 0, 0.70710677, 0, 1, 0, -0.70710677, 0, 0.70710677, 103, -24, -140)
+mesh = SubResource("BoxMesh_c6rj5")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="Foreground"]
+transform = Transform3D(0.9659258, 0, -0.25881904, 0, 1, 0, 0.25881904, 0, 0.9659258, -186, -24, -140)
+mesh = SubResource("BoxMesh_c6rj5")
+
+[node name="MeshInstance3D4" type="MeshInstance3D" parent="Foreground"]
+transform = Transform3D(0.49999997, 0, -0.86602545, 0, 1, 0, 0.86602545, 0, 0.49999997, -27.833334, 7, 85.83568)
+mesh = SubResource("BoxMesh_c6rj5")
+surface_material_override/0 = ExtResource("4_x2olr")
+
+[node name="MeshInstance3D5" type="MeshInstance3D" parent="Foreground"]
+transform = Transform3D(0.9659258, 0, -0.2588191, 0, 1, 0, 0.2588191, 0, 0.9659258, 34.16666, -24, 193.22284)
+mesh = SubResource("BoxMesh_c6rj5")
+
+[node name="MeshInstance3D6" type="MeshInstance3D" parent="Foreground"]
+transform = Transform3D(0.25881898, 0, -0.96592593, 0, 1, 0, 0.96592593, 0, 0.25881898, -110.33333, -24, -57.058517)
+mesh = SubResource("BoxMesh_c6rj5")
+
+[node name="MeshInstance3D7" type="MeshInstance3D" parent="Foreground"]
+transform = Transform3D(0.8565735, 0, 0.516025, 0, 1, 0, -0.516025, 0, 0.8565735, -22.960175, -24, -360.05234)
+mesh = SubResource("BoxMesh_c6rj5")
+surface_material_override/0 = ExtResource("4_x2olr")
+
+[node name="MeshInstance3D8" type="MeshInstance3D" parent="Foreground"]
+transform = Transform3D(0.24080415, 0, 0.9705737, 0, 1, 0, -0.9705737, 0, 0.24080415, 83.254944, -24, -424.03943)
+mesh = SubResource("BoxMesh_c6rj5")
+
+[node name="MeshInstance3D9" type="MeshInstance3D" parent="Foreground"]
+transform = Transform3D(0.96094364, 0, 0.27674437, 0, 1, 0, -0.27674437, 0, 0.96094364, -164.2948, -24, -274.9082)
+mesh = SubResource("BoxMesh_c6rj5")
+surface_material_override/0 = ExtResource("4_x2olr")

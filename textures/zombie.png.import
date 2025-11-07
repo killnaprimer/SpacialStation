@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cb660afmmkkr0"
-path="res://.godot/imported/cowboy.png-c186d6268841b5b5bc9c348565baba55.ctex"
+uid="uid://doym12r2qwrby"
+path="res://.godot/imported/zombie.png-be602646f08f04af3609ab9de5f72254.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://textures/cowboy.png"
-dest_files=["res://.godot/imported/cowboy.png-c186d6268841b5b5bc9c348565baba55.ctex"]
+source_file="res://textures/zombie.png"
+dest_files=["res://.godot/imported/zombie.png-be602646f08f04af3609ab9de5f72254.ctex"]
 
 [params]
 

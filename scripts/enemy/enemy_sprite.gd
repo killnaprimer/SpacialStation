@@ -3,7 +3,8 @@ extends Sprite3D
 @export var normal_map : Texture2D
 const CHARACTER_SHADER = preload("uid://541fc1k45g4m")
 const CHARACTER_XRAY_SHADER = preload("uid://djpop43t0kc30")
-
+@export_tool_button("force_adjust_materials")
+var button = adjust_shaders
 
 
 var initial_color : Color

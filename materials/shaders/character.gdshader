@@ -3,7 +3,7 @@ render_mode blend_mix, cull_disabled, depth_draw_opaque, depth_prepass_alpha;
 uniform sampler2D albedo_texture : source_color, filter_nearest;
 uniform sampler2D normal_map : hint_normal, filter_nearest;
 uniform bool flashing = false;
-uniform float normal_strength = 0.1;
+uniform float normal_strength = 0.2;
 
 void fragment() {
     vec4 tex_color = texture(albedo_texture, UV);
@@ -15,11 +15,11 @@ void fragment() {
 		EMISSION  = tex_color.rgb * COLOR.rgb;
 	} else {
 		ALBEDO = tex_color.rgb * COLOR.rgb;
-		EMISSION  = tex_color.rgb * COLOR.rgb * 0.025;
+		EMISSION  = tex_color.rgb * COLOR.rgb * 0.1;
 	}
-	
-    
-	
+
+
+
 }
 
 void vertex() {

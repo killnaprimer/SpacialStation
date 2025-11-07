@@ -12,9 +12,11 @@ func get_world() -> Node3D:
 	if !world: world = player.get_parent_node_3d()
 	return world
 
-func damage(node : Node3D, amount : int):
+func damage(node : Node3D, amount : int) -> bool:
 	if node.has_node("health"):
 		node.get_node("health").take_dmg(amount)
+		return true
+	return false
 
 signal on_sound(pos : Vector3, dist : float)
 

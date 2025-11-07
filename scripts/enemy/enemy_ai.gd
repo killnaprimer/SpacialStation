@@ -60,7 +60,7 @@ func chase_target():
 		last_target_pos = target.global_position
 		flank_time = 0
 
-func get_combat_pos(dist_min : float = 5, dist_max : float = 10) -> Vector3:
+func get_combat_pos(dist_min : float = 5, dist_max : float = 15) -> Vector3:
 	var distance : float = (enemy.global_position - target.global_position).length()
 	if distance < dist_min:
 		return enemy.global_position

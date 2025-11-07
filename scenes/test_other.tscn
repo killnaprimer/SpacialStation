@@ -1,4 +1,4 @@
-[gd_scene load_steps=59 format=3 uid="uid://bu274eu0mlkeb"]
+[gd_scene load_steps=60 format=3 uid="uid://bu274eu0mlkeb"]
 
 [ext_resource type="Script" uid="uid://dbdvi5o2kq1x0" path="res://scripts/player/camera.gd" id="2_wgg0f"]
 [ext_resource type="PackedScene" uid="uid://clydvyhspgccd" path="res://scenes/prefabs/player.tscn" id="3_ymkes"]
@@ -18,6 +18,7 @@
 [ext_resource type="PackedScene" uid="uid://eajmuj2d4n0" path="res://scenes/prefabs/enemy/bat.tscn" id="17_wlib2"]
 [ext_resource type="PackedScene" uid="uid://dy0ekgsyucwct" path="res://scenes/prefabs/turret.tscn" id="18_k02e6"]
 [ext_resource type="PackedScene" uid="uid://dl273reh3i6qp" path="res://scenes/prefabs/props/cargo_box.tscn" id="18_q06b2"]
+[ext_resource type="PackedScene" uid="uid://bke01a1mm4jcf" path="res://scenes/prefabs/enemy/zombie.tscn" id="21_ckkne"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_ykgj2"]
 sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
@@ -171,7 +172,7 @@ offset = Vector3(-7, 16, -4)
 transform = Transform3D(0.25881907, 0, -0.9659258, 0, 1, 0, 0.9659258, 0, 0.25881907, -67, 2, 15)
 
 [node name="Enemy4" parent="." node_paths=PackedStringArray("patrol_points") instance=ExtResource("6_ykgj2")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -65, 3, 41)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -65, 0.8, 41)
 patrol_points = [NodePath("../patrol_points/PatrolPoint"), NodePath("../patrol_points/PatrolPoint2"), NodePath("../patrol_points/PatrolPoint3"), NodePath("../patrol_points/PatrolPoint4"), NodePath("../patrol_points/PatrolPoint5"), NodePath("../patrol_points/PatrolPoint6"), NodePath("../patrol_points/PatrolPoint7"), NodePath("../patrol_points/PatrolPoint8"), NodePath("../patrol_points/PatrolPoint9")]
 
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
@@ -677,6 +678,31 @@ collision_mask = 14
 
 [node name="Turret" parent="." instance=ExtResource("18_k02e6")]
 transform = Transform3D(0.42261824, 0, -0.9063078, 0, 1, 0, 0.9063078, 0, 0.42261824, -63, 0.97818, 24)
+target_type = 0
+
+[node name="Enemy6" parent="." node_paths=PackedStringArray("patrol_points") instance=ExtResource("21_ckkne")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -61, 1, 27)
+patrol_points = [NodePath("../patrol_points/PatrolPoint3"), NodePath("../patrol_points/PatrolPoint6"), NodePath("../patrol_points/PatrolPoint2"), NodePath("../patrol_points/PatrolPoint5")]
+
+[node name="Enemy7" parent="." node_paths=PackedStringArray("patrol_points") instance=ExtResource("21_ckkne")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -57, 1, 34)
+patrol_points = [NodePath("../patrol_points/PatrolPoint3"), NodePath("../patrol_points/PatrolPoint6"), NodePath("../patrol_points/PatrolPoint2"), NodePath("../patrol_points/PatrolPoint5")]
+
+[node name="Enemy8" parent="." node_paths=PackedStringArray("patrol_points") instance=ExtResource("21_ckkne")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -57, 1, 38)
+patrol_points = [NodePath("../patrol_points/PatrolPoint3"), NodePath("../patrol_points/PatrolPoint6"), NodePath("../patrol_points/PatrolPoint2"), NodePath("../patrol_points/PatrolPoint5")]
+
+[node name="Enemy9" parent="." node_paths=PackedStringArray("patrol_points") instance=ExtResource("21_ckkne")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -64, 1, 38)
+patrol_points = [NodePath("../patrol_points/PatrolPoint3"), NodePath("../patrol_points/PatrolPoint6"), NodePath("../patrol_points/PatrolPoint2"), NodePath("../patrol_points/PatrolPoint5")]
+
+[node name="Enemy10" parent="." node_paths=PackedStringArray("patrol_points") instance=ExtResource("21_ckkne")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -69, 1, 42)
+patrol_points = [NodePath("../patrol_points/PatrolPoint3"), NodePath("../patrol_points/PatrolPoint6"), NodePath("../patrol_points/PatrolPoint2"), NodePath("../patrol_points/PatrolPoint5")]
+
+[node name="Enemy11" parent="." node_paths=PackedStringArray("patrol_points") instance=ExtResource("21_ckkne")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -62, 1, 46)
+patrol_points = [NodePath("../patrol_points/PatrolPoint3"), NodePath("../patrol_points/PatrolPoint6"), NodePath("../patrol_points/PatrolPoint2"), NodePath("../patrol_points/PatrolPoint5")]
 
 [editable path="level_test"]
 [editable path="nakamura_test"]

@@ -22,9 +22,11 @@ func hit() -> bool:
 	else:
 		make_sound(hit_sound)
 		for body in bodies:
-			GameManager.damage(body, damage)
-	can_attack = false
-	cd_timer.start(cooldown)
+			var hit_result : bool = GameManager.damage(body, damage)
+			if hit_result:
+				can_attack = false
+				cd_timer.start(cooldown)
+				return true
 	return true
 
 func reset_melee():

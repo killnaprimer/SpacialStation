@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="PlayerData" load_steps=3 format=3 uid="uid://c14acanpd206d"]
+
+[ext_resource type="Script" uid="uid://bd24a5nua6hkj" path="res://scripts/data/loot/loot_item.gd" id="1_klaj1"]
+[ext_resource type="Script" uid="uid://bm7j2oqkitvu4" path="res://data/player_data.gd" id="2_dhxet"]
+
+[resource]
+script = ExtResource("2_dhxet")
+metadata/_custom_type_script = "uid://bm7j2oqkitvu4"
