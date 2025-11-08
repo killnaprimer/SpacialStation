@@ -37,6 +37,7 @@ void sky() {
     vec4 layer2 = texture(texture2, fract(uv2));
     vec4 layer3 = texture(texture3, fract(uv3));
     
-    vec4 combined = layer1*0.1 + layer2*0.5 + layer3*0.25;
+    vec4 combined = layer1*0.2 + layer2*0.5 + layer3*0.25;
+	//combined = floor(combined * 128.0) / 128.0;
     COLOR = vec4(base_color + combined.rgb, 1.0).rgb;
 }

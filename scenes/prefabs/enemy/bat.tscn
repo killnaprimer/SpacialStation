@@ -6,8 +6,8 @@
 [ext_resource type="Script" uid="uid://b1iyvhk6s6soj" path="res://scripts/enemy/enemy_sight.gd" id="4_4efyp"]
 [ext_resource type="Script" uid="uid://brat11jlspshs" path="res://scripts/enemy/enemy_visuals.gd" id="5_lhhhu"]
 [ext_resource type="Shader" uid="uid://541fc1k45g4m" path="res://materials/shaders/character.gdshader" id="5_o335u"]
-[ext_resource type="Texture2D" uid="uid://bv3tpfcb1s034" path="res://sources/bat-Sheet.png" id="6_lhhhu"]
-[ext_resource type="Texture2D" uid="uid://04yrain5fnii" path="res://sources/bat_normalmap.png" id="7_qbp5v"]
+[ext_resource type="Texture2D" uid="uid://bv3tpfcb1s034" path="res://textures/characters/bat-Sheet.png" id="6_lhhhu"]
+[ext_resource type="Texture2D" uid="uid://04yrain5fnii" path="res://textures/characters/bat_normalmap.png" id="7_qbp5v"]
 [ext_resource type="Shader" uid="uid://djpop43t0kc30" path="res://materials/shaders/character_xray.gdshader" id="8_pql7b"]
 [ext_resource type="Script" uid="uid://b3ey84j6drg0v" path="res://scripts/enemy/enemy_sprite.gd" id="9_13ngv"]
 [ext_resource type="Script" uid="uid://dd0ocu2dk0341" path="res://scripts/enemy/enemy_ai.gd" id="10_so1ny"]
@@ -29,7 +29,8 @@ shader = ExtResource("5_o335u")
 shader_parameter/albedo_texture = ExtResource("6_lhhhu")
 shader_parameter/normal_map = ExtResource("7_qbp5v")
 shader_parameter/flashing = false
-shader_parameter/normal_strength = 0.1
+shader_parameter/normal_strength = 0.2
+shader_parameter/billboard = true
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_qbp5v"]
 render_priority = 0

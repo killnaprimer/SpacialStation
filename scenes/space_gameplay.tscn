@@ -1,0 +1,335 @@
+[gd_scene load_steps=23 format=3 uid="uid://chmw7yt70nw0i"]
+
+[ext_resource type="PackedScene" uid="uid://bue85iy21wto0" path="res://scenes/prefabs/player_ship.tscn" id="1_1gvwg"]
+[ext_resource type="Material" uid="uid://chm0rhcpkl3ei" path="res://materials/space.tres" id="1_a65qk"]
+[ext_resource type="Script" uid="uid://dbdvi5o2kq1x0" path="res://scripts/player/camera.gd" id="1_rysn1"]
+[ext_resource type="Material" uid="uid://bcmlq6p3p6bnn" path="res://materials/union/union_tileset.tres" id="3_dtwn4"]
+[ext_resource type="Material" uid="uid://b4c6f321gxhio" path="res://materials/nakamura/nakamura_tileset.tres" id="4_x2olr"]
+[ext_resource type="Script" uid="uid://dh65jrkfwhfsy" path="res://scripts/space/galaxy.gd" id="5_7a7lp"]
+[ext_resource type="Script" uid="uid://fnlrt7ro56k6" path="res://scripts/space/space_environment.gd" id="5_a65qk"]
+[ext_resource type="Texture2D" uid="uid://b308n2yh4opb6" path="res://textures/planets/green_planet.png" id="7_85sbg"]
+[ext_resource type="Script" uid="uid://cpfmyebbbx4o2" path="res://scripts/space/planet.gd" id="7_rlquo"]
+[ext_resource type="Shader" uid="uid://vitfbh2vfqlc" path="res://materials/shaders/just_texture.gdshader" id="8_7a7lp"]
+[ext_resource type="Material" uid="uid://bsndo354ln0tv" path="res://materials/planet.tres" id="8_85sbg"]
+[ext_resource type="Texture2D" uid="uid://dhae5oalx4bev" path="res://textures/planets/red_planet.png" id="9_7wx0h"]
+[ext_resource type="PackedScene" uid="uid://dexjwgecchgeo" path="res://models/player_ship.glb" id="11_85sbg"]
+
+[sub_resource type="Sky" id="Sky_dtwn4"]
+sky_material = ExtResource("1_a65qk")
+
+[sub_resource type="Environment" id="Environment_x2olr"]
+background_mode = 2
+sky = SubResource("Sky_dtwn4")
+sky_custom_fov = 40.0
+ambient_light_source = 2
+ambient_light_color = Color(0.14796579, 0.38251793, 0.51818275, 1)
+tonemap_mode = 2
+glow_enabled = true
+fog_enabled = true
+fog_mode = 1
+fog_light_color = Color(0.015874635, 0.12161841, 0.16714883, 1)
+fog_light_energy = 1.01
+fog_density = 0.0
+fog_aerial_perspective = 0.296
+fog_sky_affect = 0.0
+fog_height_density = 0.005
+fog_depth_curve = 3.2490087
+fog_depth_begin = 100.0
+fog_depth_end = 200.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_skhc4"]
+render_priority = 0
+shader = ExtResource("8_7a7lp")
+shader_parameter/albedo = ExtResource("9_7wx0h")
+shader_parameter/alpha_scissor = 0.5
+shader_parameter/use_normal = false
+shader_parameter/emissive_str = 0.0
+
+[sub_resource type="SphereMesh" id="SphereMesh_tc3qt"]
+material = SubResource("ShaderMaterial_skhc4")
+radius = 60.0
+height = 120.0
+radial_segments = 8
+rings = 4
+
+[sub_resource type="SphereMesh" id="SphereMesh_c6rj5"]
+material = ExtResource("8_85sbg")
+radius = 60.0
+height = 120.0
+radial_segments = 8
+rings = 4
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_rlquo"]
+render_priority = 0
+shader = ExtResource("8_7a7lp")
+shader_parameter/albedo = ExtResource("7_85sbg")
+shader_parameter/alpha_scissor = 0.5
+shader_parameter/use_normal = false
+shader_parameter/emissive_str = 0.0
+
+[sub_resource type="SphereMesh" id="SphereMesh_7a7lp"]
+material = SubResource("ShaderMaterial_rlquo")
+radius = 60.0
+height = 120.0
+radial_segments = 8
+rings = 4
+
+[sub_resource type="BoxMesh" id="BoxMesh_c6rj5"]
+material = ExtResource("3_dtwn4")
+size = Vector3(40, 40, 40)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_85sbg"]
+size = Vector3(40, 40, 40)
+
+[node name="Node3D" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." node_paths=PackedStringArray("spaceship")]
+environment = SubResource("Environment_x2olr")
+script = ExtResource("5_a65qk")
+spaceship = NodePath("../PlayerShip")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.9914449, -0.08682999, 0.097455844, 0, 0.7466382, 0.66523033, -0.1305262, -0.6595392, 0.7402506, 0, 0, 0)
+directional_shadow_max_distance = 1.0
+
+[node name="PlayerShip" parent="." node_paths=PackedStringArray("p_camera") instance=ExtResource("1_1gvwg")]
+p_camera = NodePath("../Camera3D")
+
+[node name="Camera3D" type="Camera3D" parent="." node_paths=PackedStringArray("player")]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 120, 0)
+fov = 40.0
+size = 40.0
+script = ExtResource("1_rysn1")
+player = NodePath("../PlayerShip")
+offset = Vector3(0, 48, 0)
+distance_range = Vector2(120, 300)
+
+[node name="Background" type="Node3D" parent="."]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, -200, 0)
+script = ExtResource("5_7a7lp")
+
+[node name="mars_2" type="MeshInstance3D" parent="Background"]
+transform = Transform3D(1.1870145, -4.3874145, -2.0836482, 3.90818, 2.1363711, -2.272015, 2.883943, -1.0892717, 3.936541, 546.5, -200, 0)
+mesh = SubResource("SphereMesh_tc3qt")
+skeleton = NodePath("../..")
+script = ExtResource("7_rlquo")
+
+[node name="MeshInstance3D16" type="MeshInstance3D" parent="Background/mars_2"]
+transform = Transform3D(0.061751377, 0.134349, -0.1346741, -0.08165304, -0.10916497, -0.14634137, -0.17181253, 0.10016666, 0.021144554, -71.78453, -53.322617, -88.67184)
+mesh = SubResource("SphereMesh_c6rj5")
+skeleton = NodePath("../../..")
+script = ExtResource("7_rlquo")
+
+[node name="MeshInstance3D7" type="MeshInstance3D" parent="Background/mars_2"]
+transform = Transform3D(0.124447405, -0.079848185, -0.1346741, -0.09673868, 0.09605124, -0.14634137, 0.12310354, 0.15619998, 0.021144554, -53.520477, 84.392235, -77.40906)
+mesh = SubResource("SphereMesh_c6rj5")
+skeleton = NodePath("../../..")
+script = ExtResource("7_rlquo")
+
+[node name="MeshInstance3D20" type="MeshInstance3D" parent="Background/mars_2"]
+transform = Transform3D(0.124447405, -0.079848185, -0.1346741, -0.09673868, 0.09605124, -0.14634137, 0.12310354, 0.15619998, 0.021144554, 58.795647, -86.92767, 28.64161)
+mesh = SubResource("SphereMesh_c6rj5")
+skeleton = NodePath("../../..")
+script = ExtResource("7_rlquo")
+
+[node name="mars_3" type="MeshInstance3D" parent="Background"]
+transform = Transform3D(1.1870145, -4.3874145, -2.0836482, 3.90818, 2.1363711, -2.272015, 2.883943, -1.0892717, 3.936541, 546.5, -200, 0)
+mesh = SubResource("SphereMesh_tc3qt")
+skeleton = NodePath("../..")
+script = ExtResource("7_rlquo")
+
+[node name="MeshInstance3D16" type="MeshInstance3D" parent="Background/mars_3"]
+transform = Transform3D(0.061751377, 0.134349, -0.1346741, -0.08165304, -0.10916497, -0.14634137, -0.17181253, 0.10016666, 0.021144554, -71.78453, -53.322617, -88.67184)
+mesh = SubResource("SphereMesh_c6rj5")
+skeleton = NodePath("../../..")
+script = ExtResource("7_rlquo")
+
+[node name="MeshInstance3D7" type="MeshInstance3D" parent="Background/mars_3"]
+transform = Transform3D(0.124447405, -0.079848185, -0.1346741, -0.09673868, 0.09605124, -0.14634137, 0.12310354, 0.15619998, 0.021144554, -53.520477, 84.392235, -77.40906)
+mesh = SubResource("SphereMesh_c6rj5")
+skeleton = NodePath("../../..")
+script = ExtResource("7_rlquo")
+
+[node name="MeshInstance3D20" type="MeshInstance3D" parent="Background/mars_3"]
+transform = Transform3D(0.124447405, -0.079848185, -0.1346741, -0.09673868, 0.09605124, -0.14634137, 0.12310354, 0.15619998, 0.021144554, 58.795647, -86.92767, 28.64161)
+mesh = SubResource("SphereMesh_c6rj5")
+skeleton = NodePath("../../..")
+script = ExtResource("7_rlquo")
+
+[node name="earth" type="MeshInstance3D" parent="Background"]
+transform = Transform3D(0.7122086, -2.632449, -1.250189, 2.344908, 1.2818224, -1.3632085, 1.7303656, -0.653563, 2.3619251, 0, -139.5, 0)
+mesh = SubResource("SphereMesh_7a7lp")
+skeleton = NodePath("../..")
+script = ExtResource("7_rlquo")
+
+[node name="moon" type="MeshInstance3D" parent="Background/earth"]
+transform = Transform3D(0.061751377, 0.13434897, -0.13467413, -0.081653036, -0.109165005, -0.14634134, -0.17181255, 0.100166656, 0.021144561, 94.28815, -3.461605, 61.00304)
+mesh = SubResource("SphereMesh_c6rj5")
+skeleton = NodePath("../../..")
+script = ExtResource("7_rlquo")
+
+[node name="earth2" type="MeshInstance3D" parent="Background"]
+transform = Transform3D(0.7122086, -2.632449, -1.250189, 2.344908, 1.2818224, -1.3632085, 1.7303656, -0.653563, 2.3619251, 0, -139.5, 0)
+mesh = SubResource("SphereMesh_7a7lp")
+skeleton = NodePath("../..")
+script = ExtResource("7_rlquo")
+
+[node name="moon" type="MeshInstance3D" parent="Background/earth2"]
+transform = Transform3D(0.061751377, 0.13434897, -0.13467413, -0.081653036, -0.109165005, -0.14634134, -0.17181255, 0.100166656, 0.021144561, 94.28815, -3.461605, 61.00304)
+mesh = SubResource("SphereMesh_c6rj5")
+skeleton = NodePath("../../..")
+script = ExtResource("7_rlquo")
+
+[node name="MeshInstance3D9" type="MeshInstance3D" parent="Background"]
+transform = Transform3D(1.5790848, 0.8594281, 0.8762845, 0.9145099, 0.12852596, -1.7740216, -0.8186346, 1.8013507, -0.29150108, 0, -500, 0)
+mesh = SubResource("SphereMesh_c6rj5")
+skeleton = NodePath("../..")
+script = ExtResource("7_rlquo")
+
+[node name="MeshInstance3D12" type="MeshInstance3D" parent="Background"]
+transform = Transform3D(0.6312981, -1.6833266, 0.8762845, 0, -0.9234973, -1.7740216, 1.897752, 0.55996823, -0.29150108, 0, -462, 0)
+mesh = SubResource("SphereMesh_c6rj5")
+skeleton = NodePath("../..")
+script = ExtResource("7_rlquo")
+
+[node name="MeshInstance3D15" type="MeshInstance3D" parent="Background"]
+transform = Transform3D(0.7122086, -2.632449, -1.250189, 2.344908, 1.2818224, -1.3632085, 1.7303656, -0.653563, 2.3619251, 0, -600, 0)
+mesh = SubResource("SphereMesh_7a7lp")
+skeleton = NodePath("../..")
+script = ExtResource("7_rlquo")
+
+[node name="MeshInstance3D8" type="MeshInstance3D" parent="Background"]
+transform = Transform3D(0.31564906, -0.8416633, 0.43814224, 0, -0.46174866, -0.8870108, 0.948876, 0.27998412, -0.14575054, 0, -53, 0)
+mesh = SubResource("SphereMesh_c6rj5")
+skeleton = NodePath("../..")
+script = ExtResource("7_rlquo")
+
+[node name="MeshInstance3D19" type="MeshInstance3D" parent="Background"]
+transform = Transform3D(0.31564906, -0.8416633, 0.43814224, 0, -0.46174866, -0.8870108, 0.948876, 0.27998412, -0.14575054, 0, -53, 0)
+mesh = SubResource("SphereMesh_c6rj5")
+skeleton = NodePath("../..")
+script = ExtResource("7_rlquo")
+
+[node name="MeshInstance3D21" type="MeshInstance3D" parent="Background"]
+transform = Transform3D(0.31564906, -0.8416633, 0.43814224, 0, -0.46174866, -0.8870108, 0.948876, 0.27998412, -0.14575054, 0, -53, 0)
+mesh = SubResource("SphereMesh_c6rj5")
+skeleton = NodePath("../..")
+script = ExtResource("7_rlquo")
+
+[node name="MeshInstance3D22" type="MeshInstance3D" parent="Background"]
+transform = Transform3D(0.31564906, -0.8416633, 0.43814224, 0, -0.46174866, -0.8870108, 0.948876, 0.27998412, -0.14575054, 0, -53, 0)
+mesh = SubResource("SphereMesh_c6rj5")
+skeleton = NodePath("../..")
+script = ExtResource("7_rlquo")
+
+[node name="MeshInstance3D23" type="MeshInstance3D" parent="Background"]
+transform = Transform3D(0.31564906, -0.8416633, 0.43814224, 0, -0.46174866, -0.8870108, 0.948876, 0.27998412, -0.14575054, 0, -53, 0)
+mesh = SubResource("SphereMesh_c6rj5")
+skeleton = NodePath("../..")
+script = ExtResource("7_rlquo")
+
+[node name="MeshInstance3D24" type="MeshInstance3D" parent="Background"]
+transform = Transform3D(0.31564906, -0.8416633, 0.43814224, 0, -0.46174866, -0.8870108, 0.948876, 0.27998412, -0.14575054, 0, -53, 0)
+mesh = SubResource("SphereMesh_c6rj5")
+skeleton = NodePath("../..")
+script = ExtResource("7_rlquo")
+
+[node name="MeshInstance3D25" type="MeshInstance3D" parent="Background"]
+transform = Transform3D(0.31564906, -0.8416633, 0.43814224, 0, -0.46174866, -0.8870108, 0.948876, 0.27998412, -0.14575054, 0, -53, 0)
+mesh = SubResource("SphereMesh_c6rj5")
+skeleton = NodePath("../..")
+script = ExtResource("7_rlquo")
+
+[node name="MeshInstance3D26" type="MeshInstance3D" parent="Background"]
+transform = Transform3D(0.31564906, -0.8416633, 0.43814224, 0, -0.46174866, -0.8870108, 0.948876, 0.27998412, -0.14575054, 0, -53, 0)
+mesh = SubResource("SphereMesh_c6rj5")
+skeleton = NodePath("../..")
+script = ExtResource("7_rlquo")
+
+[node name="MeshInstance3D27" type="MeshInstance3D" parent="Background"]
+transform = Transform3D(0.31564906, -0.8416633, 0.43814224, 0, -0.46174866, -0.8870108, 0.948876, 0.27998412, -0.14575054, 0, -53, 0)
+mesh = SubResource("SphereMesh_c6rj5")
+skeleton = NodePath("../..")
+script = ExtResource("7_rlquo")
+
+[node name="MeshInstance3D28" type="MeshInstance3D" parent="Background"]
+transform = Transform3D(0.31564906, -0.8416633, 0.43814224, 0, -0.46174866, -0.8870108, 0.948876, 0.27998412, -0.14575054, 0, -53, 0)
+mesh = SubResource("SphereMesh_c6rj5")
+skeleton = NodePath("../..")
+script = ExtResource("7_rlquo")
+
+[node name="MeshInstance3D29" type="MeshInstance3D" parent="Background"]
+transform = Transform3D(0.31564906, -0.8416633, 0.43814224, 0, -0.46174866, -0.8870108, 0.948876, 0.27998412, -0.14575054, 0, -53, 0)
+mesh = SubResource("SphereMesh_c6rj5")
+skeleton = NodePath("../..")
+script = ExtResource("7_rlquo")
+
+[node name="MeshInstance3D30" type="MeshInstance3D" parent="Background"]
+transform = Transform3D(0.31564906, -0.8416633, 0.43814224, 0, -0.46174866, -0.8870108, 0.948876, 0.27998412, -0.14575054, 0, -53, 0)
+mesh = SubResource("SphereMesh_c6rj5")
+skeleton = NodePath("../..")
+script = ExtResource("7_rlquo")
+
+[node name="MeshInstance3D31" type="MeshInstance3D" parent="Background"]
+transform = Transform3D(0.31564906, -0.8416633, 0.43814224, 0, -0.46174866, -0.8870108, 0.948876, 0.27998412, -0.14575054, 0, -53, 0)
+mesh = SubResource("SphereMesh_c6rj5")
+skeleton = NodePath("../..")
+script = ExtResource("7_rlquo")
+
+[node name="MeshInstance3D39" type="MeshInstance3D" parent="Background"]
+transform = Transform3D(0.31564906, -0.8416633, 0.43814224, 0, -0.46174866, -0.8870108, 0.948876, 0.27998412, -0.14575054, 0, -53, 0)
+mesh = SubResource("SphereMesh_c6rj5")
+skeleton = NodePath("../..")
+script = ExtResource("7_rlquo")
+
+[node name="MeshInstance3D40" type="MeshInstance3D" parent="Background"]
+transform = Transform3D(0.31564906, -0.8416633, 0.43814224, 0, -0.46174866, -0.8870108, 0.948876, 0.27998412, -0.14575054, -261.5, -53, 0)
+mesh = SubResource("SphereMesh_c6rj5")
+skeleton = NodePath("../..")
+script = ExtResource("7_rlquo")
+
+[node name="MeshInstance3D41" type="MeshInstance3D" parent="Background"]
+transform = Transform3D(0.31564906, -0.8416633, 0.43814224, 0, -0.46174866, -0.8870108, 0.948876, 0.27998412, -0.14575054, 0, -53, 0)
+mesh = SubResource("SphereMesh_c6rj5")
+skeleton = NodePath("../..")
+script = ExtResource("7_rlquo")
+
+[node name="MeshInstance3D17" type="MeshInstance3D" parent="Background"]
+transform = Transform3D(1.5790848, 0.8594281, 0.8762845, 0.9145099, 0.12852596, -1.7740216, -0.8186346, 1.8013507, -0.29150108, 0, -196, 0)
+mesh = SubResource("SphereMesh_c6rj5")
+skeleton = NodePath("../..")
+script = ExtResource("7_rlquo")
+
+[node name="MeshInstance3D18" type="MeshInstance3D" parent="Background"]
+transform = Transform3D(0.6312981, -1.6833266, 0.8762845, 0, -0.9234973, -1.7740216, 1.897752, 0.55996823, -0.29150108, 0, -462, 0)
+mesh = SubResource("SphereMesh_c6rj5")
+skeleton = NodePath("../..")
+script = ExtResource("7_rlquo")
+
+[node name="Foreground" type="Node3D" parent="."]
+
+[node name="MeshInstance3D4" type="MeshInstance3D" parent="Foreground"]
+transform = Transform3D(0.49999997, 0, -0.86602545, 0, 1, 0, 0.86602545, 0, 0.49999997, -27.833334, 7, 85.83568)
+mesh = SubResource("BoxMesh_c6rj5")
+surface_material_override/0 = ExtResource("4_x2olr")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Foreground/MeshInstance3D4"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Foreground/MeshInstance3D4/StaticBody3D"]
+shape = SubResource("BoxShape3D_85sbg")
+
+[node name="MeshInstance3D5" type="MeshInstance3D" parent="Foreground"]
+transform = Transform3D(0.9659258, 0, -0.2588191, 0, 1, 0, 0.2588191, 0, 0.9659258, 34.16666, -24, 193.22284)
+mesh = SubResource("BoxMesh_c6rj5")
+
+[node name="player_ship" parent="." instance=ExtResource("11_85sbg")]
+transform = Transform3D(15, 0, 0, 0, 15, 0, 0, 0, 15, 11.715, 0, -85.845)
+
+[node name="player_ship2" parent="." instance=ExtResource("11_85sbg")]
+transform = Transform3D(20, 0, 0, 0, 20, 0, 0, 0, 20, 78, -37, -69)
+
+[node name="Cube" parent="player_ship2" index="0"]
+transform = Transform3D(-0.25881904, 0, -0.9659258, 0, 1, 0, 0.9659258, 0, -0.25881904, 0, 0, 0)
+surface_material_override/0 = ExtResource("3_dtwn4")
+
+[editable path="player_ship2"]

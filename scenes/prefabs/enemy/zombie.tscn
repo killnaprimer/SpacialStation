@@ -6,8 +6,8 @@
 [ext_resource type="Script" uid="uid://b1iyvhk6s6soj" path="res://scripts/enemy/enemy_sight.gd" id="4_ss2q0"]
 [ext_resource type="Script" uid="uid://brat11jlspshs" path="res://scripts/enemy/enemy_visuals.gd" id="5_ykuqe"]
 [ext_resource type="Shader" uid="uid://541fc1k45g4m" path="res://materials/shaders/character.gdshader" id="6_nnoyn"]
-[ext_resource type="Texture2D" uid="uid://doym12r2qwrby" path="res://textures/zombie.png" id="7_hehhs"]
-[ext_resource type="Texture2D" uid="uid://bkvam3mrmocac" path="res://textures/zombie_nm.png" id="8_yxf4u"]
+[ext_resource type="Texture2D" uid="uid://doym12r2qwrby" path="res://textures/characters/zombie.png" id="7_hehhs"]
+[ext_resource type="Texture2D" uid="uid://bkvam3mrmocac" path="res://textures/characters/zombie_nm.png" id="8_yxf4u"]
 [ext_resource type="Shader" uid="uid://djpop43t0kc30" path="res://materials/shaders/character_xray.gdshader" id="9_ydqwp"]
 [ext_resource type="Script" uid="uid://b3ey84j6drg0v" path="res://scripts/enemy/enemy_sprite.gd" id="10_pcdk3"]
 [ext_resource type="Script" uid="uid://dd0ocu2dk0341" path="res://scripts/enemy/enemy_ai.gd" id="11_ooriu"]
@@ -157,15 +157,16 @@ _data = {
 &"walk": SubResource("Animation_blp6j")
 }
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_bk8up"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_x1x0x"]
 render_priority = 0
 shader = ExtResource("6_nnoyn")
 shader_parameter/albedo_texture = ExtResource("7_hehhs")
 shader_parameter/normal_map = ExtResource("8_yxf4u")
 shader_parameter/flashing = false
 shader_parameter/normal_strength = 0.2
+shader_parameter/billboard = true
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_ss2q0"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_hehhs"]
 render_priority = 0
 shader = ExtResource("9_ydqwp")
 shader_parameter/albedo_texture = ExtResource("7_hehhs")
@@ -230,8 +231,8 @@ libraries = {
 autoplay = "idle"
 
 [node name="Sprite3D" type="Sprite3D" parent="visuals"]
-material_override = SubResource("ShaderMaterial_bk8up")
-material_overlay = SubResource("ShaderMaterial_ss2q0")
+material_override = SubResource("ShaderMaterial_x1x0x")
+material_overlay = SubResource("ShaderMaterial_hehhs")
 offset = Vector2(0, 12)
 flip_h = true
 pixel_size = 0.12

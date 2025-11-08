@@ -9,7 +9,7 @@ class_name PlayerCamera
 @export var distance_range : Vector2 = Vector2(25, 150)
 var tween : Tween
 var base_fov : float
-
+var snap_pos : Vector3
 func _ready() -> void:
 	base_fov = fov
 	GameManager.camera = self

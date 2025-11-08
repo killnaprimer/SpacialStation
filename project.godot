@@ -11,8 +11,10 @@ config_version=5
 [application]
 
 config/name="isometric_shooter"
-run/main_scene="uid://chmw7yt70nw0i"
+config/version="0.5"
+run/main_scene="uid://bu274eu0mlkeb"
 config/features=PackedStringArray("4.5", "Forward Plus")
+config/icon="uid://tdgyueksucqy"
 
 [autoload]
 

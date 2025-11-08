@@ -1,6 +1,6 @@
 [gd_scene load_steps=10 format=3 uid="uid://dy0ekgsyucwct"]
 
-[ext_resource type="Script" uid="uid://c3jtgbmpf03km" path="res://scripts/turret.gd" id="1_jpldo"]
+[ext_resource type="Script" uid="uid://c3jtgbmpf03km" path="res://scripts/interactive/turret.gd" id="1_jpldo"]
 [ext_resource type="Script" uid="uid://b1iyvhk6s6soj" path="res://scripts/enemy/enemy_sight.gd" id="1_yh51h"]
 [ext_resource type="Script" uid="uid://cx0xxqn8au6ks" path="res://scripts/common/health.gd" id="2_jpldo"]
 [ext_resource type="Script" uid="uid://q786hxut4s3f" path="res://scripts/enemy/enemy_gun_holder.gd" id="3_rtj87"]

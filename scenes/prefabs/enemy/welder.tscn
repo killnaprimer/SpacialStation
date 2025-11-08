@@ -6,8 +6,8 @@
 [ext_resource type="Script" uid="uid://b1iyvhk6s6soj" path="res://scripts/enemy/enemy_sight.gd" id="4_pxvdo"]
 [ext_resource type="Script" uid="uid://brat11jlspshs" path="res://scripts/enemy/enemy_visuals.gd" id="5_wu25f"]
 [ext_resource type="Shader" uid="uid://541fc1k45g4m" path="res://materials/shaders/character.gdshader" id="6_0aoe6"]
-[ext_resource type="Texture2D" uid="uid://0lv1t77fnji6" path="res://textures/welder.png" id="7_k0dau"]
-[ext_resource type="Texture2D" uid="uid://c125qji2dleht" path="res://textures/welder_nm.png" id="8_qjx64"]
+[ext_resource type="Texture2D" uid="uid://0lv1t77fnji6" path="res://textures/characters/welder.png" id="7_k0dau"]
+[ext_resource type="Texture2D" uid="uid://c125qji2dleht" path="res://textures/characters/welder_nm.png" id="8_qjx64"]
 [ext_resource type="Shader" uid="uid://djpop43t0kc30" path="res://materials/shaders/character_xray.gdshader" id="9_owstr"]
 [ext_resource type="Script" uid="uid://b3ey84j6drg0v" path="res://scripts/enemy/enemy_sprite.gd" id="10_dvvys"]
 [ext_resource type="Script" uid="uid://dd0ocu2dk0341" path="res://scripts/enemy/enemy_ai.gd" id="11_gvywd"]
@@ -165,6 +165,7 @@ shader_parameter/albedo_texture = ExtResource("7_k0dau")
 shader_parameter/normal_map = ExtResource("8_qjx64")
 shader_parameter/flashing = false
 shader_parameter/normal_strength = 0.2
+shader_parameter/billboard = true
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_qjx64"]
 render_priority = 0

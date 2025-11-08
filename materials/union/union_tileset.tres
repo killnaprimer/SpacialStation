@@ -1,9 +1,9 @@
 [gd_resource type="ShaderMaterial" load_steps=5 format=3 uid="uid://bcmlq6p3p6bnn"]
 
 [ext_resource type="Shader" uid="uid://vitfbh2vfqlc" path="res://materials/shaders/just_texture.gdshader" id="1_bwssm"]
-[ext_resource type="Texture2D" uid="uid://bn4hqxr27vgnl" path="res://models/test_0.png" id="2_bicay"]
-[ext_resource type="Texture2D" uid="uid://3ds7tokkbrag" path="res://sources/union_emissive.png" id="3_bicay"]
-[ext_resource type="Texture2D" uid="uid://dr157syp247vw" path="res://models/quake_tileset_nm.png" id="3_eclp6"]
+[ext_resource type="Texture2D" uid="uid://bn4hqxr27vgnl" path="res://textures/locations/union_tileset.png" id="2_bicay"]
+[ext_resource type="Texture2D" uid="uid://3ds7tokkbrag" path="res://textures/locations/union_emissive.png" id="3_bicay"]
+[ext_resource type="Texture2D" uid="uid://dr157syp247vw" path="res://textures/locations/union_tileset_nm.png" id="3_eclp6"]
 
 [resource]
 render_priority = 0

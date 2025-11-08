@@ -1,15 +1,15 @@
-[gd_scene load_steps=26 format=3 uid="uid://clydvyhspgccd"]
+[gd_scene load_steps=32 format=3 uid="uid://clydvyhspgccd"]
 
 [ext_resource type="Script" uid="uid://x5ipxbgp58n6" path="res://scripts/common/player.gd" id="1_4dohe"]
-[ext_resource type="Texture2D" uid="uid://d0016wk0ra8qf" path="res://textures/generic_character-Sheet.png" id="3_lagtt"]
-[ext_resource type="PackedScene" uid="uid://d0g4k7jwfmwcg" path="res://scenes/prefabs/character.tscn" id="3_r66lb"]
+[ext_resource type="Texture2D" uid="uid://d0016wk0ra8qf" path="res://textures/characters/generic_character-Sheet.png" id="3_lagtt"]
 [ext_resource type="Shader" uid="uid://541fc1k45g4m" path="res://materials/shaders/character.gdshader" id="3_xtlg4"]
 [ext_resource type="Script" uid="uid://dql0e8i3omcvc" path="res://scripts/player/gun_holder.gd" id="4_ht1c8"]
 [ext_resource type="Shader" uid="uid://bo0yc1rosr6v4" path="res://materials/shaders/basic.gdshader" id="4_kbsxf"]
 [ext_resource type="Script" uid="uid://b2dpd8c06nmlb" path="res://scripts/common/gun.gd" id="5_g2jcq"]
 [ext_resource type="Script" uid="uid://dum25iy3i8s0w" path="res://scripts/common/melee.gd" id="5_rgeog"]
-[ext_resource type="Texture2D" uid="uid://ci8fkdgcxe8tw" path="res://textures/generic_char_nm.png" id="5_va4sl"]
+[ext_resource type="Texture2D" uid="uid://ci8fkdgcxe8tw" path="res://textures/characters/generic_char_nm.png" id="5_va4sl"]
 [ext_resource type="Shader" uid="uid://djpop43t0kc30" path="res://materials/shaders/character_xray.gdshader" id="6_20t1h"]
+[ext_resource type="Script" uid="uid://b3ey84j6drg0v" path="res://scripts/enemy/enemy_sprite.gd" id="6_aal4f"]
 [ext_resource type="Script" uid="uid://box1lvu4pf35d" path="res://scripts/player/mouse_aim.gd" id="6_g2jcq"]
 [ext_resource type="Resource" uid="uid://67gtv55bbw3y" path="res://data/guns/pistol.tres" id="7_jybep"]
 [ext_resource type="Script" uid="uid://cx0xxqn8au6ks" path="res://scripts/common/health.gd" id="8_kbsxf"]
@@ -28,12 +28,127 @@ shader = ExtResource("3_xtlg4")
 shader_parameter/albedo_texture = ExtResource("3_lagtt")
 shader_parameter/normal_map = ExtResource("5_va4sl")
 shader_parameter/flashing = false
+shader_parameter/normal_strength = 0.2
+shader_parameter/billboard = true
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_aal4f"]
 render_priority = 0
 shader = ExtResource("6_20t1h")
 shader_parameter/albedo_texture = ExtResource("3_lagtt")
 shader_parameter/flashing = false
+
+[sub_resource type="Animation" id="Animation_v5mhf"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite3D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite3D:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_cs6s8"]
+resource_name = "IDLE"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite3D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.466667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [0, 7]
+}
+
+[sub_resource type="Animation" id="Animation_v2nwo"]
+resource_name = "roll"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite3D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [8]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite3D:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_xofgc"]
+resource_name = "run"
+length = 0.7
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite3D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6]
+}
+
+[sub_resource type="Animation" id="Animation_hk8gb"]
+resource_name = "walk"
+length = 0.6
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite3D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.133333, 0.3, 0.433333),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 3, 0, 6]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_hk8gb"]
+_data = {
+&"RESET": SubResource("Animation_v5mhf"),
+&"idle": SubResource("Animation_cs6s8"),
+&"roll": SubResource("Animation_v2nwo"),
+&"run": SubResource("Animation_xofgc"),
+&"walk": SubResource("Animation_hk8gb")
+}
 
 [sub_resource type="QuadMesh" id="QuadMesh_ht1c8"]
 size = Vector2(1.5, 2)
@@ -67,16 +182,29 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9, 0)
 shape = SubResource("CapsuleShape3D_fp3wc")
 debug_color = Color(1, 1, 1, 0.41960785)
 
-[node name="character" parent="." instance=ExtResource("3_r66lb")]
+[node name="character" type="Node3D" parent="."]
 
-[node name="Sprite3D" parent="character" index="0"]
+[node name="Sprite3D" type="Sprite3D" parent="character"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.037587762, 1, 0.06675935)
 material_override = SubResource("ShaderMaterial_20t1h")
 material_overlay = SubResource("ShaderMaterial_aal4f")
 cast_shadow = 0
-offset = Vector2(0, 0)
 modulate = Color(1, 0.4166667, 0, 1)
 pixel_size = 0.12
+billboard = 1
+shaded = true
+texture_filter = 0
+texture = ExtResource("3_lagtt")
+hframes = 3
+vframes = 3
+script = ExtResource("6_aal4f")
+normal_map = ExtResource("5_va4sl")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="character"]
+libraries = {
+&"": SubResource("AnimationLibrary_hk8gb")
+}
+autoplay = "idle"
 
 [node name="shadow" type="MeshInstance3D" parent="character"]
 transform = Transform3D(0.9093789, 0, 0, 0, 8.52372e-08, 1, 0, -0.65, 1.31134e-07, 0.0041673183, 0.013, 0)
@@ -163,5 +291,3 @@ script = ExtResource("17_20t1h")
 sprite = NodePath("../character/Sprite3D")
 anim = NodePath("../character/AnimationPlayer")
 metadata/_custom_type_script = "uid://d3vssl4haveoe"
-
-[editable path="character"]

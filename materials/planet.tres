@@ -1,7 +1,7 @@
 [gd_resource type="ShaderMaterial" load_steps=3 format=3 uid="uid://bsndo354ln0tv"]
 
 [ext_resource type="Shader" uid="uid://vitfbh2vfqlc" path="res://materials/shaders/just_texture.gdshader" id="1_ywbbp"]
-[ext_resource type="Texture2D" uid="uid://snj2tp8bslds" path="res://sources/planet.png" id="2_870h3"]
+[ext_resource type="Texture2D" uid="uid://snj2tp8bslds" path="res://textures/planets/planet.png" id="2_870h3"]
 
 [resource]
 render_priority = 0

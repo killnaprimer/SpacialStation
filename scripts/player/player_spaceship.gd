@@ -47,6 +47,7 @@ func handle_input(delta):
 			apply_central_force(brake_force)
 
 func clamp_pos():
+	#TODO: Snap did not work btw
 	if global_position.x > 5000:
 		global_position.x = -4900
 		p_camera.snap()
