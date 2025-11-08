@@ -14,4 +14,8 @@ func _process(_delta: float) -> void:
 	#return
 	direction = Vector2(spaceship.linear_velocity.x,spaceship.linear_velocity.z)
 	current_offset += direction * 0.0005
+	if current_offset.x > 100 : current_offset.x -=100
+	if current_offset.x <-100 : current_offset.x += 100
+	if current_offset.y > 100 : current_offset.y -=100
+	if current_offset.y <-100 : current_offset.y += 100
 	sky_mat.set_shader_parameter("current_offset", current_offset)

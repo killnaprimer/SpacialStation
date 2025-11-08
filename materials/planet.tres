@@ -1,0 +1,12 @@
+[gd_resource type="ShaderMaterial" load_steps=3 format=3 uid="uid://bsndo354ln0tv"]
+
+[ext_resource type="Shader" uid="uid://vitfbh2vfqlc" path="res://materials/shaders/just_texture.gdshader" id="1_ywbbp"]
+[ext_resource type="Texture2D" uid="uid://snj2tp8bslds" path="res://sources/planet.png" id="2_870h3"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_ywbbp")
+shader_parameter/albedo = ExtResource("2_870h3")
+shader_parameter/alpha_scissor = 0.5
+shader_parameter/use_normal = false
+shader_parameter/emissive_str = 0.0

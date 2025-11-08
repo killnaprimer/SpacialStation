@@ -4,6 +4,7 @@ uniform sampler2D albedo_texture : source_color, filter_nearest;
 uniform sampler2D normal_map : hint_normal, filter_nearest;
 uniform bool flashing = false;
 uniform float normal_strength = 0.2;
+uniform bool billboard = true;
 
 void fragment() {
     vec4 tex_color = texture(albedo_texture, UV);
@@ -23,7 +24,9 @@ void fragment() {
 }
 
 void vertex() {
-	MODELVIEW_MATRIX = VIEW_MATRIX * mat4(INV_VIEW_MATRIX[0], INV_VIEW_MATRIX[1], INV_VIEW_MATRIX[2], MODEL_MATRIX[3]);
+	if (billboard) {
+		MODELVIEW_MATRIX = VIEW_MATRIX * mat4(INV_VIEW_MATRIX[0], INV_VIEW_MATRIX[1], INV_VIEW_MATRIX[2], MODEL_MATRIX[3]);
 	MODELVIEW_NORMAL_MATRIX = mat3(MODELVIEW_MATRIX);
 	NORMAL = normalize(NORMAL * normal_strength);
+	}
 }

@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bs7gkpxbk650c"
-path.s3tc="res://.godot/imported/Blue_Nebula_04-512x512.png-f10b99b057105f20fb7669a74ad68fb4.s3tc.ctex"
+uid="uid://bjc8obrvfjsdr"
+path.s3tc="res://.godot/imported/player_ship.png-8a5f50fad8f61fea069d1ae813f12760.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://textures/sky/Small 512x512/Blue Nebula/Blue_Nebula_04-512x512.png"
-dest_files=["res://.godot/imported/Blue_Nebula_04-512x512.png-f10b99b057105f20fb7669a74ad68fb4.s3tc.ctex"]
+source_file="res://textures/player_ship.png"
+dest_files=["res://.godot/imported/player_ship.png-8a5f50fad8f61fea069d1ae813f12760.s3tc.ctex"]
 
 [params]
 

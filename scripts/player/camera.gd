@@ -32,3 +32,7 @@ func make_tween():
 func calculate_distance_factor(body: RigidBody3D):
 	var fac = body.linear_velocity.length()/ 500
 	return lerpf(distance_range.x, distance_range.y, fac)
+
+func snap():
+	var new_position = player.global_position + offset.normalized() * calculate_distance_factor(player)
+	global_position = new_position

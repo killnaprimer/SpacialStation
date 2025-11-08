@@ -20,8 +20,10 @@ uniform vec3 base_color : source_color = vec3(0.1, 0.1, 0.2);
 
 void sky() {
     vec3 dir = normalize(EYEDIR);
-    vec2 base_uv = dir.xz * 2.0;
-    
+    vec2 base_uv = dir.xz; // this we remove
+    base_uv *= 6.0;
+	base_uv = base_uv * 0.5 + 0.5;
+	
     // Apply parallax by multiplying the same offset with different speeds
     vec2 offset1 = current_offset * speed1;
     vec2 offset2 = current_offset * speed2;
@@ -35,6 +37,6 @@ void sky() {
     vec4 layer2 = texture(texture2, fract(uv2));
     vec4 layer3 = texture(texture3, fract(uv3));
     
-    vec4 combined = layer1 * layer2 + layer3;
+    vec4 combined = layer1*0.1 + layer2*0.5 + layer3*0.25;
     COLOR = vec4(base_color + combined.rgb, 1.0).rgb;
 }

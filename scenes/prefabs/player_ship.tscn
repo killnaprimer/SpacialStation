@@ -1,39 +1,80 @@
-[gd_scene load_steps=6 format=3 uid="uid://bue85iy21wto0"]
+[gd_scene load_steps=14 format=3 uid="uid://bue85iy21wto0"]
 
 [ext_resource type="Script" uid="uid://p1d5tv0t404q" path="res://scripts/player/player_spaceship.gd" id="1_g7r8v"]
+[ext_resource type="Shader" uid="uid://541fc1k45g4m" path="res://materials/shaders/character.gdshader" id="3_4fmlf"]
+[ext_resource type="Texture2D" uid="uid://bjc8obrvfjsdr" path="res://textures/player_ship.png" id="3_6boi6"]
+[ext_resource type="Material" uid="uid://psgjox3wcgar" path="res://materials/shaders/particle_shader_simple.tres" id="3_ibqd0"]
+[ext_resource type="Texture2D" uid="uid://64onjulw4ehh" path="res://textures/player_ship_nm.png" id="5_ppvtu"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_c6rj5"]
 size = Vector3(1, 1, 2)
 
-[sub_resource type="PrismMesh" id="PrismMesh_dtwn4"]
+[sub_resource type="Gradient" id="Gradient_fd4tv"]
+offsets = PackedFloat32Array(0, 0.9961165)
+colors = PackedColorArray(1, 0, 0, 1, 0.19215687, 0.14901961, 0, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_ibqd0"]
+gradient = SubResource("Gradient_fd4tv")
+
+[sub_resource type="Curve" id="Curve_fd4tv"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -2.7025394, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_ibqd0"]
+curve = SubResource("Curve_fd4tv")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_1gvwg"]
-spread = 15.0
-initial_velocity_min = 10.0
-initial_velocity_max = 10.0
+spread = 5.0
+initial_velocity_min = 1.0
+initial_velocity_max = 2.0
 gravity = Vector3(0, 0, 0)
+scale_min = 2.0
+scale_max = 2.0
+scale_curve = SubResource("CurveTexture_ibqd0")
+color_ramp = SubResource("GradientTexture1D_ibqd0")
 
-[sub_resource type="BoxMesh" id="BoxMesh_n0118"]
+[sub_resource type="SphereMesh" id="SphereMesh_6boi6"]
+material = ExtResource("3_ibqd0")
+radial_segments = 12
+rings = 6
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_53f22"]
+render_priority = 0
+shader = ExtResource("3_4fmlf")
+shader_parameter/albedo_texture = ExtResource("3_6boi6")
+shader_parameter/normal_map = ExtResource("5_ppvtu")
+shader_parameter/flashing = false
+shader_parameter/normal_strength = 1.0
+shader_parameter/billboard = false
 
 [node name="PlayerShip" type="RigidBody3D" node_paths=PackedStringArray("particles")]
+axis_lock_linear_y = true
+axis_lock_angular_x = true
+axis_lock_angular_y = true
+axis_lock_angular_z = true
 gravity_scale = 0.0
+linear_damp_mode = 1
+angular_damp_mode = 1
 script = ExtResource("1_g7r8v")
 acceleration_force = 50.0
 max_speed = 1000.0
 drag_factor = 1.0
-particles = NodePath("MeshInstance3D/GPUParticles3D")
+particles = NodePath("GPUParticles3D")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.5)
 shape = SubResource("BoxShape3D_c6rj5")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-transform = Transform3D(-2.4, -3.059797e-07, -3.8213714e-15, 0, -1.5298986e-07, 1.0000001, -2.0981466e-07, 3.4999998, 4.3711385e-08, 0, 0, 0)
-mesh = SubResource("PrismMesh_dtwn4")
-
-[node name="GPUParticles3D" type="GPUParticles3D" parent="MeshInstance3D"]
-transform = Transform3D(-4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0, 1, 0, 0, 0)
+[node name="GPUParticles3D" type="GPUParticles3D" parent="."]
+transform = Transform3D(4.1088705e-07, -2.4, -3.8213714e-15, 1.5298986e-07, 6.687399e-15, 1.0000001, -3.4999998, -3.628045e-07, 4.3711385e-08, 2.8762094e-07, 1.0709291e-07, -2.4499998)
 amount = 50
-amount_ratio = 0.0
 process_material = SubResource("ParticleProcessMaterial_1gvwg")
-draw_pass_1 = SubResource("BoxMesh_n0118")
+draw_pass_1 = SubResource("SphereMesh_6boi6")
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0)
+material_override = SubResource("ShaderMaterial_53f22")
+pixel_size = 0.12
+shaded = true
+texture_filter = 0
+texture = ExtResource("3_6boi6")

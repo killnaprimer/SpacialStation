@@ -8,7 +8,7 @@ extends RigidBody3D
 
 @export_category("Other")
 @export var particles : GPUParticles3D
-
+@export var p_camera : PlayerCamera
 var gas : float = 0
 
 func _ready():
@@ -19,6 +19,7 @@ func _physics_process(delta):
 	apply_drag()
 	clamp_velocity()
 	animate_particles()
+	clamp_pos()
 
 func handle_input(delta):
 	var mouse_pos = get_viewport().get_mouse_position()
@@ -44,6 +45,20 @@ func handle_input(delta):
 		if linear_velocity.length() > 0.1:
 			var brake_force = -linear_velocity.normalized() * acceleration_force
 			apply_central_force(brake_force)
+
+func clamp_pos():
+	if global_position.x > 5000:
+		global_position.x = -4900
+		p_camera.snap()
+	if global_position.x < -5000:
+		global_position.x = 4900
+		p_camera.snap()
+	if global_position.z > 5000:
+		global_position.z = -4900
+		p_camera.snap()
+	if global_position.z < -5000:
+		global_position.z = 4900
+		p_camera.snap()
 
 func apply_drag():
 	linear_velocity *= drag_factor

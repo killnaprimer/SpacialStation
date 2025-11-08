@@ -1,0 +1,20 @@
+[gd_resource type="ShaderMaterial" load_steps=5 format=3 uid="uid://chm0rhcpkl3ei"]
+
+[ext_resource type="Shader" uid="uid://bc7iwh6tge6s4" path="res://materials/shaders/skybox.gdshader" id="1_wgyon"]
+[ext_resource type="Texture2D" uid="uid://cyxamyidks80l" path="res://textures/sky/layer_2.png" id="2_wgyon"]
+[ext_resource type="Texture2D" uid="uid://dme35v8fnyxn4" path="res://textures/sky/layer_1.png" id="3_ia2bw"]
+[ext_resource type="Texture2D" uid="uid://bs7gkpxbk650c" path="res://textures/sky/layer_3.png" id="4_ndah7"]
+
+[resource]
+shader = ExtResource("1_wgyon")
+shader_parameter/texture1 = ExtResource("3_ia2bw")
+shader_parameter/texture2 = ExtResource("4_ndah7")
+shader_parameter/texture3 = ExtResource("2_wgyon")
+shader_parameter/tiling1 = 0.70000002999012
+shader_parameter/tiling2 = 0.20000000624012
+shader_parameter/tiling3 = 0.50000002049012
+shader_parameter/current_offset = Vector2(0, 0)
+shader_parameter/speed1 = 0.0010000000475
+shader_parameter/speed2 = 0.0050000002375
+shader_parameter/speed3 = 0.00800000038
+shader_parameter/base_color = Color(0.022134578, 0.022116242, 0.06584032, 1)
